@@ -19,7 +19,7 @@ export default function  () {
   // RENDU
   return (
     <form action="submit" onSubmit={handleSubmit}>
-        <h1>Bienvenue chez vous</h1>
+        <h1>Bienvenue chez vous !</h1>
         <br />
         <h2>Connectez-vous</h2>
         <input type="text" value={inputValue} name="inputValue" placeholder='Entrez votre prénom...' onChange={handleChange} required/>
