@@ -3,22 +3,19 @@ import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function  () {
-    // ETAT
-    const [ inputValue, setInputValue] = useState("");
-    const navigate = useNavigate();
-
-    // COMPORTEMENT
-    const handleChange = (evt) => {
-      setInputValue(evt.target.value);
-    }
-    
-    const handleSubmit = (evt) => {
-      evt.preventDefault();
-      navigate(`order/${inputValue}`);
-      setInputValue('');
-    }
-
-  // RENDU
+  //
+  const [ inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
+  // 
+  const handleChange = (evt) => {
+    setInputValue(evt.target.value);
+  }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    navigate(`order/${inputValue}`);
+    setInputValue('');
+  }
+  // 
   return (
     <>
       <form action="submit" onSubmit={handleSubmit}>

@@ -3,12 +3,11 @@ import { Link, useParams } from 'react-router-dom'
 
 export default function OrderPage() {
 
-  /*extraction de la proprieté desirée via le tableau retourner grace à la fonction*/
-  const {inputValue} = useParams();
+  const {username} = useParams();
   
   return (
     <div>
-      <h1>Bonjour {inputValue}</h1>
+      <h1>Bonjour {username}</h1>
         <button>
           <Link to="/">déconnexion</Link>
         </button>
