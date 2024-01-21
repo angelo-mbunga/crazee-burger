@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+@font-face {
+  font-family: "Amatic_SC";
+  src: url("./assets/fonts/Amatic_SC/AmaticSC-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Amatic_SC";
+  src: url("./assets/fonts/Amatic_SC/AmaticSC-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Open_Sans";
+  src: url("./assets/fonts/Open_Sans/static/OpenSans-Medium.ttf") format("truetype");
+}
