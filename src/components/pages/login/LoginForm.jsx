@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { theme } from '../../../theme';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { BsPersonCircle } from "react-icons/bs";
-import HeaderLogo from '../../reusable-ui/Logo';
 
 
 export default function  () {
@@ -25,7 +24,7 @@ export default function  () {
     <>
       <LoginFormStyled action="submit" onSubmit={handleSubmit}>
         <div>
-          <h1>Bienvenue chez vous !</h1>
+          <h2>Bienvenue chez vous !</h2>
           <hr />
           <h2>Connectez-vous</h2>
           <div className='wrapper'>
@@ -43,8 +42,14 @@ export default function  () {
 }
 
 const LoginFormStyled = styled.form `
+  h2 {
+    color: ${theme.colors.white};
+    font-family: "Amatic SC", cursive;
+    font-size: 36px;
+  }
   hr{
-    border: 2px solid ${theme.colors.primary_burger};
+    border: 1px solid ${theme.colors.primary_burger};
+    margin: -12px 0;
   }
   .wrapper {
     display: flex;
