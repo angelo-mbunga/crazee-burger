@@ -16,10 +16,10 @@ const PrimaryButtonStyled = styled.div `
 
     button {
         width: 100%;
-        border-radius: 5px;
+        border-radius: ${theme.borderRadius.round};
         border: none;
         padding: 16px;
-        font-size: 16px;
+        font-size: ${theme.fonts.size.P0};
         text-overflow: ellipsis;
         background-color: ${theme.colors.primary};
         color: ${theme.colors.white};

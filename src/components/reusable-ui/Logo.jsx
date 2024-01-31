@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import logo from "../../assets/img/logo-orange.png"
 import { theme } from '../../theme'
 
-
 export default function Logo() {
   return (
     <LogoStyled>
@@ -18,10 +17,11 @@ const LogoStyled = styled.div `
 
   h1 {
     color: ${theme.colors.primary_burger};
+    display: inline;
     text-align: center;
-    font-size: 60px;
+    font-size: 80px;
     line-height: 1em;
-    font-weight: 700;
+    font-weight: ${theme.fonts.weights.heavy};
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-family: "Amatic SC", cursive;
@@ -29,10 +29,8 @@ const LogoStyled = styled.div `
   img {
     object-fit: contain;
     object-position: center;
-    height: 60px;
-    width: 80px;
-    margin: 0 5px;
+    height: 80px;
+    width: 100px;
+    margin: 0 ${theme.gridUnit}px;
   }
-
-
 `

@@ -6,12 +6,11 @@ import TextInput from '../../reusable-ui/TextInput';
 import { BsPersonCircle } from "react-icons/bs";
 import PrimaryButton from '../../reusable-ui/PrimaryButton';
 
-
 export default function  () {
-  //
+
   const [ inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
-  // 
+
   const handleChange = (evt) => {
     setInputValue(evt.target.value);
   }
@@ -20,7 +19,7 @@ export default function  () {
     navigate(`order/${inputValue}`);
     setInputValue('');
   }
-  // 
+
   return (
     <>
       <LoginFormStyled action="submit" onSubmit={handleSubmit}>
@@ -37,21 +36,19 @@ export default function  () {
 }
 
 const LoginFormStyled = styled.form `
-  width: 33%;
+  width: 50%;
+  max-width: 500px;
+  min-width: 400px;
+  padding: 0 ${theme.spacing.lg};
 
   h2 {
     color: ${theme.colors.white};
     font-family: "Amatic SC", cursive;
-    font-size: 36px;
+    font-size: ${theme.fonts.size.P4};
   }
   hr{
     border: 1px solid ${theme.colors.primary_burger};
-    margin: -12px 0;
+    margin: -16px auto;
+    width: 66%;
   }
-
-
-
-
-
-
 `

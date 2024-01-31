@@ -17,13 +17,17 @@ const InputStyled = styled.div `
 
     input {
         width: 100%;
-        border-radius: 5px;
+        border-radius: ${theme.borderRadius.round};
         border: none;
         padding: 16px;
         padding-left: 72px;
-        font-size: 16px;
+        font-size: ${theme.fonts.size.P0};
         text-overflow: ellipsis;
         background-color: ${theme.colors.white};
+
+        &::placeholder {
+            color: ${theme.colors.greyMedium};
+        }
     }
     input:focus {
         outline: none;
@@ -34,6 +38,6 @@ const InputStyled = styled.div `
         width: 24px;
         height: 24px;
         left: 24px;
-        color: ${theme.colors.greyLight};
+        color: ${theme.colors.greySemiDark};
     }
   `
