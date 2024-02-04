@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { theme } from '../../theme'
-import Logo from "../reusable-ui/Logo";
+import { theme } from '../theme'
+import Logo from "./reusable-ui/Logo";
 import { Link } from 'react-router-dom'
 
 export default function LeftSideNavbar() {

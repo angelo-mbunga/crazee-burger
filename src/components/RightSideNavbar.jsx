@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { theme } from '../../theme'
-import Profil from './Profil';
+import { theme } from '../theme'
+import Profil from './reusable-ui/Profil';
 
 export default function RightSideNavbar() {
     return (
