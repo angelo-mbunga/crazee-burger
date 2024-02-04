@@ -10,7 +10,6 @@ export default function LeftSideNavbar() {
 }
 
 const LeftSideNavbarStyled = styled.div`
-    background-color: green;
     width: 50%;
     padding-left: 20px;
 `

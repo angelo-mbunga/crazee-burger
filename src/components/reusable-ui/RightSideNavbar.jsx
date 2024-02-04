@@ -10,7 +10,6 @@ export default function RightSideNavbar() {
 }
 
 const RightSideNavbarStyled = styled.div`
-    background-color: purple;
     width: 50%;
     padding-right: 70px;
     text-align: end;

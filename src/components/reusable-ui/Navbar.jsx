@@ -13,13 +13,10 @@ export default function Navbar() {
 }
 
 const NavbarStyled = styled.div`
-    background-color: red;
     width: 100%;
-    height: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 15px 15px 0px 0px;
+    background-color: white;
 `
