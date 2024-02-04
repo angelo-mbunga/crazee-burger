@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export default function LoginPage() {
   return (
     <LoginPageStyled>
-      <Logo/>
+      <Logo className={"logo-login-page"}/>
       <LoginForm/> 
     </LoginPageStyled>
   )
@@ -31,5 +31,13 @@ const LoginPageStyled = styled.div`
     left: 0;
     bottom: 0;
     z-index: -1;
+  }
+
+  .text-logo-login-page {
+    font-size: 70px;
+  }
+  .img-logo-login-page {
+    height: 90px;
+    width: 100px;
   }
 `

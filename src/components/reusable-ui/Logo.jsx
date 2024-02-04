@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import logo from "../../assets/img/logo-orange.png"
 import { theme } from '../../theme'
 
-export default function Logo() {
+export default function Logo({className}) {
   return (
     <LogoStyled>
-        <h1>crazee</h1>
-        <img src={logo} alt="Logo" />
-        <h1>burger</h1>
+        <h1 className='text-logo-login-page'>crazee</h1>
+        <img src={logo} alt="Logo" className='img-logo-login-page'/>
+        <h1 className='text-logo-login-page'>burger</h1>
     </LogoStyled>
   )
 }
@@ -19,7 +19,7 @@ const LogoStyled = styled.div `
     color: ${theme.colors.primary_burger};
     display: inline;
     text-align: center;
-    font-size: 80px;
+    font-size: 30px;
     line-height: 1em;
     font-weight: ${theme.fonts.weights.heavy};
     text-transform: uppercase;
@@ -29,8 +29,8 @@ const LogoStyled = styled.div `
   img {
     object-fit: contain;
     object-position: center;
-    height: 80px;
-    width: 100px;
+    height: 60px;
+    width: 60px;
     margin: 0 ${theme.gridUnit}px;
   }
 `
