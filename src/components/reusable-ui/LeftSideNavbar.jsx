@@ -15,8 +15,13 @@ export default function LeftSideNavbar() {
 }
 
 const LeftSideNavbarStyled = styled.div`
-  width: 50%;
+  width: 66%;
   padding-left: 20px;
+  height: 100%;
+  background-color: green;
+  display: flex;
+  justify-content: left;
+  align-items: center;
 `
 const LinkStyled = styled.div`
   text-decoration: none;
