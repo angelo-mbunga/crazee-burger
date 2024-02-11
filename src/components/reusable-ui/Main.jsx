@@ -17,7 +17,7 @@ const MainStyled = styled.div`
     border-radius: 0 0 ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
     box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
     flex: 1;
-    display: flex;
-    flex-direction: row;
-    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    overflow: auto;
 `;

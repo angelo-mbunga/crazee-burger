@@ -8,5 +8,5 @@ export default function Basket() {
 }
 
 const BasketStyled = styled.div`
-    background: red;
+  
 `;
