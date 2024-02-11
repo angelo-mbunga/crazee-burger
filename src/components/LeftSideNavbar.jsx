@@ -1,13 +1,12 @@
 import styled from 'styled-components';
-import { theme } from '../theme'
 import Logo from "./reusable-ui/Logo";
 import { Link } from 'react-router-dom'
+import { refreshPage } from '../utils/windows';
 
 export default function LeftSideNavbar() {
-  const currentUrl = () => window.location.reload(true);
     return (
       <LeftSideNavbarStyled>
-        <LinkStyled to={currentUrl}><Logo/></LinkStyled>
+        <LinkStyled><Logo onClick={refreshPage}/></LinkStyled>
       </LeftSideNavbarStyled>
     )
 }
