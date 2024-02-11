@@ -1,24 +1,36 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../../reusable-ui/Navbar';
-import OrderPageMain from './OrderPageMain';
+import Main from '../../reusable-ui/Main';
+import {theme} from '../../../theme/index';
 
 export default function OrderPage() {
   return (
     <OrderPageStyled>
-      <Navbar/>
-      <OrderPageMain/>
+      <div className='container'>      
+        <Navbar/>
+        <Main/>
+      </div>
     </OrderPageStyled>
   )
 }
 const OrderPageStyled = styled.div`
-  height: fit-content;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 98%;
+    max-width: 1400px;
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+  }
 
   ::before {
     content: "";
-      background-color: #FF9F1A;
+      background-color: ${theme.colors.primary};
       background-position: center;
       background-size: cover;
       position: absolute;
