@@ -12,23 +12,20 @@ export default function RightSideNavbar() {
 }
 
 const RightSideNavbarStyled = styled.div`
-    width: 33%;
-    padding-right: 70px;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    font-family: "Open Sans", sans-serif;
-    font-size: 12px;
-    color: grey;
-    background-color: red;
-    height: 100%;
+  width: 33%;
+  padding-right: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  color: ${theme.colors.greyDark};
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
 
-    .admin-button {
-      background-color: yellow;
-      width: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .admin-button {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 `

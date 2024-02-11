@@ -14,10 +14,10 @@ export default function Navbar() {
 
 const NavbarStyled = styled.div`
     width: 100%;
-    height: 66px;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 15px 15px 0px 0px;
-    background-color: white;
+    border-radius: ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound} 0px 0px;
+    background-color: ${theme.colors.white};
 `
