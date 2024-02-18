@@ -19,4 +19,10 @@ export function replaceFrenchCommaWithDot(price) {
 export function ajustPrice(itemPrice) {
   return itemPrice.toFixed(1).concat("0");
 }
+export function truncate(string, length){
+  if (string.length > length)
+      return string.substring(0,length)+'...';
+  else
+      return string;
+};
 
