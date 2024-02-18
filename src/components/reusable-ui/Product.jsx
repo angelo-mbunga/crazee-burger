@@ -1,34 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import burger from '../../../public/images/burger1.png'
-import PrimaryButton from './PrimaryButton'
 import { theme } from '../../theme';
 
+export default function Product() {
 
-export default function Card() {
-  return (
-    <CardStyled>
-        <img src={burger} alt="" className='card-img'/>
-        <div className='card-info'>
-            <p className='item-title'>titre</p>
-            <div className='card-extra'>
-                <p className='item-price'>5.30 €</p>
-                <PrimaryButton className={"card-cta"} label={"Ajouter"}></PrimaryButton>
-            </div>
-        </div>
-    </CardStyled>
-  )
+    return (
+        <ProductStyled/>
+    )
 }
 
-const CardStyled = styled.div`
-    background: #F5F5F7;
-    min-width: auto;
-    max-width: 240px;
-    min-height: auto;
-    max-height: 330px;
-    padding: 20px;
-    box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
-    border-radius: 15px;
+const ProductStyled = styled.div`
+    .card {
+        background: #F5F5F7;
+        min-width: auto;
+        max-width: 240px;
+        min-height: auto;
+        max-height: 330px;
+        padding: 20px;
+        box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+        border-radius: 15px;
+    }
     
     .card-img {
         width: 200px;
