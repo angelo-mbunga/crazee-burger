@@ -1,11 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from '../../theme';
+import PrimaryButton from '../reusable-ui/PrimaryButton';
+import { ajustPrice, formatPrice, truncate } from '../../utils/maths';
 
-export default function Product() {
-
+export default function Product({title, price, imageSource, id}) {
     return (
-        <ProductStyled/>
+        <ProductStyled>
+            <div key={id} className='card'>
+                <img src={imageSource} alt="item-img" className='card-img'/>  
+                <div className='card-info'>
+                    <p className='item-title'>{truncate(title, 18)}</p>
+                    <div className='card-extra'>
+                        <p className='item-price'>{formatPrice(ajustPrice(price))}</p>
+                        <PrimaryButton className={"card-cta"} label={"Ajouter"}></PrimaryButton>
+                    </div>
+                </div>
+            </div>
+        </ProductStyled>
     )
 }
 
@@ -14,23 +26,28 @@ const ProductStyled = styled.div`
         background: #F5F5F7;
         min-width: auto;
         max-width: 240px;
-        min-height: auto;
-        max-height: 330px;
+        height: max-content;
         padding: 20px;
         box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
         border-radius: 15px;
     }
-    
     .card-img {
-        width: 200px;
-        height: 140px;
+        width: auto;
+        max-width: 200px;
+        height: 150px;
+        display: block;
+        margin: auto;
     }
-
     .card-info {
         width: 100%;
     }
     .item-title {
-        text-align: center;
+        text-align: left;
+        font-family: "Amatic SC", cursive;
+        font-size: 32px;
+        font-weight: 600;
+        margin-block-start: 0;
+        margin-block-end: 0;
     }
     .item-price {
         color: ${theme.colors.primary};
@@ -65,6 +82,6 @@ const ProductStyled = styled.div`
     .card-cta:active {
         background-color: ${theme.colors.primary};
         color: ${theme.colors.white};
-    }
+    }  
 `;
 
