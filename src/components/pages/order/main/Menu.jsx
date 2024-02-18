@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Product from './reusable-ui/Product';
-import { theme } from '../theme';
-import { fakeMenu2 } from '../fakeData/fakeMenu';
+import Card from '../../../reusable-ui/Card';
+import { theme } from '../../../../theme';
+import { fakeMenu2 } from '../../../../fakeData/fakeMenu';
+import { formatPrice } from '../../../../utils/maths';
 
 export default function Menu() {
 
@@ -10,8 +11,15 @@ export default function Menu() {
 
   return (
     <MenuStyled>
-      {menu.map((product) => {
-        return <Product {...product} />
+      {menu.map(({title, imageSource, id, price}) => {
+        return (
+          <Card
+            key={id}
+            title={title}
+            imageSource={imageSource}
+            leftDescription={formatPrice(price)}
+          />
+        )
       })}
     </MenuStyled>
   )
@@ -20,7 +28,6 @@ export default function Menu() {
 const MenuStyled = styled.div`
   flex: 1;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
-  //padding: 50px 50px 150px;
   background: #F5F5F7;
   padding: 36px;
   display: grid;

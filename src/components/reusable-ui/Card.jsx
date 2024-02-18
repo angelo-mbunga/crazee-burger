@@ -1,27 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import { theme } from '../../theme';
-import PrimaryButton from '../reusable-ui/PrimaryButton';
-import { ajustPrice, formatPrice, truncate } from '../../utils/maths';
+import {theme} from '../../theme/index'
+import PrimaryButton from './PrimaryButton';
+import { truncate } from '../../utils/maths';
 
-export default function Product({title, price, imageSource, id}) {
+export default function Card({title, imageSource, id, leftDescription}) {
     return (
-        <ProductStyled>
-            <div key={id} className='card'>
-                <img src={imageSource} alt="item-img" className='card-img'/>  
-                <div className='card-info'>
-                    <p className='item-title'>{truncate(title, 18)}</p>
+        <CardStyled>
+            <div className='card'>
+                <img src={imageSource} alt={title} className='card-img'/>  
+                <div className='card-details'>
+                    <p className='card-title'>{truncate(title, 18)}</p>
                     <div className='card-extra'>
-                        <p className='item-price'>{formatPrice(ajustPrice(price))}</p>
-                        <PrimaryButton className={"card-cta"} label={"Ajouter"}></PrimaryButton>
+                        <div className='card-left-extra'>
+                            <p className=''>{leftDescription}</p>
+                        </div>
+                        <div className='card-right-extra'>
+                            <PrimaryButton className={"card-cta"} label={"Ajouter"}></PrimaryButton>
+                        </div>
                     </div>
                 </div>
             </div>
-        </ProductStyled>
+        </CardStyled>
     )
 }
 
-const ProductStyled = styled.div`
+const CardStyled = styled.div`
     .card {
         background: #F5F5F7;
         min-width: auto;
@@ -38,10 +42,10 @@ const ProductStyled = styled.div`
         display: block;
         margin: auto;
     }
-    .card-info {
+    .card-details {
         width: 100%;
     }
-    .item-title {
+    .card-title {
         text-align: left;
         font-family: "Amatic SC", cursive;
         font-size: 32px;
@@ -49,27 +53,32 @@ const ProductStyled = styled.div`
         margin-block-start: 0;
         margin-block-end: 0;
     }
-    .item-price {
-        color: ${theme.colors.primary};
-        width: 50%;
-        padding: 16px 0;
-    }
     .card-extra {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 0 8px;
+    }
+    .card-left-extra {
+        color: ${theme.colors.primary};
+        width: 33%;
+        padding: 8px 0;
+    }
+    .card-right-extra {
+        width: 66%;
+        padding: 8px 0;
+        float: right;
     }
     .card-cta {
         width: 100%;
         border-radius: ${theme.borderRadius.round};
         border: none;
-        padding: 16px 24px;
+        padding: 8px 0;
         font-size: ${theme.fonts.size.P0};
         text-overflow: ellipsis;
         background-color: ${theme.colors.primary};
         color: ${theme.colors.white};
-        margin: auto;
+        float: right;
+        margin: none;
     }
     .card-cta:hover {
         cursor: pointer;
@@ -82,6 +91,6 @@ const ProductStyled = styled.div`
     .card-cta:active {
         background-color: ${theme.colors.primary};
         color: ${theme.colors.white};
-    }  
+    }
 `;
 

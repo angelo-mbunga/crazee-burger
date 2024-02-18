@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../../reusable-ui/Navbar';
-import Main from '../../reusable-ui/Main';
+import Main from './main/Main';
 import {theme} from '../../../theme/index';
 
 export default function OrderPage() {
