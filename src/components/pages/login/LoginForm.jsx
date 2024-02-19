@@ -28,7 +28,7 @@ export default function  () {
           <hr />
           <h2>Connectez-vous</h2>
           <TextInput value={inputValue} onChange={handleChange} placeholder={"Entrez votre prénom"} Icon={<BsPersonCircle className="inputIcon"/>} required/>
-          <PrimaryButton label={"Acceder à mon espace"}/>
+          <PrimaryButton label={"Acceder à mon espace"} className={"login-page-cta"}/>
         </div>
       </LoginFormStyled>
     </>
@@ -51,4 +51,5 @@ const LoginFormStyled = styled.form `
     margin: -16px auto;
     width: 66%;
   }
+  
 `
