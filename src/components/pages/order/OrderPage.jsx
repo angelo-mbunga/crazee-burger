@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Navbar from '../../reusable-ui/Navbar';
+import Navbar from '../order/navbar/Navbar';
 import Main from './main/Main';
 import {theme} from '../../../theme/index';
 

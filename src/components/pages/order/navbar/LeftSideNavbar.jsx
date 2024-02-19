@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Logo from "./reusable-ui/Logo";
+import Logo from "../../../reusable-ui/Logo";
 import { Link } from 'react-router-dom'
-import { refreshPage } from '../utils/windows';
+import { refreshPage } from '../../../../utils/windows';
 
 export default function LeftSideNavbar() {
     return (
