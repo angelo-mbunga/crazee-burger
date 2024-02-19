@@ -27,13 +27,13 @@ export default function Card({title, imageSource, id, leftDescription}) {
 
 const CardStyled = styled.div`
     .card {
-        background: #F5F5F7;
+        background: ${theme.colors.background_white};
         min-width: auto;
         max-width: 240px;
         height: max-content;
         padding: 20px;
         box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
-        border-radius: 15px;
+        border-radius: ${theme.borderRadius.round};
     }
     .card-img {
         width: auto;
@@ -48,8 +48,8 @@ const CardStyled = styled.div`
     .card-title {
         text-align: left;
         font-family: "Amatic SC", cursive;
-        font-size: 32px;
-        font-weight: 600;
+        font-size: ${theme.fonts.size.P4};;
+        font-weight: ${theme.fonts.weights.bold};
         margin-block-start: 0;
         margin-block-end: 0;
     }
@@ -77,8 +77,6 @@ const CardStyled = styled.div`
         text-overflow: ellipsis;
         background-color: ${theme.colors.primary};
         color: ${theme.colors.white};
-        float: right;
-        margin: none;
     }
     .card-cta:hover {
         cursor: pointer;
