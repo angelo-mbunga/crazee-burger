@@ -17,7 +17,8 @@ export default function Profil() {
     )
 }
 const ProfilStyled = styled.div`
-    width: 50%;
+    width: auto;
+    padding: 0 8px;
     display: flex;
     justify-content: right;
     align-items: center;
