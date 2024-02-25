@@ -5,8 +5,8 @@ import { theme } from "../../theme"
 export default function ToggleButton({
   isChecked,
   onToggle,
-  labelIfChecked = "Activer mode admin",
-  labelIfUnchecked = "Desactiver mode admin",
+  labelIfChecked = "",
+  labelIfUnchecked = "",
 }) {
   return (
     <ToggleButtonStyled>
