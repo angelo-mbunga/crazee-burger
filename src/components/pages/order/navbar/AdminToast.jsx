@@ -1,6 +1,7 @@
 import {ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import styled from "styled-components"
+import { theme } from "../../../../theme";
 
 export default function AdminToast() {
   return (
@@ -22,10 +23,10 @@ const AdminToastStyled  = styled.div`
     }
   }
   .Toastify__progress-bar {
-    background-color: white;
+    background-color: ${theme.colors.background_white};
   }
   .Toastify__toast-icon {
-    color: white;
+    color: ${theme.colors.background_white};
   }
 
   .body-toast {
