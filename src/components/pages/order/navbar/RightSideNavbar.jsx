@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { theme } from '../../../../theme'
 import Profil from '../../../reusable-ui/Profil';
 import ToggleButton from '../../../reusable-ui/ToggleButton';
-import NavbarRightSideIncomplet from './NavbarRightSideIncomplet';
 import { toast, Zoom } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { MdAdminPanelSettings } from "react-icons/md";
+import AdminToast from './AdminToast';
 
 export default function RightSideNavbar() {
 
@@ -38,7 +38,7 @@ export default function RightSideNavbar() {
         labelIfUnchecked='Desactiver mode admin'
         onToggle={displayToast}/>
       <Profil/>
-      <NavbarRightSideIncomplet/>
+      <AdminToast/>
     </RightSideNavbarStyled>
   )
 }
