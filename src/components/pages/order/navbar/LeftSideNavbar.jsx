@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Logo from "./reusable-ui/Logo";
+import Logo from "../../../reusable-ui/Logo";
 import { Link } from 'react-router-dom'
-import { refreshPage } from '../utils/windows';
+import { refreshPage } from '../../../../utils/windows';
 
 export default function LeftSideNavbar() {
     return (
@@ -12,7 +12,7 @@ export default function LeftSideNavbar() {
 }
 
 const LeftSideNavbarStyled = styled.div`
-  width: 66%;
+  width: 50%;
   padding-left: 20px;
   height: 100%;
   display: flex;
