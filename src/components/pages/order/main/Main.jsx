@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import {theme} from '../../../../theme/index'
 import Menu from './Menu';
 import Basket from './Basket';
+import Admin2 from '../admin/Admin2';
+import Admin from '../admin/Admin';
 
 export default function Main() {
   return (
     <MainStyled>
       <Basket/>
       <Menu/>
+      <Admin2/>
+      <Admin/>
     </MainStyled>
   )
 }
@@ -18,6 +22,6 @@ const MainStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
   flex: 1;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns:20% 80%;
   overflow: auto;
 `;
