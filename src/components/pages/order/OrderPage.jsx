@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../order/navbar/Navbar';
 import Main from './main/Main';
 import {theme} from '../../../theme/index';
+import OrderContext from '../../../context/OrderContext';
 
 export default function OrderPage() {
+
+  const [isAdminMode, setIsAdminMode] = useState(true);
+  const orderContextValue = {
+    isAdminMode ,
+    setIsAdminMode
+  };
+
   return (
-    <OrderPageStyled>
-      <div className='container'>      
-        <Navbar/>
-        <Main/>
-      </div>
-    </OrderPageStyled>
+    <OrderContext.Provider value={orderContextValue}>
+      <OrderPageStyled>
+        <div className='container'>
+          <Navbar/>
+          <Main/>
+        </div>
+      </OrderPageStyled>
+    </OrderContext.Provider>
   )
 }
 const OrderPageStyled = styled.div`

@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../../../theme'
-import Profil from '../../../reusable-ui/Profil';
+import Profil from './Profil';
 import ToggleButton from '../../../reusable-ui/ToggleButton';
 import { toast, Zoom } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { MdAdminPanelSettings } from "react-icons/md";
 import AdminToast from './AdminToast';
+import OrderContext from '../../../../context/OrderContext';
 
 export default function RightSideNavbar() {
 
-  const [isAdminMode, setIsAdminMode] = useState(true);
+  const {isAdminMode, setIsAdminMode} = useContext(OrderContext)
 
   const displayToast = () => {
     if (isAdminMode) {
@@ -31,15 +32,15 @@ export default function RightSideNavbar() {
   };
 
   return (
-    <RightSideNavbarStyled>
-      <ToggleButton 
-        isChecked={isAdminMode}
-        labelIfChecked='Activer mode admin'
-        labelIfUnchecked='Desactiver mode admin'
-        onToggle={displayToast}/>
-      <Profil/>
-      <AdminToast/>
-    </RightSideNavbarStyled>
+      <RightSideNavbarStyled>
+        <ToggleButton 
+          isChecked={isAdminMode}
+          labelIfChecked='Activer mode admin'
+          labelIfUnchecked='Desactiver mode admin'
+          onToggle={displayToast}/>
+        <Profil/>
+        <AdminToast/>
+      </RightSideNavbarStyled>
   )
 }
 
