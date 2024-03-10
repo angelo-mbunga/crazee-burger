@@ -5,41 +5,45 @@ import { IoIosAdd } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineEdit } from "react-icons/md";
 import Tab from '../../../reusable-ui/Tab';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-export default function AdminTabs() {
+export default function AdminTabs({isCollasped, setIsCollasped}) {
 
-    const [panelIcon, setPanelIcon] = useState(true);
-    const [isPanelUp, setPanelUp] = useState(true);
+  const [panelIcon, setPanelIcon] = useState(true);
 
-    function togglePanelIcon() {
-        if (panelIcon) {
-            setPanelIcon(false)
-            setPanelUp(false)
-        }
-        setPanelIcon(!panelIcon)
-        setPanelUp(!isPanelUp)
+  function togglePanelIcon() {
+    toggleActiveTab()
+    if (panelIcon) {
+        setPanelIcon(false)
+        setIsCollasped(false)
     }
-    console.log(panelIcon)
+    setPanelIcon(!panelIcon)
+    setIsCollasped(!isCollasped)
+  }
 
-    return (
-        <AdminTabsStyled> 
-            {panelIcon
-                ? <Tab value={''}  icon={<FiChevronDown/>} className={'tab'} onClick={togglePanelIcon}/>
-                : <Tab value={'rr'} icon={<FiChevronUp/>} className={'tab'} onClick={togglePanelIcon}/>
-            }
-            <Tab value={'Ajouter un produit'} icon={<IoIosAdd/>} className={'tab'}/>
-            <Tab value={'Modifier un produit'} icon={<MdOutlineEdit/>} className={'tab'} />
-            <Tab value={'Paramatres'} icon={<IoSettingsOutline/>} className={'tab'}/>
-        </AdminTabsStyled> 
-    )
+  function toggleActiveTab(e) {
+    console.log(e)
+  }
+
+  return (
+    <AdminTabsStyled> 
+        {panelIcon
+          ? <Tab value={''} icon={<FiChevronUp/>} className={isCollasped ? 'tab tab-actived' : 'tab'} onClick={togglePanelIcon}/>
+          : <Tab value={''} icon={<FiChevronDown/>} className={isCollasped ? 'tab tab-actived' : 'tab'} onClick={togglePanelIcon}/>
+        }
+        <Tab value={'Ajouter un produit'} icon={<IoIosAdd/>} className={'tab'} onClick={toggleActiveTab}/>
+        <Tab value={'Modifier un produit'} icon={<MdOutlineEdit/>} className={'tab'} onClick={toggleActiveTab}/>
+        <Tab value={'Paramatres'} icon={<IoSettingsOutline/>} className={'tab'} onClick={toggleActiveTab}/>
+    </AdminTabsStyled> 
+  )
 }
 const AdminTabsStyled = styled.nav`
-  height: 36px;
+  height: 40px;
   list-style: none;
   display: flex;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
+  margin-left: 40px;
 
   .tab {
     background-color: white;
@@ -50,20 +54,21 @@ const AdminTabsStyled = styled.nav`
     padding: 0 24px;
     justify-content: center;
     align-items: center;
+    margin-left: 1px;
   }
   .tab:hover {
     cursor: pointer;
     text-decoration: underline;
     transition: 0.5s;
   }
-  .activeTab {
-    background-color: black;
-    color: white;
-  }
-
   .tab:first-child {
     p {
         display: none;
     }
+  }
+  .tab-actived {
+    background-color: #292729;
+    color: white;
+    transition: 0.5s;
   }
 `;
