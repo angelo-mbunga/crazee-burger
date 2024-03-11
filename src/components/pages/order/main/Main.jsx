@@ -3,21 +3,20 @@ import styled from 'styled-components';
 import {theme} from '../../../../theme/index'
 import Menu from './Menu';
 import Basket from './Basket';
-import Admin from '../admin/Admin';
+import Admin from './admin/Admin';
 import OrderContext from '../../../../context/OrderContext';
 
 export default function Main() {
   const {isAdminMode,setAdminMode} = useContext(OrderContext)
-  console.log(isAdminMode)
 
   return (
     <MainStyled>
       <Basket/>
       <Menu/>
-      {isAdminMode
+        {isAdminMode
           ? null
           : <Admin/>
-      }
+        }
     </MainStyled>
   )
 }
