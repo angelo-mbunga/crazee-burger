@@ -11,8 +11,11 @@ export default function AdminTabs({isCollasped, setIsCollasped}) {
 
   const [panelIcon, setPanelIcon] = useState(true);
 
+  const [isEditSelected, setIsEditSelected] = useState(false);
+  const [isSettingsSelected, setIsSettingsSelected] = useState(false);
+  const [isAddSelected, setIsAddSelected] = useState(true);
+
   function togglePanelIcon() {
-    toggleActiveTab()
     if (panelIcon) {
         setPanelIcon(false)
         setIsCollasped(false)
@@ -21,8 +24,25 @@ export default function AdminTabs({isCollasped, setIsCollasped}) {
     setIsCollasped(!isCollasped)
   }
 
-  function toggleActiveTab(e) {
-    console.log(e)
+  function selectAddTab() {
+    setIsCollasped(!isCollasped)
+    setIsEditSelected(false);
+    setIsAddSelected(!isAddSelected);
+    setIsSettingsSelected(false);
+  }
+
+  function selectEditTab() {
+    setIsCollasped(!isCollasped)
+    setIsEditSelected(!isEditSelected);
+    setIsAddSelected(false);
+    setIsSettingsSelected(false);
+  }
+
+  function selectSettingsTab() {
+    setIsCollasped(!isCollasped)
+    setIsEditSelected(false);
+    setIsAddSelected(false);
+    setIsSettingsSelected(!isSettingsSelected);
   }
 
   return (
@@ -31,9 +51,9 @@ export default function AdminTabs({isCollasped, setIsCollasped}) {
           ? <Tab value={''} icon={<FiChevronUp/>} className={isCollasped ? 'tab tab-actived' : 'tab'} onClick={togglePanelIcon}/>
           : <Tab value={''} icon={<FiChevronDown/>} className={isCollasped ? 'tab tab-actived' : 'tab'} onClick={togglePanelIcon}/>
         }
-        <Tab value={'Ajouter un produit'} icon={<IoIosAdd/>} className={'tab'} onClick={toggleActiveTab}/>
-        <Tab value={'Modifier un produit'} icon={<MdOutlineEdit/>} className={'tab'} onClick={toggleActiveTab}/>
-        <Tab value={'Paramatres'} icon={<IoSettingsOutline/>} className={'tab'} onClick={toggleActiveTab}/>
+        <Tab value={'Ajouter un produit'} icon={<IoIosAdd/>} className={isAddSelected ? 'tab tab-actived' : 'tab'} onClick={selectAddTab}/>
+        <Tab value={'Modifier un produit'} icon={<MdOutlineEdit/>} className={isEditSelected ? 'tab tab-actived' : 'tab'} onClick={selectEditTab}/>
+        <Tab value={'Paramatres'} icon={<IoSettingsOutline/>} className={isSettingsSelected ? 'tab tab-actived' : 'tab'} onClick={selectSettingsTab}/>
     </AdminTabsStyled> 
   )
 }
