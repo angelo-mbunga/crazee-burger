@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {theme} from '../../theme/index'
 import PrimaryButton from './PrimaryButton';
-import { truncate } from '../../utils/maths';
+import { truncate, formatPrice } from '../../utils/maths';
 
 export default function Card({title, imageSource, id, leftDescription}) {
     return (
@@ -13,7 +13,7 @@ export default function Card({title, imageSource, id, leftDescription}) {
                     <p className='card-title'>{truncate(title, 18)}</p>
                     <div className='card-extra'>
                         <div className='card-left-extra'>
-                            <p className=''>{leftDescription}</p>
+                            <p className=''>{formatPrice(leftDescription)}</p>
                         </div>
                         <div className='card-right-extra'>
                             <PrimaryButton className={"card-cta"} label={"Ajouter"}></PrimaryButton>
