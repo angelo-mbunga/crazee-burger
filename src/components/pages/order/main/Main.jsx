@@ -12,11 +12,13 @@ export default function Main() {
   return (
     <MainStyled>
       <Basket/>
-      <Menu/>
-        {isAdminMode
-          ? null
-          : <Admin/>
-        }
+      <div className='menu-and-amdin'>
+        <Menu/>
+          {isAdminMode
+            ? null
+            : <Admin/>
+          }
+      </div>
     </MainStyled>
   )
 }
@@ -27,5 +29,11 @@ const MainStyled = styled.div`
   flex: 1;
   display: grid;
   grid-template-columns:20% 1fr;
-  overflow-y: hidden;
+  height: calc(95vh - 10vh);
+
+  .menu-and-amdin{
+    position: relative;
+    overflow-y: hidden;
+    display: grid;
+  }
 `;

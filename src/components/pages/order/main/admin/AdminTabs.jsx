@@ -66,7 +66,7 @@ const AdminTabsStyled = styled.nav`
   display: flex;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
-  margin-left: 40px;
+  justify-content: center;
 
   .tab {
     background-color: white;

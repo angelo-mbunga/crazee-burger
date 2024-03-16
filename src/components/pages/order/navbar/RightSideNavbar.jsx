@@ -20,7 +20,7 @@ export default function RightSideNavbar() {
         theme: 'dark',
         transition: Zoom,
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 2500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
