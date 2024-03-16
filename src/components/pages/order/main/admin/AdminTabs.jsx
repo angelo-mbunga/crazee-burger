@@ -19,44 +19,62 @@ export default function AdminTabs() {
   const [panelIcon, setPanelIcon] = useState(true);
 
   function togglePanelIcon() {
-    if (panelIcon) {
-        setPanelIcon(false)
-        setIsCollasped(false)
-    }
     setPanelIcon(!panelIcon)
     setIsCollasped(!isCollasped)
   }
 
-  function selectAddTab() {
+  function selectTab(selectedTab) {
     setIsCollasped(true)
-    setIsEditSelected(false);
-    setIsAddSelected(true);
-    setIsSettingsSelected(false);
+    if (selectedTab === "add") {
+      setIsEditSelected(false);
+      setIsAddSelected(true);
+      setIsSettingsSelected(false);
+    }
+    if (selectedTab === "edit") {
+      setIsEditSelected(true);
+      setIsAddSelected(false);
+      setIsSettingsSelected(false);
+    }
+    if (selectedTab === "settings") {
+      setIsEditSelected(false);
+      setIsAddSelected(false);
+      setIsSettingsSelected(true);
+    }
   }
 
-  function selectEditTab() {
-    setIsCollasped(true)
-    setIsEditSelected(true);
-    setIsAddSelected(false);
-    setIsSettingsSelected(false);
-  }
-
-  function selectSettingsTab() {
-    setIsCollasped(true)
-    setIsEditSelected(false);
-    setIsAddSelected(false);
-    setIsSettingsSelected(true);
-  }
-
+  const tabsConfig = [
+    {
+      value : "",
+      icon: isCollasped ? <FiChevronUp/> : <FiChevronDown/>,
+      className: isCollasped ? 'tab tab-actived' : 'tab',
+      onClick: togglePanelIcon,
+    },
+    {
+      value : "Ajouter un produit",
+      icon: <IoIosAdd/>,
+      className: isAddSelected ? 'tab tab-actived' : 'tab',
+      onClick: () => selectTab("add"),
+    },
+    {
+      value : "Modifier un produit",
+      icon: <MdOutlineEdit/>,
+      className: isEditSelected ? 'tab tab-actived' : 'tab',
+      onClick: () => selectTab("edit"),
+    },
+    {
+      value : "Paramatres",
+      icon: <IoSettingsOutline/>,
+      className: isSettingsSelected ? 'tab tab-actived' : 'tab',
+      onClick: () => selectTab("settings"),
+    },
+  ]; 
   return (
     <AdminTabsStyled> 
-      {panelIcon
-        ? <Tab value={''} icon={<FiChevronUp/>} className={isCollasped ? 'tab tab-actived' : 'tab'} onClick={togglePanelIcon}/>
-        : <Tab value={''} icon={<FiChevronDown/>} className={isCollasped ? 'tab tab-actived' : 'tab'} onClick={togglePanelIcon}/>
-      }
-      <Tab value={'Ajouter un produit'} icon={<IoIosAdd/>} className={isAddSelected ? 'tab tab-actived' : 'tab'} onClick={selectAddTab}/>
-      <Tab value={'Modifier un produit'} icon={<MdOutlineEdit/>} className={isEditSelected ? 'tab tab-actived' : 'tab'} onClick={selectEditTab}/>
-      <Tab value={'Paramatres'} icon={<IoSettingsOutline/>} className={isSettingsSelected ? 'tab tab-actived' : 'tab'} onClick={selectSettingsTab}/>
+      {tabsConfig.map((tab) => {
+        return (
+          <Tab value={tab.value} icon={tab.icon} className={tab.className} onClick={tab.onClick}/>
+        )
+      })}
     </AdminTabsStyled> 
   )
 }
