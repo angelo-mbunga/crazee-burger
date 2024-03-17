@@ -12,6 +12,7 @@ export default function OrderPage() {
   const [isSettingsSelected, setIsSettingsSelected] = useState(false);
   const [isAddSelected, setIsAddSelected] = useState(false);
   const [isCollasped, setIsCollasped] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
 
   const orderContextValue = {
     isAdminMode ,
@@ -24,6 +25,8 @@ export default function OrderPage() {
     setIsAddSelected,
     isCollasped,
     setIsCollasped,
+    currentTabSelected,
+    setCurrentTabSelected,
   };
 
   return (

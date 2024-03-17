@@ -16,4 +16,7 @@ export default createContext({
   isCollasped : false,
   setIsCollasped : () => {},
 
+  currentTabSelected : false,
+  setCurrentTabSelected : () => {},
+
 });
