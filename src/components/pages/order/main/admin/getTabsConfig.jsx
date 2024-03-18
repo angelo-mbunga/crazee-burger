@@ -19,3 +19,5 @@ export const getTabsConfig = () => [
       icon: <IoSettingsOutline/>
     },
   ]; 
+export const getTabSelected = (tabs, currentTabSelected) => tabs.find((tab) => tab.index === currentTabSelected)
+

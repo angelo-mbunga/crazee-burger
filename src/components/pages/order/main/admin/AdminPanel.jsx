@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import OrderContext from '../../../../../context/OrderContext';
-import { getTabsConfig } from './getTabsConfig';
+import { getTabsConfig, getTabSelected } from './getTabsConfig';
 
 
 export default function AdminPanel() {
@@ -9,13 +9,10 @@ export default function AdminPanel() {
   const {currentTabSelected} = useContext(OrderContext);
 
   const tabs = getTabsConfig(currentTabSelected);
+  const tabSelected = getTabSelected(tabs, currentTabSelected)
 
   return (
-    <AdminPanelStyled>
-        {currentTabSelected === 'add' && 'Ajouter un produit'}
-        {currentTabSelected === 'edit' && 'Modifier un produit'}
-        {currentTabSelected === 'settings' && 'Parametres'}
-    </AdminPanelStyled>
+    <AdminPanelStyled>{currentTabSelected === tabSelected.index && tabSelected.value}</AdminPanelStyled>
   )
 }
 const AdminPanelStyled = styled.div`
