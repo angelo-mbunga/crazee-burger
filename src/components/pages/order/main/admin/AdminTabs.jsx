@@ -28,9 +28,19 @@ export default function AdminTabs() {
 
   return (
     <AdminTabsStyled> 
-      <Tab value={""} icon={isCollasped ? <FiChevronUp/> : <FiChevronDown/>} className={isCollasped ? 'tab tab-actived' : 'tab'} onClick={togglePanelIcon}/>
+      <Tab 
+        value={""} 
+        icon={isCollasped ? <FiChevronUp/> : <FiChevronDown/>} 
+        className={isCollasped ? 'tab tab-actived' : 'tab'} 
+        onClick={togglePanelIcon}
+      />
         {tabs.map((tab) => 
-          <Tab value={tab.value} icon={tab.icon} className={tab.className} onClick={() => selectTab(tab.index)}/>
+          <Tab 
+            value={tab.value} 
+            icon={tab.icon} 
+            className={currentTabSelected === tab.index ? 'tab tab-actived' : 'tab'} 
+            onClick={() => selectTab(tab.index)}
+          />
         )}
     </AdminTabsStyled> 
   )
