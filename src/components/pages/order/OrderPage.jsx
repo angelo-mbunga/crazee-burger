@@ -1,17 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../order/navbar/Navbar';
 import Main from './main/Main';
 import {theme} from '../../../theme/index';
+import OrderContext from '../../../context/OrderContext';
 
 export default function OrderPage() {
+
+  const [isAdminMode, setIsAdminMode] = useState(true);
+  const [isEditSelected, setIsEditSelected] = useState(false);
+  const [isSettingsSelected, setIsSettingsSelected] = useState(false);
+  const [isAddSelected, setIsAddSelected] = useState(false);
+  const [isCollasped, setIsCollasped] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
+
+  const orderContextValue = {
+    isAdminMode ,
+    setIsAdminMode,
+    isEditSelected,
+    setIsEditSelected,
+    isSettingsSelected,
+    setIsSettingsSelected,
+    isAddSelected,
+    setIsAddSelected,
+    isCollasped,
+    setIsCollasped,
+    currentTabSelected,
+    setCurrentTabSelected,
+  };
+
   return (
-    <OrderPageStyled>
-      <div className='container'>      
-        <Navbar/>
-        <Main/>
-      </div>
-    </OrderPageStyled>
+    <OrderContext.Provider value={orderContextValue}>
+      <OrderPageStyled>
+        <div className='container'>
+          <Navbar/>
+          <Main/>
+        </div>
+      </OrderPageStyled>
+    </OrderContext.Provider>
   )
 }
 const OrderPageStyled = styled.div`
