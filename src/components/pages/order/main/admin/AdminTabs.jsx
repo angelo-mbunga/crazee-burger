@@ -5,6 +5,7 @@ import Tab from '../../../../reusable-ui/Tab';
 import React, { useContext, useState } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import {getTabsConfig} from "../admin/getTabsConfig";
+import {theme} from '../../../../../theme/index';
 
 export default function AdminTabs() {
 
@@ -24,7 +25,7 @@ export default function AdminTabs() {
     setCurrentTabSelected(selectedTab)
   }
 
-  const tabs = getTabsConfig(currentTabSelected);
+  const tabs = getTabsConfig;
 
   return (
     <AdminTabsStyled> 
@@ -36,6 +37,7 @@ export default function AdminTabs() {
       />
         {tabs.map((tab) => 
           <Tab 
+            key={tab.index}
             value={tab.value} 
             icon={tab.icon} 
             className={currentTabSelected === tab.index ? 'tab tab-actived' : 'tab'} 
@@ -54,7 +56,7 @@ const AdminTabsStyled = styled.nav`
   justify-content: center;
 
   .tab {
-    background-color: white;
+    background-color: ${theme.colors.background_white};
     outline: 1px solid lightgray;
     outline-offset: -1px;
     height: 100%;
@@ -75,8 +77,8 @@ const AdminTabsStyled = styled.nav`
     }
   }
   .tab-actived {
-    background-color: #292729;
-    color: white;
+    background-color: ${theme.colors.dark};
+    color: ${theme.colors.background_white};;
     transition: 0.5s;
   }
 `;
