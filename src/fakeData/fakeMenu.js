@@ -111,3 +111,4 @@ export const fakeMenu2 = [
     isAdvertised: false,
   },
 ]
+

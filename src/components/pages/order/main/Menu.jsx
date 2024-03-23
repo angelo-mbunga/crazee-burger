@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from '../../../reusable-ui/Card';
 import { theme } from '../../../../theme';
-import { fakeMenu2 } from '../../../../fakeData/fakeMenu';
+import { fakeMenu1 } from '../../../../fakeData/fakeMenu';
 import { formatPrice, ajustPrice } from '../../../../utils/maths';
 
 export default function Menu() {
 
-  const [menu, setMenu ] = useState(fakeMenu2);
+  const [menu, setMenu ] = useState(fakeMenu1);
 
   return (
     <MenuStyled>
@@ -17,7 +17,7 @@ export default function Menu() {
             key={id}
             title={title}
             imageSource={imageSource}
-            leftDescription={ajustPrice(price)}
+            leftDescription={formatPrice(price)}
           />
         )
       })}

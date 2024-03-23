@@ -7,8 +7,10 @@ import { FiCheck } from "react-icons/fi";
 import TextInput from '../../../../../reusable-ui/TextInput';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import thumbnail from '../../../../../../assets/img/no-image.png'
+import comingSoonImg from '../../../../../../assets/img/coming-soon.png'
 import AdminToast from '../../../navbar/AdminToast';
 import { toast, Zoom } from "react-toastify"
+import { fakeMenu1 } from '../../../../../../fakeData/fakeMenu';
 
 export default function AddPanel() {
 
@@ -35,10 +37,12 @@ export default function AddPanel() {
     const [productName, setProductName] = useState("");
     const [productImg, setProductImg] = useState("");
     const [productPrice, setProductPrice] = useState("");
-    
+
+    const [fakeMenu,setFakeMenu] = useState(fakeMenu1)
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        setProductName(''),setProductImg(''), setProductPrice('')
+        //setProductName(''),setProductImg(''), setProductPrice('')
         toast.info("Ajouté avec succès !", {
             icon: <FiCheck size={30} />,
             theme: 'dark',
@@ -50,8 +54,34 @@ export default function AddPanel() {
             pauseOnHover: false,
             draggable: false,
             progress: undefined,
-          })
+        })
+        //alert(productName+productPrice+productImg);
+
+        const fakeMenuCopy = [...fakeMenu];
+
+        const id = 3;
+        const nom = productName;
+        let price = productPrice;
+        if (productPrice === '') {
+            price = '0,00';
+        }
+        let img = productImg;
+        if (productImg === '') {
+            img = comingSoonImg;
+        }
+
+        fakeMenu.push({id : id, imageSource : img, title : nom, price : price, quantity: 0, isAvailable: true, isAdvertised: false, })
+
+        setFakeMenu(fakeMenu)
+        console.log(fakeMenu)
+        setProductName(''),setProductImg(''), setProductPrice('')
     };
+
+
+
+
+
+
 
     return (
     <AddPanelStyled>
@@ -99,7 +129,6 @@ const AddPanelStyled = styled.div`
     padding: 24px;
 
     .preview{
-        background-color: red;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -117,7 +146,6 @@ const AddPanelStyled = styled.div`
     }
     form {
         width: 100%;
-        background-color: purple;
         float: left;
         text-align: left;
     }
