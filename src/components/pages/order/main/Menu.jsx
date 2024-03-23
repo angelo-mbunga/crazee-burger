@@ -8,7 +8,15 @@ import { formatPrice, ajustPrice } from '../../../../utils/maths';
 export default function Menu() {
 
   const [menu, setMenu ] = useState(fakeMenu1);
+  
+  function handleDelete(id) {
 
+    const menuCopy = [...menu]
+   
+    const menuUpdated = menuCopy.filter(item => item.id !== id)
+
+    setMenu(menuUpdated);
+  }
   return (
     <MenuStyled>
       {menu.map(({title, imageSource, id, price}) => {
@@ -18,6 +26,7 @@ export default function Menu() {
             title={title}
             imageSource={imageSource}
             leftDescription={formatPrice(price)}
+            onClick={() => handleDelete(id)}
           />
         )
       })}

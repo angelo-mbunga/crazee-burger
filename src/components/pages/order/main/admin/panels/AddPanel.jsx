@@ -13,27 +13,7 @@ import { toast, Zoom } from "react-toastify"
 import { fakeMenu1 } from '../../../../../../fakeData/fakeMenu';
 
 export default function AddPanel() {
-
-/*     const [productInfos, setProductInfos] = useState({
-        name: '',
-        img: '',
-        price: '',
-    })
     
-    const handleInputChange = (evt) => {
-        const { name, value } = evt.target;
-
-        setProductInfos((prevProductInfos) => ({
-            ...prevProductInfos,
-            [name]: value,
-        }));
-      };
-    
-    const handleSubmit = (evt) => {
-      evt.preventDefault();
-      console.log(productInfos);
-    } */
-
     const [productName, setProductName] = useState("");
     const [productImg, setProductImg] = useState("");
     const [productPrice, setProductPrice] = useState("");
@@ -42,29 +22,27 @@ export default function AddPanel() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //setProductName(''),setProductImg(''), setProductPrice('')
         toast.info("Ajouté avec succès !", {
             icon: <FiCheck size={30} />,
             theme: 'dark',
             transition: Zoom,
             position: "bottom-right",
             autoClose: 1500,
-            hideProgressBar: true,
+            hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
             progress: undefined,
         })
-        //alert(productName+productPrice+productImg);
 
-        const fakeMenuCopy = [...fakeMenu];
-
-        const id = 3;
+        const id = Date.now();
         const nom = productName;
+
         let price = productPrice;
         if (productPrice === '') {
             price = '0,00';
         }
+
         let img = productImg;
         if (productImg === '') {
             img = comingSoonImg;
@@ -73,52 +51,44 @@ export default function AddPanel() {
         fakeMenu.push({id : id, imageSource : img, title : nom, price : price, quantity: 0, isAvailable: true, isAdvertised: false, })
 
         setFakeMenu(fakeMenu)
-        console.log(fakeMenu)
         setProductName(''),setProductImg(''), setProductPrice('')
     };
 
-
-
-
-
-
-
     return (
-    <AddPanelStyled>
-        <div className='preview'>
-            <img src={thumbnail} alt="Aucun image" />
-        </div>
-        <div className='form'>
-            <form onSubmit={handleSubmit}>
-                <TextInput 
-                    value={productName}
-                    onChange={(e) => setProductName(e.target.value)}
-                    placeholder={"Nom du produit"}
-                    Icon={<FaHamburger className="inputIcon"/>}
-                />
-                <TextInput 
-                    value={productImg}
-                    onChange={(e) => setProductImg(e.target.value)}
-                    placeholder={"Lien URL d'une image"} 
-                    Icon={<BsFillCameraFill className="inputIcon"/>}
-                    type='url'
-                    pattern="https://.*"
-                />
-                <TextInput
-                    value={productPrice}
-                    onChange={(e) => setProductPrice(e.target.value)}
-                    placeholder={"Prix"} 
-                    Icon={<MdOutlineEuro className="inputIcon"/>}
-                />
-                <PrimaryButton
-                    label={"Ajouter le produit"} 
-                    className={"addProductBtn"}
-                />
-            </form>
-        </div>
-        <AdminToast/>
-    </AddPanelStyled>
-    
+        <AddPanelStyled>
+            <div className='preview'>
+                <img src={thumbnail} alt="Aucun image" />
+            </div>
+            <div className='form'>
+                <form onSubmit={handleSubmit}>
+                    <TextInput 
+                        value={productName}
+                        onChange={(e) => setProductName(e.target.value)}
+                        placeholder={"Nom du produit"}
+                        Icon={<FaHamburger className="inputIcon"/>}
+                    />
+                    <TextInput 
+                        value={productImg}
+                        onChange={(e) => setProductImg(e.target.value)}
+                        placeholder={"Lien URL d'une image"} 
+                        Icon={<BsFillCameraFill className="inputIcon"/>}
+                        type='url'
+                        pattern="https://.*"
+                    />
+                    <TextInput
+                        value={productPrice}
+                        onChange={(e) => setProductPrice(e.target.value)}
+                        placeholder={"Prix"} 
+                        Icon={<MdOutlineEuro className="inputIcon"/>}
+                    />
+                    <PrimaryButton
+                        label={"Ajouter le produit"} 
+                        className={"addProductBtn"}
+                    />
+                </form>
+            </div>
+            <AdminToast/>
+        </AddPanelStyled>
     )
 }
 

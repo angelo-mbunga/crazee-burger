@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import {theme} from '../../theme/index'
 import PrimaryButton from './PrimaryButton';
 import { truncate, formatPrice } from '../../utils/maths';
+import { TiDelete } from "react-icons/ti";
+import OrderContext from '../../context/OrderContext';
 
-export default function Card({title, imageSource, id, leftDescription}) {
+export default function Card({title, imageSource, id, leftDescription, onClick}) {
+
+    const {isAdminMode,setAdminMode} = useContext(OrderContext)
+
     return (
         <CardStyled>
             <div className='card'>
+                {isAdminMode
+                ? null
+                : <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onClick}/></div>
+                }
                 <img src={imageSource} alt={title} className='card-img'/>  
                 <div className='card-details'>
                     <p className='card-title'>{truncate(title, 18)}</p>
@@ -89,6 +98,17 @@ const CardStyled = styled.div`
     .card-cta:active {
         background-color: ${theme.colors.primary};
         color: ${theme.colors.white};
+    }
+    .card-delete-btn{
+        text-align: right;
+    }
+    .delete-icon{
+        color: ${theme.colors.primary};
+        transform: scale(1.5);
+        padding: 2px 0;
+    }
+    .delete-icon:hover{
+        cursor: pointer;
     }
 `;
 
