@@ -11,6 +11,7 @@ import comingSoonImg from '../../../../../../assets/img/coming-soon.png'
 import AdminToast from '../../../navbar/AdminToast';
 import { toast, Zoom } from "react-toastify"
 import { fakeMenu1 } from '../../../../../../fakeData/fakeMenu';
+import { theme } from '../../../../../../theme';
 
 export default function AddPanel() {
     
@@ -104,38 +105,43 @@ const AddPanelStyled = styled.div`
         align-items: center;
 
         img {
-            border: 1px solid #ddd;
+            outline: 2px solid ${theme.colors.greyLight};
             border-radius: 4px;
             padding: 2px;
             width: 200px; 
         }
     }
     .form{
-        background-color: none;
-        width: 100%;
-    }
-    form {
-        width: 100%;
-        float: left;
-        text-align: left;
+        div {
+            display: block;
+            float: left;
+            margin-left: 8px;
+            height: 24px;
+        }
     }
     input{
         padding: 10px 12px;
         padding-left: 64px;
+        background-color: ${theme.colors.background_white};
+        height: 16px;
     }
     .inputIcon {
         height: 16px;
         width: 16px;
+        margin-top: -3px;
     }
     .input {
         width: 100%;
     }
     .addProductBtn{
-        width:100%; 
-        padding: 10px 0;
-        background-color: #60bd4e;
-        color: white;
+        width: 50%; 
+        padding: 10px;
+        background-color: ${theme.colors.success};
+        color: ${theme.colors.white};
         border: none;
         cursor: pointer;
+    }
+    .addProductBtn:hover{
+        background-color: ${theme.colors.green};
     }
 `;
