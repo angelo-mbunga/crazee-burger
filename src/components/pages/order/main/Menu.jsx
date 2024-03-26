@@ -2,14 +2,14 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Card from '../../../reusable-ui/Card';
 import { theme } from '../../../../theme';
-import { fakeMenu1 } from '../../../../fakeData/fakeMenu';
+import { fakeMenu } from '../../../../fakeData/fakeMenu';
 import { formatPrice, ajustPrice } from '../../../../utils/maths';
 import MenuEmpty from './MenuEmpty';
 import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const [menu, setMenu ] = useState(fakeMenu1);
+  const [menu, setMenu ] = useState(fakeMenu.SMALL);
   const [isMenuEmpty, setIsMenuEmpty ] = useState(false);
   const {isAdminMode,setAdminMode} = useContext(OrderContext)
   

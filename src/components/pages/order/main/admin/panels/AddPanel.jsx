@@ -9,8 +9,8 @@ import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import thumbnail from '../../../../../../assets/img/no-image.png'
 import comingSoonImg from '../../../../../../assets/img/coming-soon.png'
 import AdminToast from '../../../navbar/AdminToast';
-import { toast, Zoom } from "react-toastify"
-import { fakeMenu1 } from '../../../../../../fakeData/fakeMenu';
+import { fakeMenu }  from '../../../../../../fakeData/fakeMenu';
+import { toast, Zoom } from "react-toastify";
 import { theme } from '../../../../../../theme';
 
 export default function AddPanel() {
@@ -19,7 +19,7 @@ export default function AddPanel() {
     const [productImg, setProductImg] = useState("");
     const [productPrice, setProductPrice] = useState("");
 
-    const [fakeMenu,setFakeMenu] = useState(fakeMenu1)
+    const [menu,setMenu] = useState(fakeMenu.SMALL);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -49,9 +49,9 @@ export default function AddPanel() {
             img = comingSoonImg;
         }
 
-        fakeMenu.push({id : id, imageSource : img, title : nom, price : price, quantity: 0, isAvailable: true, isAdvertised: false, })
+        menu.push({id : id, imageSource : img, title : nom, price : price, quantity: 0, isAvailable: true, isAdvertised: false, })
 
-        setFakeMenu(fakeMenu)
+        setMenu(menu)
         setProductName(''),setProductImg(''), setProductPrice('')
     };
 
