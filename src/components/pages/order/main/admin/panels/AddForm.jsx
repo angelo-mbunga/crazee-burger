@@ -13,7 +13,7 @@ import { fakeMenu }  from '../../../../../../fakeData/fakeMenu';
 import { toast, Zoom } from "react-toastify";
 import { theme } from '../../../../../../theme';
 
-export default function AddPanel() {
+export default function AddForm() {
     
     const [productName, setProductName] = useState("");
     const [productImg, setProductImg] = useState("");
@@ -56,7 +56,7 @@ export default function AddPanel() {
     };
 
     return (
-        <AddPanelStyled>
+        <AddFormStyled>
             <div className='preview'>
                 <img src={thumbnail} alt="Aucun image" />
             </div>
@@ -89,11 +89,11 @@ export default function AddPanel() {
                 </form>
             </div>
             <AdminToast/>
-        </AddPanelStyled>
+        </AddFormStyled>
     )
 }
 
-const AddPanelStyled = styled.div`
+const AddFormStyled = styled.div`
     display: grid;
     grid-template-columns: 33% 66%;
     grid-gap: 24px;
@@ -144,4 +144,9 @@ const AddPanelStyled = styled.div`
     .addProductBtn:hover{
         background-color: ${theme.colors.green};
     }
+    .Toastify__toast.Toastify__toast-theme--dark {
+    ::before {
+        background-color: ${theme.colors.green};
+    }
+  }
 `;

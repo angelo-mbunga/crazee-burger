@@ -1,8 +1,8 @@
 import { IoIosAdd } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineEdit } from "react-icons/md";
-import AddPanel from "./panels/AddPanel";
-import EditPanel from "./panels/EditPanel";
+import AddForm from "./panels/AddForm";
+import EditForm from "./panels/EditForm";
 import SettingsPanel from "./panels/SettingsPanel";
 
 export const getTabsConfig = [
@@ -10,13 +10,13 @@ export const getTabsConfig = [
       index: "add",
       value: "Ajouter un produit",
       icon: <IoIosAdd/>,
-      content: <AddPanel/>
+      content: <AddForm/>
     },
     {
       index: "edit",
       value: "Modifier un produit",
       icon: <MdOutlineEdit/>,
-      content: <EditPanel/>
+      content: <EditForm/>
     },
     {
       index: "settings",
