@@ -61,6 +61,7 @@ const CardStyled = styled.div`
         font-weight: ${theme.fonts.weights.bold};
         margin-block-start: 0;
         margin-block-end: 0;
+        min-height: 46px;
     }
     .card-extra {
         display: flex;

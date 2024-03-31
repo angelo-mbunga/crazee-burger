@@ -4,6 +4,7 @@ import Navbar from '../order/navbar/Navbar';
 import Main from './main/Main';
 import {theme} from '../../../theme/index';
 import OrderContext from '../../../context/OrderContext';
+import { fakeMenu } from '../../../fakeData/fakeMenu';
 
 export default function OrderPage() {
 
@@ -13,6 +14,16 @@ export default function OrderPage() {
   const [isAddSelected, setIsAddSelected] = useState(false);
   const [isCollasped, setIsCollasped] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [menu, setMenu] = useState(fakeMenu.SMALL);
+
+  const addProductToMenu = (newProduct) => {
+
+    const menuCopy = menu;
+
+    const menuUpdated = menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
+
+    setMenu(menuUpdated)
+  }
 
   const orderContextValue = {
     isAdminMode ,
@@ -27,6 +38,8 @@ export default function OrderPage() {
     setIsCollasped,
     currentTabSelected,
     setCurrentTabSelected,
+    menu,
+    addProductToMenu,
   };
 
   return (

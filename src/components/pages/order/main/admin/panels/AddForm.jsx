@@ -1,84 +1,100 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components';
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import { FiCheck } from "react-icons/fi";
+import { MdOutlineEuro } from "react-icons/md";
 import TextInput from '../../../../../reusable-ui/TextInput';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
-import thumbnail from '../../../../../../assets/img/no-image.png'
-import comingSoonImg from '../../../../../../assets/img/coming-soon.png'
+import thumbnail from '../../../../../../assets/img/no-image.png';
+import imageByDefault from '../../../../../../assets/img/coming-soon.png';
 import AdminToast from '../../../navbar/AdminToast';
-import { fakeMenu }  from '../../../../../../fakeData/fakeMenu';
-import { toast, Zoom } from "react-toastify";
 import { theme } from '../../../../../../theme';
+import OrderContext from '../../../../../../context/OrderContext';
+import { Zoom, toast } from 'react-toastify';
+
+const EMPTY_PRODUCT = {
+    id : "",
+    imageSource : "",
+    title : "",
+    price : "",
+    quantity: 0,
+    isAvailable: true,
+    isAdvertised: false
+}
 
 export default function AddForm() {
-    
-    const [productName, setProductName] = useState("");
-    const [productImg, setProductImg] = useState("");
-    const [productPrice, setProductPrice] = useState("");
 
-    const [menu,setMenu] = useState(fakeMenu.SMALL);
+    const {addProductToMenu} = useContext(OrderContext)
 
+    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+
+    let newProductToAdd = {
+      id : crypto.randomUUID(),
+      imageSource : newProduct.imageSource ? newProduct.imageSource : imageByDefault,
+      title : newProduct.title,
+      price : newProduct.price ? newProduct.price : "",
+      quantity: 0,
+      isAvailable: true,
+      isAdvertised: false
+    }
+
+    const handleChange = (e) => {
+
+        const newValue = e.target.value;
+        const inputName = e.target.name;
+        setNewProduct({...newProduct, [inputName] : newValue})
+
+    }
     const handleSubmit = (e) => {
-        e.preventDefault();
-        toast.info("Ajouté avec succès !", {
+        e.preventDefault()
+
+        addProductToMenu(newProductToAdd)
+
+        toast.info("Ajouté avec succes !", {
             icon: <FiCheck size={30} />,
             theme: 'dark',
             transition: Zoom,
             position: "bottom-right",
             autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
+            hideProgressBar: true,
+            closeOnClick: false,
             pauseOnHover: false,
             draggable: false,
-            progress: undefined,
-        })
-
-        const id = Date.now();
-        const nom = productName;
-
-        let price = productPrice;
-        if (productPrice === '') {
-            price = '0,00';
-        }
-
-        let img = productImg;
-        if (productImg === '') {
-            img = comingSoonImg;
-        }
-
-        menu.push({id : id, imageSource : img, title : nom, price : price, quantity: 0, isAvailable: true, isAdvertised: false, })
-
-        setMenu(menu)
-        setProductName(''),setProductImg(''), setProductPrice('')
-    };
+          }) 
+        setNewProduct(EMPTY_PRODUCT)
+    }
 
     return (
         <AddFormStyled>
             <div className='preview'>
-                <img src={thumbnail} alt="Aucun image" />
+                { newProduct.imageSource 
+                    ? <img src={newProduct.imageSource} alt={newProduct.title} />
+                    : <img src={thumbnail} alt='aucun image' />
+                }
             </div>
             <div className='form'>
                 <form onSubmit={handleSubmit}>
                     <TextInput 
-                        value={productName}
-                        onChange={(e) => setProductName(e.target.value)}
+                        name='title'
+                        value={newProduct.title}
+                        onChange={handleChange}
                         placeholder={"Nom du produit"}
                         Icon={<FaHamburger className="inputIcon"/>}
                     />
                     <TextInput 
-                        value={productImg}
-                        onChange={(e) => setProductImg(e.target.value)}
+                        name='imageSource'
+                        value={newProduct.imageSource}
+                        onChange={handleChange}
                         placeholder={"Lien URL d'une image"} 
                         Icon={<BsFillCameraFill className="inputIcon"/>}
-                        type='url'
-                        pattern="https://.*"
+                        //type='url'
+                        //pattern="https://.*"
                     />
                     <TextInput
-                        value={productPrice}
-                        onChange={(e) => setProductPrice(e.target.value)}
+                        name='price'        
+                        value={newProduct.price}
+                        onChange={handleChange}
                         placeholder={"Prix"} 
                         Icon={<MdOutlineEuro className="inputIcon"/>}
                     />
@@ -88,27 +104,28 @@ export default function AddForm() {
                     />
                 </form>
             </div>
-            <AdminToast/>
         </AddFormStyled>
     )
 }
 
 const AddFormStyled = styled.div`
     display: grid;
-    grid-template-columns: 33% 66%;
-    grid-gap: 24px;
+    grid-template-columns: 30% 69%;
+    grid-gap: 8px;
     padding: 24px;
 
     .preview{
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: start;
+        align-items: start;
 
         img {
             outline: 2px solid ${theme.colors.greyLight};
-            border-radius: 4px;
-            padding: 2px;
-            width: 200px; 
+            border-radius: ${theme.borderRadius.round};
+            width: 66%;
+            height: 80%;
+            object-fit: contain;
+            object-position: center;
         }
     }
     .form{
@@ -144,9 +161,4 @@ const AddFormStyled = styled.div`
     .addProductBtn:hover{
         background-color: ${theme.colors.green};
     }
-    .Toastify__toast.Toastify__toast-theme--dark {
-    ::before {
-        background-color: ${theme.colors.green};
-    }
-  }
 `;
