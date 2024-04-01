@@ -9,29 +9,7 @@ import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const [menu, setMenu ] = useState(fakeMenu.SMALL);
-  const [isMenuEmpty, setIsMenuEmpty ] = useState(false);
-  const {isAdminMode,setAdminMode} = useContext(OrderContext)
-  
-  function handleDelete(id) {
-
-    const menuCopy = [...menu]
-   
-    const menuUpdated = menuCopy.filter(item => item.id !== id)
-
-    setMenu(menuUpdated);
-    testMenu(menu)
-  }
-
-  function testMenu(menu) {
-
-    const nbMenuItems = Object.keys(menu).length;
-
-    if (nbMenuItems <= 1) {
-      setIsMenuEmpty(true)
-    }
-
-  }
+  const {isAdminMode, menu, isMenuEmpty, deleteProductFromMenu} = useContext(OrderContext)
   
   return (
     <MenuStyled>
@@ -54,7 +32,7 @@ export default function Menu() {
                 title={title}
                 imageSource={imageSource}
                 leftDescription={formatPrice(price)}
-                onClick={() => handleDelete(id)}
+                onCloseBtnClick={() => deleteProductFromMenu(id)}
               />
             )
           })

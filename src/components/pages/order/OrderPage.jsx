@@ -13,6 +13,7 @@ export default function OrderPage() {
   const [isSettingsSelected, setIsSettingsSelected] = useState(false);
   const [isAddSelected, setIsAddSelected] = useState(false);
   const [isCollasped, setIsCollasped] = useState(false);
+  const [isMenuEmpty, setIsMenuEmpty] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState(fakeMenu.SMALL);
 
@@ -24,7 +25,25 @@ export default function OrderPage() {
 
     setMenu(menuUpdated)
   }
+  const deleteProductFromMenu = (idOfProductToDelete) => {
 
+    const menuCopy = [...menu]
+   
+    const menuUpdated = menuCopy.filter(product => product.id !== idOfProductToDelete)
+
+    setMenu(menuUpdated);
+    testMenuLenght(menu)
+  }
+
+  const testMenuLenght = (menu) => {
+
+    const nbMenuItems = Object.keys(menu).length;
+
+    if (nbMenuItems <= 1) {
+      setIsMenuEmpty(true)
+    }
+
+  }
   const orderContextValue = {
     isAdminMode ,
     setIsAdminMode,
@@ -38,8 +57,11 @@ export default function OrderPage() {
     setIsCollasped,
     currentTabSelected,
     setCurrentTabSelected,
+    isMenuEmpty,
+    setIsMenuEmpty,
     menu,
     addProductToMenu,
+    deleteProductFromMenu
   };
 
   return (

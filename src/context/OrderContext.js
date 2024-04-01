@@ -19,7 +19,12 @@ export default createContext({
   currentTabSelected : false,
   setCurrentTabSelected : () => {},
   
+  isMenuEmpty : false,
+  setIsMenuEmpty : () => {},
+  
   menu : [],
-  addProductToMenu : () => {}
+  addProductToMenu : () => {},
+  deleteProductFromMenu : () => {}
+
 
 });

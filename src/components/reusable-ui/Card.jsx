@@ -6,16 +6,16 @@ import { truncate, formatPrice } from '../../utils/maths';
 import { TiDelete } from "react-icons/ti";
 import OrderContext from '../../context/OrderContext';
 
-export default function Card({title, imageSource, id, leftDescription, onClick}) {
+export default function Card({title, imageSource, id, leftDescription, onCloseBtnClick}) {
 
-    const {isAdminMode,setAdminMode} = useContext(OrderContext)
+    const {isAdminMode} = useContext(OrderContext)
 
     return (
         <CardStyled>
             <div className='card'>
                 {isAdminMode
                 ? null
-                : <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onClick}/></div>
+                : <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>
                 }
                 <img src={imageSource} alt={title} className='card-img'/>  
                 <div className='card-details'>
@@ -110,6 +110,7 @@ const CardStyled = styled.div`
     }
     .delete-icon:hover{
         cursor: pointer;
+        color: ${theme.colors.red};
     }
 `;
 
