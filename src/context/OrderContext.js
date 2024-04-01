@@ -23,4 +23,7 @@ export default createContext({
   addProductToMenu : () => {},
   deleteProductFromMenu : () => {},
   resetMenuData : () => {},
+
+  newProduct : [],
+  setNewProduct :  () => {},
 });

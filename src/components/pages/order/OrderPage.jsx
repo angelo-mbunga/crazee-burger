@@ -5,6 +5,7 @@ import Main from './main/Main';
 import {theme} from '../../../theme/index';
 import OrderContext from '../../../context/OrderContext';
 import { fakeMenu } from '../../../fakeData/fakeMenu';
+import { EMPTY_PRODUCT } from './main/admin/panels/AddForm';
 
 export default function OrderPage() {
 
@@ -14,7 +15,9 @@ export default function OrderPage() {
   const [isAddSelected, setIsAddSelected] = useState(false);
   const [isCollasped, setIsCollasped] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
-  const [menu, setMenu] = useState(fakeMenu.EMPTY);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+
+  const [menu, setMenu] = useState(fakeMenu.SMALL);
 
   const addProductToMenu = (newProduct) => {
     const menuCopy = menu;
@@ -27,7 +30,7 @@ export default function OrderPage() {
     const menuUpdated = menuCopy.filter(product => product.id !== idOfProductToDelete)
     setMenu(menuUpdated)
   }
-  
+
   const resetMenuData = () => {
     setMenu(fakeMenu.SMALL)
   }
@@ -48,7 +51,9 @@ export default function OrderPage() {
     menu,
     addProductToMenu,
     deleteProductFromMenu,
-    resetMenuData
+    resetMenuData,
+    newProduct,
+    setNewProduct
   };
 
   return (

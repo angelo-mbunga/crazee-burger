@@ -8,12 +8,11 @@ import TextInput from '../../../../../reusable-ui/TextInput';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import thumbnail from '../../../../../../assets/img/no-image.png';
 import imageByDefault from '../../../../../../assets/img/coming-soon.png';
-import AdminToast from '../../../navbar/AdminToast';
 import { theme } from '../../../../../../theme';
 import OrderContext from '../../../../../../context/OrderContext';
 import { Zoom, toast } from 'react-toastify';
 
-const EMPTY_PRODUCT = {
+export const EMPTY_PRODUCT = {
     id : "",
     imageSource : "",
     title : "",
@@ -25,9 +24,9 @@ const EMPTY_PRODUCT = {
 
 export default function AddForm() {
 
-    const {addProductToMenu} = useContext(OrderContext)
+    const {addProductToMenu, newProduct, setNewProduct } = useContext(OrderContext)
 
-    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+    //const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
     let newProductToAdd = {
       id : crypto.randomUUID(),
