@@ -4,16 +4,17 @@ import PrimaryButton from '../../../reusable-ui/PrimaryButton';
 import { theme } from '../../../../theme';
 
 export default function MenuEmpty({text1, text2, btnLabel, btnClassName, onClick}) {
-  return (
-    <MenuEmptySyled>
-        <h1>{text1}</h1>
-        <h2>{text2}</h2>
-            { btnLabel
-                ? <PrimaryButton label={btnLabel} className={btnClassName} onClick={onClick}/>
-                : null
-            }
-    </MenuEmptySyled>
-  )
+
+    return (
+        <MenuEmptySyled>
+            <h1>{text1}</h1>
+            <h2>{text2}</h2>
+                { btnLabel
+                    ? <PrimaryButton label={btnLabel} className={btnClassName} onClick={onClick}/>
+                    : null
+                }
+        </MenuEmptySyled>
+    )
 }
 const MenuEmptySyled = styled.div`
     text-align: center;

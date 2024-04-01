@@ -2,24 +2,24 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Card from '../../../reusable-ui/Card';
 import { theme } from '../../../../theme';
-import { fakeMenu } from '../../../../fakeData/fakeMenu';
 import { formatPrice, ajustPrice } from '../../../../utils/maths';
 import MenuEmpty from './MenuEmpty';
 import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const {isAdminMode, menu, isMenuEmpty, deleteProductFromMenu} = useContext(OrderContext)
-  
+  const {isAdminMode, menu, deleteProductFromMenu, resetMenuData} = useContext(OrderContext);
+
   return (
     <MenuStyled>
-      {isMenuEmpty
+      {menu.length === 0
         ? !isAdminMode 
             ? <MenuEmpty 
                 text1="Le menu est vide ?" 
                 text2="cliquez ci-dessous pour le réinitialiser" 
                 btnLabel='Générer nouveaux produits' 
-                btnClassName='generate-items-btn'
+                btnClassName='generate-prodcuts-btn'
+                onClick={resetMenuData}
               /> 
             : <MenuEmpty 
                 text1="Victime de notre success !" 
@@ -54,7 +54,7 @@ const MenuStyled = styled.div`
   overflow: scroll;
   overflow-x: unset;
 
-  .generate-items-btn {
+  .generate-prodcuts-btn {
     font-family: "Open Sans", sans-serif;
     width: 50%;
     margin: auto;
@@ -65,7 +65,7 @@ const MenuStyled = styled.div`
     background-color: ${theme.colors.primary};
     color: ${theme.colors.white};
     }
-  .generate-items-btn:hover {
+  .generate-prodcuts-btn:hover {
     cursor: pointer;
     background-color: ${theme.colors.white};
     color: ${theme.colors.primary};
