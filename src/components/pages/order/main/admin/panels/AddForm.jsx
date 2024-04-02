@@ -1,9 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
 import { FiCheck } from "react-icons/fi";
-import { MdOutlineEuro } from "react-icons/md";
 import TextInput from '../../../../../reusable-ui/TextInput';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import thumbnail from '../../../../../../assets/img/no-image.png';
@@ -11,6 +8,7 @@ import imageByDefault from '../../../../../../assets/img/coming-soon.png';
 import { theme } from '../../../../../../theme';
 import OrderContext from '../../../../../../context/OrderContext';
 import { Zoom, toast } from 'react-toastify';
+import { getTextInputs } from './getTextInputs';
 
 export const EMPTY_PRODUCT = {
     id : "",
@@ -22,12 +20,10 @@ export const EMPTY_PRODUCT = {
     isAdvertised: false
 }
 
+
 export default function AddForm() {
 
     const {addProductToMenu, newProduct, setNewProduct } = useContext(OrderContext)
-
-    //const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-
     let newProductToAdd = {
       id : crypto.randomUUID(),
       imageSource : newProduct.imageSource ? newProduct.imageSource : imageByDefault,
@@ -37,19 +33,14 @@ export default function AddForm() {
       isAvailable: true,
       isAdvertised: false
     }
-
     const handleChange = (e) => {
-
         const newValue = e.target.value;
         const inputName = e.target.name;
         setNewProduct({...newProduct, [inputName] : newValue})
-
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-
         addProductToMenu(newProductToAdd)
-
         toast.info("Ajouté avec succes !", {
             icon: <FiCheck size={30} />,
             theme: 'dark',
@@ -63,6 +54,7 @@ export default function AddForm() {
           }) 
         setNewProduct(EMPTY_PRODUCT)
     }
+    const textInputs = getTextInputs(newProduct);
 
     return (
         <AddFormStyled>
@@ -74,29 +66,16 @@ export default function AddForm() {
             </div>
             <div className='form'>
                 <form onSubmit={handleSubmit}>
-                    <TextInput 
-                        name='title'
-                        value={newProduct.title}
-                        onChange={handleChange}
-                        placeholder={"Nom du produit"}
-                        Icon={<FaHamburger className="inputIcon"/>}
-                    />
-                    <TextInput 
-                        name='imageSource'
-                        value={newProduct.imageSource}
-                        onChange={handleChange}
-                        placeholder={"Lien URL d'une image"} 
-                        Icon={<BsFillCameraFill className="inputIcon"/>}
-                        //type='url'
-                        //pattern="https://.*"
-                    />
-                    <TextInput
-                        name='price'        
-                        value={newProduct.price}
-                        onChange={handleChange}
-                        placeholder={"Prix"} 
-                        Icon={<MdOutlineEuro className="inputIcon"/>}
-                    />
+                    {textInputs.map((input) => (
+                        <TextInput 
+                            key={input.id}
+                            name={input.name}
+                            value={input.value}
+                            onChange={handleChange}
+                            placeholder={input.placeholder}
+                            Icon={input.Icon}
+                        />
+                    ))}
                     <PrimaryButton
                         label={"Ajouter le produit"} 
                         className={"addProductBtn"}
