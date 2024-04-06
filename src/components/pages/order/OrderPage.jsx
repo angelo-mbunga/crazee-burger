@@ -10,9 +10,6 @@ import { EMPTY_PRODUCT } from './main/admin/panels/AddForm';
 export default function OrderPage() {
 
   const [isAdminMode, setIsAdminMode] = useState(true);
-  const [isEditSelected, setIsEditSelected] = useState(false);
-  const [isSettingsSelected, setIsSettingsSelected] = useState(false);
-  const [isAddSelected, setIsAddSelected] = useState(false);
   const [isCollasped, setIsCollasped] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
@@ -38,12 +35,6 @@ export default function OrderPage() {
   const orderContextValue = {
     isAdminMode ,
     setIsAdminMode,
-    isEditSelected,
-    setIsEditSelected,
-    isSettingsSelected,
-    setIsSettingsSelected,
-    isAddSelected,
-    setIsAddSelected,
     isCollasped,
     setIsCollasped,
     currentTabSelected,
