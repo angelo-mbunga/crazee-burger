@@ -13,6 +13,8 @@ export default function OrderPage() {
   const [isCollasped, setIsCollasped] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [IsCardClicked, SetIsCardClicked] = useState(false)
+  const [productInfosToDisplay, setProductInfosToDisplay] = useState(EMPTY_PRODUCT);
 
   const [menu, setMenu] = useState(fakeMenu.SMALL);
 
@@ -21,11 +23,18 @@ export default function OrderPage() {
     const menuUpdated = menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
     setMenu(menuUpdated)
   }
-
   const deleteProductFromMenu = (idOfProductToDelete) => {
     const menuCopy = [...menu]
     const menuUpdated = menuCopy.filter(product => product.id !== idOfProductToDelete)
     setMenu(menuUpdated)
+  }
+  const displayProductInfos = (idOfProductToDisplay) => {
+    const menuCopy = [...menu]
+    const productClicked = menuCopy.filter(product => product.id == idOfProductToDisplay)
+    setProductInfosToDisplay(productClicked[0])
+    SetIsCardClicked(true) 
+    setIsCollasped(true) 
+    setCurrentTabSelected('edit')
   }
 
   const resetMenuData = () => {
@@ -44,7 +53,12 @@ export default function OrderPage() {
     deleteProductFromMenu,
     resetMenuData,
     newProduct,
-    setNewProduct
+    setNewProduct,
+    productInfosToDisplay,
+    setProductInfosToDisplay,
+    displayProductInfos,
+    IsCardClicked,
+    SetIsCardClicked,
   };
 
   return (

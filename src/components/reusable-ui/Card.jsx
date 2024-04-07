@@ -6,13 +6,13 @@ import { truncate, formatPrice } from '../../utils/maths';
 import { TiDelete } from "react-icons/ti";
 import OrderContext from '../../context/OrderContext';
 
-export default function Card({title, imageSource, id, leftDescription, onCloseBtnClick}) {
+export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick}) {
 
-    const {isAdminMode} = useContext(OrderContext)
+    const {isAdminMode} = useContext(OrderContext);
 
     return (
         <CardStyled>
-            <div className='card'>
+            <div className='card' onClick={ !isAdminMode ? onCardClick : null}>
                 {isAdminMode
                 ? null
                 : <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>

@@ -17,4 +17,11 @@ export default createContext({
 
   newProduct : [],
   setNewProduct :  () => {},
+
+  productInfosToDisplay : [],
+  setProductInfosToDisplay :  () => {},
+  displayProductInfos :  () => {},
+
+  IsCardClicked : false,
+  SetIsCardClicked : () => {},
 });

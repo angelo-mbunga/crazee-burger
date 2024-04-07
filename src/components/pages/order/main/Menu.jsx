@@ -8,7 +8,7 @@ import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const {isAdminMode, menu, deleteProductFromMenu, resetMenuData} = useContext(OrderContext);
+  const {isAdminMode, menu, deleteProductFromMenu, resetMenuData, displayProductInfos} = useContext(OrderContext);
 
   return (
     <MenuStyled>
@@ -33,6 +33,7 @@ export default function Menu() {
                 imageSource={imageSource}
                 leftDescription={formatPrice(price)}
                 onCloseBtnClick={() => deleteProductFromMenu(id)}
+                onCardClick={() => displayProductInfos(id)}
               />
             )
           })
