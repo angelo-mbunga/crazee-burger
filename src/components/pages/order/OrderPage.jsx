@@ -28,6 +28,11 @@ export default function OrderPage() {
     const menuUpdated = menuCopy.filter(product => product.id !== idOfProductToDelete)
     setMenu(menuUpdated)
   }
+  const editProductFromMenu = (idOfProductToEdit) => {
+    const menuCopy = [...menu]
+    const productToEdit = menuCopy.filter(product => product.id == idOfProductToEdit)
+    console.log(productToEdit[0])
+  }
   const displayProductInfos = (idOfProductToDisplay) => {
     const menuCopy = [...menu]
     const productClicked = menuCopy.filter(product => product.id == idOfProductToDisplay)
@@ -36,11 +41,9 @@ export default function OrderPage() {
     setIsCollasped(true) 
     setCurrentTabSelected('edit')
   }
-
   const resetMenuData = () => {
     setMenu(fakeMenu.SMALL)
   }
-
   const orderContextValue = {
     isAdminMode ,
     setIsAdminMode,
@@ -51,6 +54,7 @@ export default function OrderPage() {
     menu,
     addProductToMenu,
     deleteProductFromMenu,
+    editProductFromMenu,
     resetMenuData,
     newProduct,
     setNewProduct,
