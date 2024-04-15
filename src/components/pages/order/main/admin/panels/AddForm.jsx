@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components';
 import { FiCheck } from "react-icons/fi";
-import TextInput from '../../../../../reusable-ui/TextInput';
+import {TextInput} from '../../../../../reusable-ui/TextInput';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import thumbnail from '../../../../../../assets/img/no-image.png';
 import imageByDefault from '../../../../../../assets/img/coming-soon.png';
@@ -19,7 +19,6 @@ export const EMPTY_PRODUCT = {
     isAvailable: true,
     isAdvertised: false
 }
-
 
 export default function AddForm() {
 

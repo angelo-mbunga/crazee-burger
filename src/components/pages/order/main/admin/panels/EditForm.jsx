@@ -6,14 +6,16 @@ import {HiCursorClick} from 'react-icons/hi';
 import { theme } from '../../../../../../theme';
 import OrderContext from '../../../../../../context/OrderContext';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
-import TextInput from '../../../../../reusable-ui/TextInput';
+import {TextInput} from '../../../../../reusable-ui/TextInput';
 import { getTextInputs } from './getTextInputs';
 import thumbnail from '../../../../../../assets/img/no-image.png';
+import { EMPTY_PRODUCT } from './AddForm';
 
 export default function EditForm() {
 
-  const {productInfosToDisplay, IsCardClicked, editProductFromMenu, setNewProduct} = useContext(OrderContext);
+  const {productInfosToDisplay, setProductInfosToDisplay, IsCardClicked, editProductFromMenu, setNewProduct, inputComponentRef} = useContext(OrderContext);
   const textInputs = getTextInputs(productInfosToDisplay);
+  const [productUpdated, setProductUpdated] = useState(EMPTY_PRODUCT);
 
   const editedProduct = {
     id : productInfosToDisplay.id,
@@ -24,32 +26,27 @@ export default function EditForm() {
     isAvailable: true,
     isAdvertised: false
   }
+
   const handleChange = (e) => {
     const newValue = e.target.value;
     const inputName = e.target.name;
-    setNewProduct({...editedProduct, [inputName] : newValue})
-    console.log(newValue)
+    setProductInfosToDisplay({...editedProduct, [inputName] : newValue})
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    editProductFromMenu(productInfosToDisplay.id)
+    editProductFromMenu(editedProduct)
     toast.info("Modifications enregistrées", {
       icon: <CiSaveDown2 size={30} />,
       theme: 'dark',
       transition: Zoom,
       position: "bottom-right",
-      autoClose: 1500,
+      autoClose: 1200,
       hideProgressBar: true,
       closeOnClick: false,
       pauseOnHover: false, 
       draggable: false,
     }) 
   }
-
-
-  // <p>1 : {productInfosToDisplay.title}</p>
-  // <p>2 : {productInfosToDisplay.imageSource}</p>
-  // <p>3 : {productInfosToDisplay.price}</p>
 
   return (
     <EditFormStyled>
@@ -64,15 +61,35 @@ export default function EditForm() {
             </div>
             <div className='form'>
               <form onSubmit={handleSubmit}>
-                {textInputs.map((input) => (
-                  <TextInput
+                <TextInput
+                  ref={inputComponentRef}
+                  id="0"
+                  name= "title"
+                  value={productInfosToDisplay.title}
+                  onChange={handleChange}
+                />
+                <TextInput
+                  id="1"
+                  name= "imageSource"
+                  value={productInfosToDisplay.imageSource}
+                  onChange={handleChange}
+                />
+                <TextInput
+                  id="2"
+                  name= "price"
+                  value={productInfosToDisplay.price}
+                  onChange={handleChange}
+                />
+{/*                 {textInputs.map((input) => (
+                   <TextInput
+                    ref={inputComponentRef}
                     key={input.id}
                     name={input.name}
                     value={input.value}
                     onChange={handleChange}
                     Icon={input.Icon}
-                  />
-                ))}
+                  /> 
+                ))} */}
                   <PrimaryButton
                   label={"Modifier le produit"} 
                   className={"addProductBtn"}

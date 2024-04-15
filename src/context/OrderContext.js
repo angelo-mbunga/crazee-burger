@@ -15,6 +15,7 @@ export default createContext({
   deleteProductFromMenu : () => {},
   editProductFromMenu : () => {},
   resetMenuData : () => {},
+  inputComponentRef : () => {},
 
   newProduct : [],
   setNewProduct :  () => {},

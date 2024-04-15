@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../order/navbar/Navbar';
 import Main from './main/Main';
@@ -15,6 +15,7 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [IsCardClicked, SetIsCardClicked] = useState(false)
   const [productInfosToDisplay, setProductInfosToDisplay] = useState(EMPTY_PRODUCT);
+  const inputComponentRef = useRef();
 
   const [menu, setMenu] = useState(fakeMenu.SMALL);
 
@@ -28,10 +29,11 @@ export default function OrderPage() {
     const menuUpdated = menuCopy.filter(product => product.id !== idOfProductToDelete)
     setMenu(menuUpdated)
   }
-  const editProductFromMenu = (idOfProductToEdit) => {
-    const menuCopy = [...menu]
-    const productToEdit = menuCopy.filter(product => product.id == idOfProductToEdit)
-    console.log(productToEdit[0])
+  const editProductFromMenu = (EditedProduct) => {
+    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const indexOfProductToEdit = menuCopy.findIndex((menuProduct) => menuProduct.id === EditedProduct.id)
+    menuCopy[indexOfProductToEdit] = EditedProduct;
+    setMenu(menuCopy)
   }
   const displayProductInfos = (idOfProductToDisplay) => {
     const menuCopy = [...menu]
@@ -40,6 +42,7 @@ export default function OrderPage() {
     SetIsCardClicked(true) 
     setIsCollasped(true) 
     setCurrentTabSelected('edit')
+    inputComponentRef.current.focus();
   }
   const resetMenuData = () => {
     setMenu(fakeMenu.SMALL)
@@ -63,6 +66,7 @@ export default function OrderPage() {
     displayProductInfos,
     IsCardClicked,
     SetIsCardClicked,
+    inputComponentRef
   };
 
   return (
