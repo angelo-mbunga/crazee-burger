@@ -9,16 +9,7 @@ import { theme } from '../../../../../../theme';
 import OrderContext from '../../../../../../context/OrderContext';
 import { Zoom, toast } from 'react-toastify';
 import { getTextInputs } from './getTextInputs';
-
-export const EMPTY_PRODUCT = {
-    id : "",
-    imageSource : "",
-    title : "",
-    price : "",
-    quantity: 0,
-    isAvailable: true,
-    isAdvertised: false
-}
+import { EMPTY_PRODUCT } from '../../../../../../enums/product';
 
 export default function AddForm() {
 

@@ -9,32 +9,20 @@ import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import {TextInput} from '../../../../../reusable-ui/TextInput';
 import { getTextInputs } from './getTextInputs';
 import thumbnail from '../../../../../../assets/img/no-image.png';
-import { EMPTY_PRODUCT } from './AddForm';
 
 export default function EditForm() {
 
-  const {productInfosToDisplay, setProductInfosToDisplay, IsCardClicked, editProductFromMenu, setNewProduct, inputComponentRef} = useContext(OrderContext);
-  const textInputs = getTextInputs(productInfosToDisplay);
-  const [productUpdated, setProductUpdated] = useState(EMPTY_PRODUCT);
-
-  const editedProduct = {
-    id : productInfosToDisplay.id,
-    imageSource : productInfosToDisplay.imageSource,
-    title : productInfosToDisplay.title,
-    price : productInfosToDisplay.price,
-    quantity: 0,
-    isAvailable: true,
-    isAdvertised: false
-  }
+  const {currentProductSelected, setCurrentProductSelected, IsCardClicked, editProductFromMenu, inputComponentRef} = useContext(OrderContext);
+  const textInputs = getTextInputs(currentProductSelected);
 
   const handleChange = (e) => {
-    const newValue = e.target.value;
-    const inputName = e.target.name;
-    setProductInfosToDisplay({...editedProduct, [inputName] : newValue})
+    const {name, value} = e.target;
+    const editedProduct = {...currentProductSelected, [name] : value}
+    setCurrentProductSelected(editedProduct)
+    editProductFromMenu(editedProduct)
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    editProductFromMenu(editedProduct)
     toast.info("Modifications enregistrées", {
       icon: <CiSaveDown2 size={30} />,
       theme: 'dark',
@@ -54,8 +42,8 @@ export default function EditForm() {
         ?
           <div className='editPanel'>
             <div className='preview'>
-              { productInfosToDisplay.imageSource 
-                ? <img src={productInfosToDisplay.imageSource} alt={productInfosToDisplay.title} />
+              { currentProductSelected.imageSource 
+                ? <img src={currentProductSelected.imageSource} alt={currentProductSelected.title} />
                 : <img src={thumbnail} alt='aucun image' />
               }
             </div>
@@ -65,19 +53,19 @@ export default function EditForm() {
                   ref={inputComponentRef}
                   id="0"
                   name= "title"
-                  value={productInfosToDisplay.title}
+                  value={currentProductSelected.title}
                   onChange={handleChange}
                 />
                 <TextInput
                   id="1"
                   name= "imageSource"
-                  value={productInfosToDisplay.imageSource}
+                  value={currentProductSelected.imageSource}
                   onChange={handleChange}
                 />
                 <TextInput
                   id="2"
                   name= "price"
-                  value={productInfosToDisplay.price}
+                  value={currentProductSelected.price}
                   onChange={handleChange}
                 />
 {/*                 {textInputs.map((input) => (

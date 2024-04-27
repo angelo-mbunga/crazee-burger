@@ -5,7 +5,7 @@ import Main from './main/Main';
 import {theme} from '../../../theme/index';
 import OrderContext from '../../../context/OrderContext';
 import { fakeMenu } from '../../../fakeData/fakeMenu';
-import { EMPTY_PRODUCT } from './main/admin/panels/AddForm';
+import { EMPTY_PRODUCT } from '../../../enums/product';
 
 export default function OrderPage() {
 
@@ -15,18 +15,18 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [IsCardClicked, SetIsCardClicked] = useState(false);
   const [cardStyle, setCardStyle] = useState("card");
-  const [productInfosToDisplay, setProductInfosToDisplay] = useState(EMPTY_PRODUCT);
+  const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
   const inputComponentRef = useRef();
 
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
 
   const addProductToMenu = (newProduct) => {
-    const menuCopy = menu;
+    const menuCopy = JSON.parse(JSON.stringify(menu))
     const menuUpdated = menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
     setMenu(menuUpdated)
   }
   const deleteProductFromMenu = (idOfProductToDelete) => {
-    const menuCopy = [...menu]
+    const menuCopy = JSON.parse(JSON.stringify(menu))
     const menuUpdated = menuCopy.filter(product => product.id !== idOfProductToDelete)
     setMenu(menuUpdated)
   }
@@ -37,11 +37,10 @@ export default function OrderPage() {
     setMenu(menuCopy)
   }
   const displayProductInfos = (idOfProductToDisplay) => {
-    const menuCopy = [...menu]
-    const productClicked = menuCopy.filter(product => product.id == idOfProductToDisplay)
-    setProductInfosToDisplay(productClicked[0])
+    const productClicked = menu.find((product) => product.id === idOfProductToDisplay)
+    setCurrentProductSelected(productClicked)
     SetIsCardClicked(true) 
-    setIsCollasped(false) 
+    setIsCollasped(true) 
     setCurrentTabSelected('edit')
     toogleCardCss()
     //inputComponentRef.current.focus();
@@ -67,8 +66,8 @@ export default function OrderPage() {
     resetMenuData,
     newProduct,
     setNewProduct,
-    productInfosToDisplay,
-    setProductInfosToDisplay,
+    currentProductSelected,
+    setCurrentProductSelected,
     displayProductInfos,
     IsCardClicked,
     SetIsCardClicked,

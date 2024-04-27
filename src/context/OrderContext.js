@@ -17,11 +17,11 @@ export default createContext({
   resetMenuData : () => {},
   inputComponentRef : () => {},
 
-  newProduct : [],
+  newProduct : {},
   setNewProduct :  () => {},
 
-  productInfosToDisplay : [],
-  setProductInfosToDisplay :  () => {},
+  currentProductSelected : {},
+  setCurrentProductSelected :  () => {},
   displayProductInfos :  () => {},
 
   IsCardClicked : false,
