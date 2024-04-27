@@ -13,11 +13,12 @@ export default function OrderPage() {
   const [isCollasped, setIsCollasped] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [IsCardClicked, SetIsCardClicked] = useState(false)
+  const [IsCardClicked, SetIsCardClicked] = useState(false);
+  const [cardStyle, setCardStyle] = useState("card");
   const [productInfosToDisplay, setProductInfosToDisplay] = useState(EMPTY_PRODUCT);
   const inputComponentRef = useRef();
 
-  const [menu, setMenu] = useState(fakeMenu.SMALL);
+  const [menu, setMenu] = useState(fakeMenu.MEDIUM);
 
   const addProductToMenu = (newProduct) => {
     const menuCopy = menu;
@@ -40,9 +41,14 @@ export default function OrderPage() {
     const productClicked = menuCopy.filter(product => product.id == idOfProductToDisplay)
     setProductInfosToDisplay(productClicked[0])
     SetIsCardClicked(true) 
-    setIsCollasped(true) 
+    setIsCollasped(false) 
     setCurrentTabSelected('edit')
-    inputComponentRef.current.focus();
+    toogleCardCss()
+    //inputComponentRef.current.focus();
+  }
+  const toogleCardCss = (e) => {
+/*     if (cardStyle !== "card") setCardStyle("card");
+    else setCardStyle("card card-clicked"); */
   }
   const resetMenuData = () => {
     setMenu(fakeMenu.SMALL)
@@ -66,7 +72,9 @@ export default function OrderPage() {
     displayProductInfos,
     IsCardClicked,
     SetIsCardClicked,
-    inputComponentRef
+    inputComponentRef,
+    cardStyle,
+    setCardStyle
   };
 
   return (

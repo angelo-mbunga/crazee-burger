@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Card from '../../../reusable-ui/Card';
 import { theme } from '../../../../theme';
@@ -25,9 +25,10 @@ export default function Menu() {
                 text1="Victime de notre success !" 
                 text2="De nouvelles recettes arrivent bientot"
               />
-        : menu.map(({title, imageSource, id, price}) => {
+        : menu.map(({title, imageSource, id, price}, index) => {
             return (
               <Card
+                index={index}
                 key={id}
                 title={title}
                 imageSource={imageSource}
@@ -37,7 +38,7 @@ export default function Menu() {
               />
             )
           })
-      }
+      } 
     </MenuStyled>
   )
 }

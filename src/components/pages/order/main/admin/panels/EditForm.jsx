@@ -105,39 +105,39 @@ export default function EditForm() {
 }
 
 const EditFormStyled = styled.div`  
-/*   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   .emptyPanelMsg {
     color: ${theme.colors.greySemiDark};
     font-size: ${theme.fonts.size.P1};
+    height: 100%;
+    margin: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     .emptyPanelIcon {
       padding: 0 8px;
     }
-  } */
+  } 
     .editPanel {
       width: 100%;
       display: inline-flex;
     }
     .preview{
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 33%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 33%;
 
-        img {
-          outline: 2px solid ${theme.colors.greyLight};
-          border-radius: ${theme.borderRadius.round};
-          width: 66%;
-          height: 80%;
-          object-fit: contain;
-          object-position: center;
-        }
+      img {
+        outline: 2px solid ${theme.colors.greyLight};
+        border-radius: ${theme.borderRadius.round};
+        width: 66%;
+        height: 80%;
+        object-fit: contain;
+        object-position: center;
+      }
     }
     form{
       background-color: purple;
@@ -151,29 +151,29 @@ const EditFormStyled = styled.div`
         }
     }
     input{
-        padding: 10px 12px;
-        padding-left: 64px;
-        background-color: ${theme.colors.background_white};
-        height: 16px;
+      padding: 10px 12px;
+      padding-left: 64px;
+      background-color: ${theme.colors.background_white};
+      height: 16px;
     }
     .inputIcon {
-        height: 16px;
-        width: 16px;
-        margin-top: -3px;
+      height: 16px;
+      width: 16px;
+      margin-top: -3px;
     }
     .input {
-        width: 100%;
+      width: 100%;
     }
     .addProductBtn{
-        width: 50%; 
-        padding: 10px;
-        background-color: ${theme.colors.success};
-        color: ${theme.colors.white};
-        border: none;
-        cursor: pointer;
+      width: 50%; 
+      padding: 10px;
+      background-color: ${theme.colors.success};
+      color: ${theme.colors.white};
+      border: none;
+      cursor: pointer;
     }
     .addProductBtn:hover{
-        background-color: ${theme.colors.green};
+      background-color: ${theme.colors.green};
     }
   
 `;

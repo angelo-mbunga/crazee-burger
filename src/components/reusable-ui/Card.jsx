@@ -8,11 +8,11 @@ import OrderContext from '../../context/OrderContext';
 
 export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, version = ""}) {
 
-    const {isAdminMode} = useContext(OrderContext);
+    const {isAdminMode, cardStyle} = useContext(OrderContext);
 
     return (
         <CardStyled>
-            <div className='card' onClick={ !isAdminMode ? onCardClick : null} version={ !isAdminMode ? "admin" : "normal"}>
+            <div className={cardStyle} onClick={ !isAdminMode ? onCardClick : null} version={ !isAdminMode ? "admin" : "normal"}>
                 {isAdminMode
                 ? null
                 : <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>
@@ -115,38 +115,33 @@ const CardStyled = styled.div`
         cursor: pointer;
         color: ${theme.colors.red};
     }
-    
-`;
-const extraCardStyle = css `    
-    .card:hover {
-        cursor: pointer;
-        border-radius: ${theme.borderRadius.round};
-        border: 2px solid ${theme.colors.primary};
-        box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 40%);
-        transition: 0.15s;
-    }
-    .card:active {
+    .card-clicked {
         background-color: ${theme.colors.primary};
 
         .delete-icon{
             color: ${theme.colors.white};
         }
+        .delete-icon:hover{
+            color: ${theme.colors.red};
+        }
         .card-left-extra {
             color: ${theme.colors.white};
-        }
-        .card:focus{
-            display: ${theme.colors.green};
         }
         .card-cta {
             color: ${theme.colors.primary};
             background-color: ${theme.colors.white};
-        }
+        } 
     }
-    .card:visited {
-        .card {
-            background: ${theme.colors.green};
-        }
+    
+`;
+const extraCardStyle = css `    
+    .card:hover {
+        cursor: pointer;
+        border-radius: ${theme.borderRadius.round};   
+        outline: 2px solid ${theme.colors.primary};
+        outline-offset: -2px;
+        box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 40%);
+        transition: 0.05s;
     }
-
 
 `
