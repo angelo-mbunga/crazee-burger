@@ -6,6 +6,7 @@ import {theme} from '../../../theme/index';
 import OrderContext from '../../../context/OrderContext';
 import { fakeMenu } from '../../../fakeData/fakeMenu';
 import { EMPTY_PRODUCT } from '../../../enums/product';
+import { deepClone } from '../../../utils/array';
 
 export default function OrderPage() {
 
@@ -21,17 +22,17 @@ export default function OrderPage() {
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
 
   const addProductToMenu = (newProduct) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
     const menuUpdated = menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
     setMenu(menuUpdated)
   }
   const deleteProductFromMenu = (idOfProductToDelete) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
     const menuUpdated = menuCopy.filter(product => product.id !== idOfProductToDelete)
     setMenu(menuUpdated)
   }
   const editProductFromMenu = (EditedProduct) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
     const indexOfProductToEdit = menuCopy.findIndex((menuProduct) => menuProduct.id === EditedProduct.id)
     menuCopy[indexOfProductToEdit] = EditedProduct;
     setMenu(menuCopy)
