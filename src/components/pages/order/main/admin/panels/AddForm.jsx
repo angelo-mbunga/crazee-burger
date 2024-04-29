@@ -68,7 +68,7 @@ export default function AddForm() {
                     ))}
                     <PrimaryButton
                         label={"Ajouter le produit"} 
-                        className={"addProductBtn"}
+                        className={"ctaBtn"}
                     />
                 </form>
             </div>
@@ -88,10 +88,10 @@ const AddFormStyled = styled.div`
         align-items: start;
 
         img {
-            outline: 2px solid ${theme.colors.greyLight};
             border-radius: ${theme.borderRadius.round};
             width: 66%;
             height: 80%;
+            margin: auto;
             object-fit: contain;
             object-position: center;
         }
@@ -118,7 +118,7 @@ const AddFormStyled = styled.div`
     .input {
         width: 100%;
     }
-    .addProductBtn{
+    .ctaBtn{
         width: 50%; 
         padding: 10px;
         background-color: ${theme.colors.success};
@@ -126,7 +126,7 @@ const AddFormStyled = styled.div`
         border: none;
         cursor: pointer;
     }
-    .addProductBtn:hover{
+    .ctaBtn:hover{
         background-color: ${theme.colors.green};
     }
 `;

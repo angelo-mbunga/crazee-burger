@@ -15,7 +15,6 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [IsCardClicked, SetIsCardClicked] = useState(false);
-  const [cardStyle, setCardStyle] = useState("card");
   const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
   const inputComponentRef = useRef();
 
@@ -46,10 +45,6 @@ export default function OrderPage() {
     toogleCardCss()
     //inputComponentRef.current.focus();
   }
-  const toogleCardCss = (e) => {
-/*     if (cardStyle !== "card") setCardStyle("card");
-    else setCardStyle("card card-clicked"); */
-  }
   const resetMenuData = () => {
     setMenu(fakeMenu.SMALL)
   }
@@ -73,8 +68,6 @@ export default function OrderPage() {
     IsCardClicked,
     SetIsCardClicked,
     inputComponentRef,
-    cardStyle,
-    setCardStyle
   };
 
   return (

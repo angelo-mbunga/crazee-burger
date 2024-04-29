@@ -8,7 +8,11 @@ import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const {isAdminMode, menu, deleteProductFromMenu, resetMenuData, displayProductInfos} = useContext(OrderContext);
+  const {isAdminMode, menu, currentProductSelected, deleteProductFromMenu, resetMenuData, displayProductInfos} = useContext(OrderContext);
+
+  const checkIfProductSelected = (productFromMenuId,productselectedId) => {
+    return productFromMenuId === productselectedId
+  }
 
   return (
     <MenuStyled>
@@ -35,6 +39,8 @@ export default function Menu() {
                 leftDescription={formatPrice(price)}
                 onCloseBtnClick={() => deleteProductFromMenu(id)}
                 onCardClick={() => displayProductInfos(id)}
+                isHoverable={!isAdminMode}
+                isSelected={checkIfProductSelected(id,currentProductSelected.id)}
               />
             )
           })

@@ -6,13 +6,13 @@ import { truncate, formatPrice } from '../../utils/maths';
 import { TiDelete } from "react-icons/ti";
 import OrderContext from '../../context/OrderContext';
 
-export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, version = ""}) {
+export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, isHoverable, isSelected}) {
 
-    const {isAdminMode, cardStyle} = useContext(OrderContext);
+    const {isAdminMode} = useContext(OrderContext);
 
     return (
         <CardStyled>
-            <div className={cardStyle} onClick={ !isAdminMode ? onCardClick : null} version={ !isAdminMode ? "admin" : "normal"}>
+            <div className="card" onClick={ !isAdminMode ? onCardClick : null} isHoverable={isHoverable} isSelected={isSelected}>
                 {isAdminMode
                 ? null
                 : <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>
@@ -36,13 +36,15 @@ export default function Card({title, imageSource, leftDescription, onCloseBtnCli
 
 const CardStyled = styled.div`
 
-    ${(props) => props.children.props.version === "admin" && extraCardStyle};
+    ${(props) => props.children.props.isHoverable && hoverableStyle};
+    ${(props) => props.children.props.isSelected && props.children.props.isHoverable && clickedStyle};
 
     .card {
         background: ${theme.colors.background_white};
         min-width: auto;
         max-width: 240px;
         height: max-content;
+        box-sizing: border-box;
         padding: 20px;
         box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
         border-radius: ${theme.borderRadius.round};
@@ -97,7 +99,6 @@ const CardStyled = styled.div`
         color: ${theme.colors.primary};
         outline: 2px solid ${theme.colors.primary};
         outline-offset: -2px;
-        transition: 0.5s;
     }
     .card-cta:active {
         background-color: ${theme.colors.primary};
@@ -114,15 +115,30 @@ const CardStyled = styled.div`
     .delete-icon:hover{
         cursor: pointer;
         color: ${theme.colors.red};
+    }    
+`;
+const hoverableStyle = css `    
+    .card:hover {
+        cursor: pointer;
+        border-radius: ${theme.borderRadius.round};   
+        outline: 2px solid ${theme.colors.primary};
+        outline-offset: -2px;
+        box-shadow: 0px 0px 8px 0px rgb(255 154 35 / 100%);
+        transition: 0.05s;
     }
-    .card-clicked {
-        background-color: ${theme.colors.primary};
+`
+const clickedStyle = css `    
+    .card {
+        background: ${theme.colors.primary}!important;
 
         .delete-icon{
             color: ${theme.colors.white};
         }
         .delete-icon:hover{
             color: ${theme.colors.red};
+        }
+        .delete-icon:active{
+            color: ${theme.colors.white};
         }
         .card-left-extra {
             color: ${theme.colors.white};
@@ -131,17 +147,8 @@ const CardStyled = styled.div`
             color: ${theme.colors.primary};
             background-color: ${theme.colors.white};
         } 
+        .card-cta:hover {
+            outline: 2px solid ${theme.colors.white};
+        } 
     }
-    
-`;
-const extraCardStyle = css `    
-    .card:hover {
-        cursor: pointer;
-        border-radius: ${theme.borderRadius.round};   
-        outline: 2px solid ${theme.colors.primary};
-        outline-offset: -2px;
-        box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 40%);
-        transition: 0.05s;
-    }
-
 `

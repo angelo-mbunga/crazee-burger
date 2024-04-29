@@ -26,7 +26,4 @@ export default createContext({
 
   IsCardClicked : false,
   SetIsCardClicked : () => {},
-
-  cardStyle : "",
-  setCardStyle : () => {},
 });

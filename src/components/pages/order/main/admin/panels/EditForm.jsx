@@ -49,38 +49,19 @@ export default function EditForm() {
             </div>
             <div className='form'>
               <form onSubmit={handleSubmit}>
-                <TextInput
-                  ref={inputComponentRef}
-                  id="0"
-                  name= "title"
-                  value={currentProductSelected.title}
-                  onChange={handleChange}
-                />
-                <TextInput
-                  id="1"
-                  name= "imageSource"
-                  value={currentProductSelected.imageSource}
-                  onChange={handleChange}
-                />
-                <TextInput
-                  id="2"
-                  name= "price"
-                  value={currentProductSelected.price}
-                  onChange={handleChange}
-                />
-{/*                 {textInputs.map((input) => (
-                   <TextInput
-                    ref={inputComponentRef}
+                {textInputs.map((input) => (
+                  <TextInput 
                     key={input.id}
                     name={input.name}
                     value={input.value}
                     onChange={handleChange}
+                    placeholder={input.placeholder}
                     Icon={input.Icon}
-                  /> 
-                ))} */}
+                  />
+                ))}
                   <PrimaryButton
-                  label={"Modifier le produit"} 
-                  className={"addProductBtn"}
+                    label={"Modifier le produit"} 
+                    className={"ctaBtn"}
                   />
               </form>
             </div>
@@ -92,9 +73,13 @@ export default function EditForm() {
   )
 }
 
-const EditFormStyled = styled.div`  
-  height: 100%;
-
+const EditFormStyled = styled.div`
+  .editPanel{
+    display: grid;
+    grid-template-columns: 30% 69%;
+    grid-gap: 8px;
+    padding: 24px;
+  }
   .emptyPanelMsg {
     color: ${theme.colors.greySemiDark};
     font-size: ${theme.fonts.size.P1};
@@ -107,61 +92,74 @@ const EditFormStyled = styled.div`
     .emptyPanelIcon {
       padding: 0 8px;
     }
-  } 
-    .editPanel {
-      width: 100%;
-      display: inline-flex;
-    }
-    .preview{
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 33%;
+  }
 
-      img {
-        outline: 2px solid ${theme.colors.greyLight};
-        border-radius: ${theme.borderRadius.round};
-        width: 66%;
-        height: 80%;
-        object-fit: contain;
-        object-position: center;
-      }
-    }
-    form{
-      background-color: purple;
+  .preview{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    height: 200px;
+
+    img {
+      border-radius: ${theme.borderRadius.round};
       width: 66%;
-
-        div {
-          display: block;
-          float: left;
-          margin-left: 8px;
-          height: 24px;
-        }
+      margin: auto;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
     }
-    input{
-      padding: 10px 12px;
-      padding-left: 64px;
-      background-color: ${theme.colors.background_white};
-      height: 16px;
+  }
+  .form{
+    div {
+      display: block;
+      float: left;
+      margin-left: 8px;
+      height: 24px;
     }
-    .inputIcon {
-      height: 16px;
-      width: 16px;
-      margin-top: -3px;
-    }
-    .input {
-      width: 100%;
-    }
-    .addProductBtn{
-      width: 50%; 
-      padding: 10px;
-      background-color: ${theme.colors.success};
-      color: ${theme.colors.white};
-      border: none;
-      cursor: pointer;
-    }
-    .addProductBtn:hover{
-      background-color: ${theme.colors.green};
-    }
-  
+  }
+  input{
+    padding: 10px 12px;
+    padding-left: 64px;
+    background-color: ${theme.colors.background_white};
+    height: 16px;
+  }
+  .inputIcon {
+    height: 16px;
+    width: 16px;
+    margin-top: -3px;
+  }
+  .input {
+    width: 100%;
+  }
+  .ctaBtn{
+    width: 50%; 
+    padding: 10px;
+    background-color: ${theme.colors.success};
+    color: ${theme.colors.white};
+    border: none;
+    cursor: pointer;
+  }
+  .ctaBtn:hover{
+    background-color: ${theme.colors.green};
+  }
 `;
+/* 
+<TextInput
+ref={inputComponentRef}
+id="0"
+name= "title"
+value={currentProductSelected.title}
+onChange={handleChange}
+/>
+<TextInput
+id="1"
+name= "imageSource"
+value={currentProductSelected.imageSource}
+onChange={handleChange}
+/>
+<TextInput
+id="2"
+name= "price"
+value={currentProductSelected.price}
+onChange={handleChange}
+/> */
