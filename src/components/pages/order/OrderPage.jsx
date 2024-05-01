@@ -21,10 +21,9 @@ export default function OrderPage() {
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
 
   const addProductToMenu = (newProduct) => {
-    //@TODO : check why adding a product id partially OK
     const menuCopy = deepClone(menu)
-    const menuUpdated = menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
-    setMenu(menuUpdated)
+    menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
+    setMenu(menuCopy)
   }
   const deleteProductFromMenu = (idOfProductToDelete) => {
     const menuCopy = deepClone(menu)
