@@ -14,6 +14,15 @@ export default function Menu() {
     return productFromMenuId === productselectedId
   }
 
+  const handleCardDelete = (event, IdProductToDelete) => { 
+    event.stopPropagation();
+    deleteProductFromMenu(IdProductToDelete)
+  }
+  const handleAddToBasket = (event, IdProductToAdd) => { 
+    event.stopPropagation();
+    //IdProductToAdd(IdProductToDelete)
+  }
+
   return (
     <MenuStyled>
       {menu.length === 0
@@ -37,8 +46,9 @@ export default function Menu() {
                 title={title}
                 imageSource={imageSource}
                 leftDescription={formatPrice(price)}
-                onCloseBtnClick={() => deleteProductFromMenu(id)}
+                onCloseBtnClick={(event) => handleCardDelete(event, id)}
                 onCardClick={() => displayProductInfos(id)}
+                onAddBtnClick={(event) => handleAddToBasket(event)}
                 isHoverable={!isAdminMode}
                 isSelected={checkIfProductSelected(id,currentProductSelected.id)}
               />

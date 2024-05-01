@@ -6,7 +6,7 @@ import { truncate, formatPrice } from '../../utils/maths';
 import { TiDelete } from "react-icons/ti";
 import OrderContext from '../../context/OrderContext';
 
-export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, isHoverable, isSelected}) {
+export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, isHoverable, isSelected, onAddBtnClick}) {
 
     const {isAdminMode} = useContext(OrderContext);
 
@@ -25,7 +25,7 @@ export default function Card({title, imageSource, leftDescription, onCloseBtnCli
                             <p className=''>{formatPrice(leftDescription)}</p>
                         </div>
                         <div className='card-right-extra'>
-                            <PrimaryButton className={"card-cta"} label={"Ajouter"}></PrimaryButton>
+                            <PrimaryButton className={"card-cta"} label={"Ajouter"} onClick={onAddBtnClick}></PrimaryButton>
                         </div>
                     </div>
                 </div>
