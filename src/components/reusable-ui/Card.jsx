@@ -12,7 +12,7 @@ export default function Card({title, imageSource, leftDescription, onCloseBtnCli
 
     return (
         <CardStyled>
-            <div className="card" onClick={ !isAdminMode ? onCardClick : null} isHoverable={isHoverable} isSelected={isSelected}>
+            <div className="card" onClick={onCardClick} isHoverable={isHoverable} isSelected={isSelected}>
                 {isAdminMode
                 ? null
                 : <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>

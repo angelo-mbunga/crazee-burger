@@ -21,6 +21,7 @@ export default function OrderPage() {
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
 
   const addProductToMenu = (newProduct) => {
+    //@TODO : check why adding a product id partially OK
     const menuCopy = deepClone(menu)
     const menuUpdated = menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
     setMenu(menuUpdated)
@@ -37,18 +38,19 @@ export default function OrderPage() {
     setMenu(menuCopy)
   }
   const displayProductInfos = (idOfProductToDisplay) => {
+    if (isAdminMode) return
     const productClicked = menu.find((product) => product.id === idOfProductToDisplay)
     setCurrentProductSelected(productClicked)
     SetIsCardClicked(true) 
     setIsCollasped(true) 
     setCurrentTabSelected('edit')
-    toogleCardCss()
     //inputComponentRef.current.focus();
   }
   const resetMenuData = () => {
     setMenu(fakeMenu.SMALL)
   }
   const orderContextValue = {
+    //@TODO : check why isModeAdmin is reverse
     isAdminMode ,
     setIsAdminMode,
     isCollasped,
