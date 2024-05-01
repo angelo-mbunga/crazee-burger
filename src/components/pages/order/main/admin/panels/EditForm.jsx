@@ -1,6 +1,4 @@
 import { useContext } from 'react';
-import { Zoom, toast } from 'react-toastify';
-import { CiSaveDown2 } from "react-icons/ci";
 import styled from 'styled-components';
 import {HiCursorClick} from 'react-icons/hi';
 import { theme } from '../../../../../../theme';
@@ -23,17 +21,6 @@ export default function EditForm() {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    toast.info("Modifications enregistrées", {
-      icon: <CiSaveDown2 size={30} />,
-      theme: 'dark',
-      transition: Zoom,
-      position: "bottom-right",
-      autoClose: 1200,
-      hideProgressBar: true,
-      closeOnClick: false,
-      pauseOnHover: false, 
-      draggable: false,
-    }) 
   }
 
   return (
@@ -61,8 +48,8 @@ export default function EditForm() {
                   />
                 ))}
                   <PrimaryButton
-                    label={"Modifier le produit"} 
-                    className={"ctaBtn"}
+                    label={"Modifier le produit en temps reel"} 
+                    className={"formFooterCommentary"}
                   />
               </form>
             </div>
@@ -85,9 +72,11 @@ const EditFormStyled = styled.div`
   .emptyPanelMsg {
     color: ${theme.colors.greySemiDark};
     font-size: ${theme.fonts.size.P1};
-    height: 100%;
+    height: 100%;   
     margin: 0;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .emptyPanelIcon {
       padding: 0 8px;
@@ -140,15 +129,5 @@ const EditFormStyled = styled.div`
   .input {
     width: 100%;
   }
-  .ctaBtn{
-    width: 50%; 
-    padding: 10px;
-    background-color: ${theme.colors.success};
-    color: ${theme.colors.white};
-    border: none;
-    cursor: pointer;
-  }
-  .ctaBtn:hover{
-    background-color: ${theme.colors.green};
-  }
+
 `;
