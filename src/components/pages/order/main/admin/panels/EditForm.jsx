@@ -12,7 +12,7 @@ import thumbnail from '../../../../../../assets/img/no-image.png';
 
 export default function EditForm() {
 
-  const {currentProductSelected, setCurrentProductSelected, IsCardClicked, editProductFromMenu, inputComponentRef} = useContext(OrderContext);
+  const {currentProductSelected, setCurrentProductSelected, IsCardClicked, editProductFromMenu, titleEditRef} = useContext(OrderContext);
   const textInputs = getTextInputs(currentProductSelected);
 
   const handleChange = (e) => {
@@ -57,6 +57,7 @@ export default function EditForm() {
                     onChange={handleChange}
                     placeholder={input.placeholder}
                     Icon={input.Icon}
+                    ref={input.name == "title" ? titleEditRef : null}
                   />
                 ))}
                   <PrimaryButton
@@ -143,23 +144,3 @@ const EditFormStyled = styled.div`
     background-color: ${theme.colors.green};
   }
 `;
-/* 
-<TextInput
-ref={inputComponentRef}
-id="0"
-name= "title"
-value={currentProductSelected.title}
-onChange={handleChange}
-/>
-<TextInput
-id="1"
-name= "imageSource"
-value={currentProductSelected.imageSource}
-onChange={handleChange}
-/>
-<TextInput
-id="2"
-name= "price"
-value={currentProductSelected.price}
-onChange={handleChange}
-/> */

@@ -16,7 +16,7 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [IsCardClicked, SetIsCardClicked] = useState(false);
   const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
-  const inputComponentRef = useRef();
+  const titleEditRef = useRef();
 
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
 
@@ -41,7 +41,7 @@ export default function OrderPage() {
     if (isAdminMode) return
     const productClicked = menu.find((product) => product.id === idOfProductToDisplay)
     setCurrentProductSelected(productClicked)
-    //inputComponentRef.current.focus();
+    titleEditRef.current.focus();
   }
   const resetMenuData = () => {
     setMenu(fakeMenu.SMALL)
@@ -66,7 +66,7 @@ export default function OrderPage() {
     displayProductInfos,
     IsCardClicked,
     SetIsCardClicked,
-    inputComponentRef,
+    titleEditRef,
   };
 
   return (
