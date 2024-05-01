@@ -8,21 +8,26 @@ import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const {isAdminMode, menu, currentProductSelected, deleteProductFromMenu, resetMenuData, displayProductInfos, SetIsCardClicked, setIsCollasped, setCurrentTabSelected} = useContext(OrderContext);
+  const {isAdminMode, menu, currentProductSelected, deleteProductFromMenu, resetMenuData, displayProductInfos, setIsCardClicked, setIsCollasped, setCurrentTabSelected, titleEditRef} = useContext(OrderContext);
 
   const checkIfProductSelected = (productFromMenuId,productselectedId) => {
     return productFromMenuId === productselectedId
   }
 
-  const handleClick = (idProductToDisplay) => { 
-    SetIsCardClicked(true) 
+  const handleClick = async (idProductToDisplay) => { 
+    setIsCardClicked(true) 
     setIsCollasped(true) 
-    setCurrentTabSelected('edit')
+    await setCurrentTabSelected('edit')
     displayProductInfos(idProductToDisplay)
   }
   const handleCardDelete = (event, IdProductToDelete) => { 
     event.stopPropagation();
     deleteProductFromMenu(IdProductToDelete)
+    if (IdProductToDelete === currentProductSelected.id) {
+      setIsCardClicked(false) 
+    }
+    titleEditRef.current.focus();
+
   }
   const handleAddToBasket = (event, IdProductToAdd) => { 
     event.stopPropagation();

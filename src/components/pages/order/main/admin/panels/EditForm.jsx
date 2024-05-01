@@ -75,6 +75,7 @@ export default function EditForm() {
 }
 
 const EditFormStyled = styled.div`
+  height: 100%;
   .editPanel{
     display: grid;
     grid-template-columns: 30% 69%;

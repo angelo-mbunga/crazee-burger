@@ -14,7 +14,7 @@ export default function OrderPage() {
   const [isCollasped, setIsCollasped] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [IsCardClicked, SetIsCardClicked] = useState(false);
+  const [IsCardClicked, setIsCardClicked] = useState(false);
   const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
 
@@ -65,7 +65,7 @@ export default function OrderPage() {
     setCurrentProductSelected,
     displayProductInfos,
     IsCardClicked,
-    SetIsCardClicked,
+    setIsCardClicked,
     titleEditRef,
   };
 

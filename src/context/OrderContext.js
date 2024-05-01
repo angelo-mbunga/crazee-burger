@@ -25,5 +25,5 @@ export default createContext({
   displayProductInfos :  () => {},
 
   IsCardClicked : false,
-  SetIsCardClicked : () => {},
+  setIsCardClicked : () => {},
 });
