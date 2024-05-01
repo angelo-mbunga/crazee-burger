@@ -49,10 +49,9 @@ export default function Menu() {
                 text1="Victime de notre success !" 
                 text2="De nouvelles recettes arrivent bientot"
               />
-        : menu.map(({title, imageSource, id, price}, index) => {
+        : menu.map(({title, imageSource, id, price}) => {
             return (
               <Card
-                index={index}
                 key={id}
                 title={title}
                 imageSource={imageSource}

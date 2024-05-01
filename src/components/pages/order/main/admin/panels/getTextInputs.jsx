@@ -21,7 +21,7 @@ export const getTextInputs = (newProduct) => [
         id : 2,
         name : "price",
         value : newProduct.price,
-        placeholder : "Nom du produit",
+        placeholder : "Prix",
         Icon : <MdOutlineEuro className="inputIcon"/>,
     },
 ]

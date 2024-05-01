@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FiCheck } from "react-icons/fi";
 import {TextInput} from '../../../../../reusable-ui/TextInput';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
-import thumbnail from '../../../../../../assets/img/no-image.png';
 import imageByDefault from '../../../../../../assets/img/coming-soon.png';
 import { theme } from '../../../../../../theme';
 import OrderContext from '../../../../../../context/OrderContext';
@@ -51,7 +50,7 @@ export default function AddForm() {
             <div className='preview'>
                 { newProduct.imageSource 
                     ? <img src={newProduct.imageSource} alt={newProduct.title} />
-                    : <img src={thumbnail} alt='aucun image' />
+                    : <span className='emptyImageMsg'>Pas d'image</span>
                 }
             </div>
             <div className='form'>
@@ -87,6 +86,14 @@ const AddFormStyled = styled.div`
         justify-content: start;
         align-items: start;
 
+        .emptyImageMsg{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: ${theme.fonts.size.P0};
+        }
         img {
             border-radius: ${theme.borderRadius.round};
             width: 66%;

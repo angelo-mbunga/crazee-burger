@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Zoom, toast } from 'react-toastify';
 import { CiSaveDown2 } from "react-icons/ci";
 import styled from 'styled-components';
@@ -8,12 +8,12 @@ import OrderContext from '../../../../../../context/OrderContext';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import {TextInput} from '../../../../../reusable-ui/TextInput';
 import { getTextInputs } from './getTextInputs';
-import thumbnail from '../../../../../../assets/img/no-image.png';
 
 export default function EditForm() {
 
   const {currentProductSelected, setCurrentProductSelected, IsCardClicked, editProductFromMenu, titleEditRef} = useContext(OrderContext);
   const textInputs = getTextInputs(currentProductSelected);
+  const defaultImage = "/src/assets/img/coming-soon.png";
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -42,9 +42,9 @@ export default function EditForm() {
         ?
           <div className='editPanel'>
             <div className='preview'>
-              { currentProductSelected.imageSource 
-                ? <img src={currentProductSelected.imageSource} alt={currentProductSelected.title} />
-                : <img src={thumbnail} alt='aucun image' />
+              { currentProductSelected.imageSource === defaultImage
+                ? <span className='emptyImageMsg'>Pas d'image</span>
+                : <img src={currentProductSelected.imageSource} alt={currentProductSelected.title} />
               }
             </div>
             <div className='form'>
@@ -53,7 +53,7 @@ export default function EditForm() {
                   <TextInput 
                     key={input.id}
                     name={input.name}
-                    value={input.value}
+                    value={input.value === defaultImage ? input.value = "" : input.value}
                     onChange={handleChange}
                     placeholder={input.placeholder}
                     Icon={input.Icon}
@@ -87,13 +87,20 @@ const EditFormStyled = styled.div`
     font-size: ${theme.fonts.size.P1};
     height: 100%;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 
     .emptyPanelIcon {
       padding: 0 8px;
     }
+  }
+  .emptyImageMsg{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: ${theme.fonts.size.P0};
+    color: ${theme.colors.greySemiDark};
   }
 
   .preview{
