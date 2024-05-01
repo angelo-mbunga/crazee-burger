@@ -41,9 +41,6 @@ export default function OrderPage() {
     if (isAdminMode) return
     const productClicked = menu.find((product) => product.id === idOfProductToDisplay)
     setCurrentProductSelected(productClicked)
-    SetIsCardClicked(true) 
-    setIsCollasped(true) 
-    setCurrentTabSelected('edit')
     //inputComponentRef.current.focus();
   }
   const resetMenuData = () => {

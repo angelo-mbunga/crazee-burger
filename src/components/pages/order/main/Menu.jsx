@@ -8,12 +8,18 @@ import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const {isAdminMode, menu, currentProductSelected, deleteProductFromMenu, resetMenuData, displayProductInfos} = useContext(OrderContext);
+  const {isAdminMode, menu, currentProductSelected, deleteProductFromMenu, resetMenuData, displayProductInfos, SetIsCardClicked, setIsCollasped, setCurrentTabSelected} = useContext(OrderContext);
 
   const checkIfProductSelected = (productFromMenuId,productselectedId) => {
     return productFromMenuId === productselectedId
   }
 
+  const handleClick = (idProductToDisplay) => { 
+    SetIsCardClicked(true) 
+    setIsCollasped(true) 
+    setCurrentTabSelected('edit')
+    displayProductInfos(idProductToDisplay)
+  }
   const handleCardDelete = (event, IdProductToDelete) => { 
     event.stopPropagation();
     deleteProductFromMenu(IdProductToDelete)
@@ -47,7 +53,7 @@ export default function Menu() {
                 imageSource={imageSource}
                 leftDescription={formatPrice(price)}
                 onCloseBtnClick={(event) => handleCardDelete(event, id)}
-                onCardClick={() => displayProductInfos(id)}
+                onCardClick={() => handleClick(id)}
                 onAddBtnClick={(event) => handleAddToBasket(event)}
                 isHoverable={!isAdminMode}
                 isSelected={checkIfProductSelected(id,currentProductSelected.id)}
