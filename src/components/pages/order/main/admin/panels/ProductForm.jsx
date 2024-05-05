@@ -5,7 +5,7 @@ import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import styled from 'styled-components';
 import { theme } from '../../../../../../theme';
 
-export default function ProductForm({onSubmit, onChange, product, formFooterContent, formFooterClass}) {
+const ProductForm = React.forwardRef(({onSubmit, onChange, product, formFooterContent, formFooterClass}, ref) => {
 
     const textInputs = getTextInputs(product)
 
@@ -26,6 +26,7 @@ export default function ProductForm({onSubmit, onChange, product, formFooterCont
                         onChange={onChange}
                         placeholder={input.placeholder}
                         Icon={input.Icon}
+                        ref={ref && input.name === 'title' ? ref : null}
                     />
                 ))}
                     <PrimaryButton
@@ -35,7 +36,9 @@ export default function ProductForm({onSubmit, onChange, product, formFooterCont
             </form>
         </ProductFormStyled>
   )
-}
+})
+export default ProductForm;
+
 const ProductFormStyled = styled.form`
     display: grid;
     grid-template-columns: 30% 69%;

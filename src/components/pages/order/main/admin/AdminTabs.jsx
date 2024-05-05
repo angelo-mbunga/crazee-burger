@@ -11,7 +11,7 @@ export default function AdminTabs() {
 
   const {
     isCollasped, setIsCollasped,
-    currentTabSelected, setCurrentTabSelected,} = useContext(OrderContext);
+    currentTabSelected, setCurrentTabSelected} = useContext(OrderContext);
 
   const [panelIcon, setPanelIcon] = useState(true);
 
