@@ -4,25 +4,22 @@ import { TextInput } from '../../../../../reusable-ui/TextInput';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import styled from 'styled-components';
 import { theme } from '../../../../../../theme';
+import ProductPreview from './ProductPreview';
 
 const ProductForm = React.forwardRef(({onSubmit, onChange, product, formFooterContent, formFooterClass}, ref) => {
 
     const textInputs = getTextInputs(product)
+    const defaultImage = "/src/assets/img/coming-soon.png";
 
     return (
         <ProductFormStyled>
-            <div className='preview'>
-                { product.imageSource 
-                    ? <img src={product.imageSource} alt={product.title} />
-                    : <span className='emptyImageMsg'>Pas d'image</span>
-                }
-            </div> 
+            <ProductPreview product={product} />
             <form onSubmit={onSubmit} onChange={onChange}>
                 {textInputs.map((input) => (
                     <TextInput 
                         key={input.id}
                         name={input.name}
-                        value={input.value}
+                        value={input.value === defaultImage ? input.value = '' : input.value }
                         onChange={onChange}
                         placeholder={input.placeholder}
                         Icon={input.Icon}
@@ -45,28 +42,6 @@ const ProductFormStyled = styled.div`
     grid-gap: 8px;
     padding: 24px;
 
-    .preview {
-        display: flex;
-        justify-content: start;
-        align-items: start;
-
-        .emptyImageMsg {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: ${theme.fonts.size.P0};
-        }
-        img {
-            border-radius: ${theme.borderRadius.round};
-            width: 66%;
-            height: 80%;
-            margin: auto;
-            object-fit: contain;
-            object-position: center;
-        }
-    }
     form {
         div {
             display: block;
