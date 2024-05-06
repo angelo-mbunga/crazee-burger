@@ -39,7 +39,7 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, product, formFooterCo
 })
 export default ProductForm;
 
-const ProductFormStyled = styled.form`
+const ProductFormStyled = styled.div`
     display: grid;
     grid-template-columns: 30% 69%;
     grid-gap: 8px;

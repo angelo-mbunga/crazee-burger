@@ -21,13 +21,11 @@ export default function AddForm() {
       isAdvertised: false
     }
     const handleChange = (e) => {
-        // @TODO : Check why handleChange NOK within reusable form
         const newValue = e.target.value;
         const inputName = e.target.name;
         setNewProduct({...newProduct, [inputName] : newValue})
     }
     const handleSubmit = (e) => {
-        // @TODO : Check why handleSubmit NOK within reusable form
         e.preventDefault()
         addProductToMenu(newProductToAdd)
         toast.info("Ajouté avec succes !", {
@@ -41,7 +39,7 @@ export default function AddForm() {
             pauseOnHover: false,
             draggable: false,
         }) 
-        setNewProduct(EMPTY_PRODUCT)
+        setNewProduct(EMPTY_PRODUCT) 
     }
 
     return (
