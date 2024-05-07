@@ -11,7 +11,7 @@ export default function AdminTabs() {
 
   const {
     isCollasped, setIsCollasped,
-    currentTabSelected, setCurrentTabSelected,} = useContext(OrderContext);
+    currentTabSelected, setCurrentTabSelected} = useContext(OrderContext);
 
   const [panelIcon, setPanelIcon] = useState(true);
 
@@ -56,7 +56,7 @@ const AdminTabsStyled = styled.nav`
   justify-content: center;
 
   .tab {
-    background-color: ${theme.colors.background_white};
+    background-color: ${theme.colors.white};
     outline: 1px solid lightgray;
     outline-offset: -1px;
     height: 100%;

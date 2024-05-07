@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components';
 import {theme} from '../../../../theme/index'
 import Menu from './Menu';
-import Basket from './Basket';
+import Basket from './basket/Basket';
 import Admin from './admin/Admin';
 import OrderContext from '../../../../context/OrderContext';
 
