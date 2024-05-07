@@ -1,19 +1,21 @@
 import React from 'react'
 import {theme} from '../../../../../theme/index';
 import styled from 'styled-components';
-import Header from '../../../../reusable-ui/Header';
+import Total from './Total';
+import { formatPrice } from '../../../../../utils/maths'
+import Title from './Title';
 
 export default function Basket(products) {
   return (
     <BasketStyled>
-      <Header>zeze</Header>
+      <Title/>
       <div className='content'>
         { !products
             ? <span>Votre panier est plein</span>
             : <span>Votre panier est vide</span>
         }
       </div>
-      <Header>zeze</Header>
+      <Total amoutToPay={formatPrice(0)}/>
     </BasketStyled>
   )
 }
