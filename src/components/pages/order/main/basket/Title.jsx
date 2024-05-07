@@ -2,11 +2,11 @@ import {theme} from '../../../../../theme/index';
 import styled from 'styled-components';
 import Header from '../../../../reusable-ui/Header';
 
-export default function Title() {
+export default function Title({title}) {
   return (
     <Header>
       <TitleStyled>
-        votre commande
+        {title}
       </TitleStyled>
     </Header>
   )
