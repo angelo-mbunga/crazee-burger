@@ -4,6 +4,7 @@ import { deepClone } from "../utils/array";
 
 export function useBasket() {
     const [basket, setBasket] = useState([]);
+    const [basketTotalAmount, setBasketTotalAmount] = useState(0);
     const [menu] = useState(fakeBasket.LARGE);
 
     const addProductToBasket = (idProductToAdd) => {
@@ -30,11 +31,19 @@ export function useBasket() {
                 setBasket(basketCopy)
             }
         }
+        calculBasketAmount(basketCopy)
     }
 
     const deleteProductFromBasket = (idProductToDelete) => {
 
     }
+    const calculBasketAmount = (basket) => {
+        const basketCopy = deepClone(basket)
+        let amount = basketCopy.reduce((previousValue, currentValue) => {
+            return previousValue + currentValue.count * currentValue.price;
+        }, 0);
+        setBasketTotalAmount(amount)     
+    }
     
-    return({basket, menu, addProductToBasket, deleteProductFromBasket})
+    return({basket, menu, basketTotalAmount, addProductToBasket, deleteProductFromBasket})
 }

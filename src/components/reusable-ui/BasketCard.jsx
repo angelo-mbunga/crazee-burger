@@ -1,24 +1,25 @@
 import React from 'react'
 import styled from 'styled-components';
 import { theme } from '../../theme/index'
-import { formatPrice } from '../../utils/maths';
+import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
 
 export default function BasketCard({title, imageSource, price, count}) {
-  return (
-    <BasketCardStyled>
-        <div className="cardImage">
-            <img src={imageSource} alt={title} />
-        </div>
-        <div className="cardInfos">
-            <span className="title">{truncate(title, 12)}</span> 
-            <span className="price">{formatPrice(price)}</span> 
-        </div>
-        <div className="cardExtras">
-            <span className='quantity'>x{count}</span>   
-        </div>
-    </BasketCardStyled>
-  )
+
+    return (
+        <BasketCardStyled>
+            <div className="cardImage">
+                <img src={imageSource} alt={title} />
+            </div>
+            <div className="cardInfos">
+                <span className="title">{truncate(title, 12)}</span> 
+                <span className="price">{formatPrice(ajustPrice(price))}</span> 
+            </div>
+            <div className="cardExtras">
+                <span className='quantity'>x{count}</span>   
+            </div>
+        </BasketCardStyled>
+    )
 }
 const BasketCardStyled = styled.div`
     display: flex;

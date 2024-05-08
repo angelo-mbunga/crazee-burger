@@ -69,7 +69,7 @@ export default function Menu() {
                 key={id}
                 title={title}
                 imageSource={imageSource}
-                leftDescription={formatPrice(price)}
+                leftDescription={formatPrice(ajustPrice(price))}
                 onCloseBtnClick={(event) => handleCardDelete(event, id)}
                 onCardClick={() => handleClick(id)}
                 onAddBtnClick={(event) => handleAddToBasket(event, id)}
