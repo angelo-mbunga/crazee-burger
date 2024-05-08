@@ -8,12 +8,12 @@ import OrderContext from '../../../../../context/OrderContext';
 
 export default function Basket() {
   
-  const { productToAddToBasket } = useContext(OrderContext);
+  //const { productToAddToBasket } = useContext(OrderContext);
 
   return (
     <BasketStyled>
       <Title title={"votre commande"}/>
-      <Body products={productToAddToBasket}/>
+      <Body/>
       <Total amoutToPay={formatPrice(0)}/>
     </BasketStyled>
   )

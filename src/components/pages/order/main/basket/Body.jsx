@@ -2,29 +2,33 @@ import {theme} from '../../../../../theme/index';
 import styled from 'styled-components';
 import { formatPrice } from '../../../../../utils/maths';
 import { truncate } from '../../../../../utils/maths';
+import { useContext } from 'react';
+import OrderContext from '../../../../../context/OrderContext';
 
-export default function Body({products}) {
+export default function Body({}) {
 
-  console.log(products)
+  const {isAdminMode, basket} = useContext(OrderContext);
 
   return (
     <BodyStyled>
-        { products.id
-            ? 
-              <div className="basketCard">
-                <div className="cardImage">
-                  <img src={products.imageSource} alt={products.title} />
-                </div>
-                <div className="cardInfos">
-                  <span className="title">{truncate(products.title, 12)}</span> 
-                  <span className="price">{formatPrice(products.price)}</span> 
-                </div>
-                <div className="cardExtras">
-                  <span className='quantity'>x12</span>   
-                </div>
-
-              </div>
-            : <span className='emptyMessage'>Votre panier est vide</span>
+        { basket.length > 0
+             ? basket.map(({title, imageSource, id, price}) => {
+                return (
+                  <div className="basketCard">
+                    <div className="cardImage">
+                      <img src={imageSource} alt={title} />
+                    </div>
+                    <div className="cardInfos">
+                      <span className="title">{truncate(title, 12)}</span> 
+                      <span className="price">{formatPrice(price)}</span> 
+                    </div>
+                    <div className="cardExtras">
+                      <span className='quantity'>x12</span>   
+                    </div>
+                  </div>
+                )
+              })
+            : <span className='emptyMessage'>Votre panier est vide</span> 
         } 
     </BodyStyled>
   )

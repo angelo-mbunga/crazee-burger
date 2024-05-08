@@ -5,13 +5,14 @@ import { deepClone } from "../utils/array";
 import { EMPTY_PRODUCT } from "../enums/product";
 
 export function useBasket() {
-    //const [basket, setBasket] = useState(fakeBasket.SMALL);
-    const [menu, setMenu] = useState(fakeBasket.LARGE);
-    const [productToAddToBasket, setProductToAddToBasket] = useState(EMPTY_PRODUCT);
+    const [basket, setBasket] = useState([]);
+    const [menu] = useState(fakeBasket.LARGE);
 
     const addProductToBasket = (idProductToAdd) => {
+        const basketCopy = deepClone(basket)
         const productClicked = menu.find((product) => product.id === idProductToAdd)
-        setProductToAddToBasket(productClicked)
+        basketCopy.unshift({id:productClicked.id, imageSource:productClicked.imageSource, title:productClicked.title, price:productClicked.price})
+        setBasket(basketCopy)
     }
 
     const deleteProductFromBasket = (idProductToDelete) => {
@@ -20,5 +21,5 @@ export function useBasket() {
 
     // const editProductFromBasket = (EditedProduct) => {}
     
-    return({menu, addProductToBasket, deleteProductFromBasket,productToAddToBasket})
+    return({basket, menu, addProductToBasket, deleteProductFromBasket})
 }
