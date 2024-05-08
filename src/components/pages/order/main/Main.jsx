@@ -7,7 +7,7 @@ import Admin from './admin/Admin';
 import OrderContext from '../../../../context/OrderContext';
 
 export default function Main() {
-  const {isAdminMode,setAdminMode} = useContext(OrderContext)
+  const {isAdminMode} = useContext(OrderContext)
 
   return (
     <MainStyled>
