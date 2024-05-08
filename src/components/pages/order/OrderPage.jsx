@@ -6,6 +6,7 @@ import {theme} from '../../../theme/index';
 import OrderContext from '../../../context/OrderContext';
 import { EMPTY_PRODUCT } from '../../../enums/product';
 import { useMenu } from '../../../hooks/useMenu';
+import { useBasket } from '../../../hooks/useBasket';
 
 export default function OrderPage() {
 
@@ -17,6 +18,7 @@ export default function OrderPage() {
   const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
   const {menu, addProductToMenu, deleteProductFromMenu, editProductFromMenu, resetMenuData} = useMenu();
+  const {basket, addProductToBasket, deleteProductFromBasket} = useBasket();
 
   // TODO : find proper file to put this in
   const displayProductInfos = (idOfProductToDisplay) => {
@@ -46,7 +48,10 @@ export default function OrderPage() {
     displayProductInfos,
     IsCardClicked,
     setIsCardClicked, 
-    titleEditRef
+    titleEditRef,
+    basket,
+    addProductToBasket,
+    deleteProductFromBasket,
   };
 
 
