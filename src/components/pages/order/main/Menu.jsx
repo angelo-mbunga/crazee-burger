@@ -8,7 +8,19 @@ import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const {isAdminMode, menu, currentProductSelected, deleteProductFromMenu, resetMenuData, displayProductInfos, setIsCardClicked, setIsCollasped, setCurrentTabSelected, titleEditRef} = useContext(OrderContext);
+  const {
+    isAdminMode, 
+    menu, 
+    currentProductSelected, 
+    deleteProductFromMenu, 
+    resetMenuData, 
+    displayProductInfos, 
+    setIsCardClicked, 
+    setIsCollasped, 
+    setCurrentTabSelected, 
+    titleEditRef, 
+    addProductToBasket
+  } = useContext(OrderContext);
 
   const checkIfProductSelected = (productFromMenuId,productselectedId) => {
     return productFromMenuId === productselectedId
@@ -20,6 +32,7 @@ export default function Menu() {
     await setCurrentTabSelected('edit')
     displayProductInfos(idProductToDisplay)
   }
+
   const handleCardDelete = (event, IdProductToDelete) => { 
     event.stopPropagation();
     deleteProductFromMenu(IdProductToDelete)
@@ -29,9 +42,10 @@ export default function Menu() {
     titleEditRef.current.focus();
 
   }
+  
   const handleAddToBasket = (event, IdProductToAdd) => { 
     event.stopPropagation();
-    //IdProductToAdd(IdProductToDelete)
+    addProductToBasket(IdProductToAdd)
   }
 
   return (
@@ -58,7 +72,7 @@ export default function Menu() {
                 leftDescription={formatPrice(price)}
                 onCloseBtnClick={(event) => handleCardDelete(event, id)}
                 onCardClick={() => handleClick(id)}
-                onAddBtnClick={(event) => handleAddToBasket(event)}
+                onAddBtnClick={(event) => handleAddToBasket(event, id)}
                 isHoverable={!isAdminMode}
                 isSelected={checkIfProductSelected(id,currentProductSelected.id)}
               />

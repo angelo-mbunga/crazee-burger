@@ -5,7 +5,7 @@ export default function Body({products}) {
   return (
     <BodyStyled>
         { products
-            ? <span className='emptyMessage'>Votre panier est plein</span>
+            ? <span className='emptyMessage'>{products.title}</span>
             : <span className='emptyMessage'>Votre panier est vide</span>
         } 
     </BodyStyled>
