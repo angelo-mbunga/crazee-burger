@@ -12,9 +12,9 @@ export default function Body({}) {
   return (
     <BodyStyled>
         { basket.length > 0
-             ? basket.map(({title, imageSource, id, price}) => {
+             ? basket.map(({title, imageSource, id, price, count}) => {
                 return (
-                  <div className="basketCard">
+                  <div className="basketCard" key={id}>
                     <div className="cardImage">
                       <img src={imageSource} alt={title} />
                     </div>
@@ -23,12 +23,12 @@ export default function Body({}) {
                       <span className="price">{formatPrice(price)}</span> 
                     </div>
                     <div className="cardExtras">
-                      <span className='quantity'>x12</span>   
+                      <span className='quantity'>{count}</span>   
                     </div>
                   </div>
                 )
-              })
-            : <span className='emptyMessage'>Votre panier est vide</span> 
+              }) 
+            : <span className='emptyMessage'>Votre panier est vide</span>
         } 
     </BodyStyled>
   )
@@ -37,7 +37,7 @@ const BodyStyled = styled.span`
     background-color: ${theme.colors.background_white};
     flex: 1;
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
-    padding: 12px;
+    padding: 12px;    
 
     .emptyMessage {
         font-size: ${theme.fonts.size.P3};
@@ -89,6 +89,10 @@ const BodyStyled = styled.span`
       .cardExtras {
         background-color: green;
         width: 20%;
+
+        .quantity {
+          font-size: 33px;
+        }
       }
     }
 
