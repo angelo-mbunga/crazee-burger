@@ -28,7 +28,7 @@ const MainStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
   flex: 1;
   display: grid;
-  grid-template-columns:20% 1fr;
+  grid-template-columns:25% 1fr;
   height: calc(95vh - 10vh);
 
   .menu-and-amdin{
