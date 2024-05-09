@@ -6,7 +6,7 @@ import BasketCard from '../../../../reusable-ui/BasketCard';
 
 export default function Body({}) {
 
-  const {basket} = useContext(OrderContext);
+  const {basket, isAdminMode} = useContext(OrderContext);
 
   return (
     <BodyStyled>
@@ -19,6 +19,7 @@ export default function Body({}) {
                     imageSource={imageSource}
                     price={price}
                     count={count}
+                    isHoverable={!isAdminMode}
                   />
                 )
               }) 

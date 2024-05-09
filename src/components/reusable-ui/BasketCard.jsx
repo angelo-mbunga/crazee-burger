@@ -1,13 +1,16 @@
-import React from 'react'
-import styled from 'styled-components';
+import React, { useContext } from 'react'
+import styled, { css } from 'styled-components';
 import { theme } from '../../theme/index'
 import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
+import OrderContext from '../../context/OrderContext'
+import { MdDeleteForever } from "react-icons/md";
 
-export default function BasketCard({title, imageSource, price, count}) {
+
+export default function BasketCard({title, imageSource, price, count, isHoverable}) {
 
     return (
-        <BasketCardStyled>
+        <BasketCardStyled isHoverable={isHoverable}>
             <div className="cardImage">
                 <img src={imageSource} alt={title} />
             </div>
@@ -16,12 +19,18 @@ export default function BasketCard({title, imageSource, price, count}) {
                 <span className="price">{formatPrice(ajustPrice(price))}</span> 
             </div>
             <div className="cardExtras">
-                <span className='quantity'>x{count}</span>   
+                { isHoverable 
+                    ? <MdDeleteForever className='deleteCardButton'/>
+                    : <span className='quantity'>x{count}</span>  
+                }
             </div>
         </BasketCardStyled>
     )
 }
 const BasketCardStyled = styled.div`
+
+    ${(props) => props.isHoverable && hoverableDeleteButtonStyle};
+
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -41,20 +50,20 @@ const BasketCardStyled = styled.div`
         width: 40%;
         
         img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     }
     .cardInfos {
-        background-color: red;
+        background-color: orange;
         width: 40%;
         display: flex;
         flex-direction: column;
         align-items: center;
 
         span {
-        margin: 4px 0;
+            margin: 4px 0;
         }
     }
     .cardExtras {
@@ -62,9 +71,25 @@ const BasketCardStyled = styled.div`
         width: 20%;
 
         .quantity {
-        font-size: 33px;
+            font-size: 33px;
+        }
+        .deleteCardButton{
+            font-size: 33px;
+            color: orange;
         }
     }
-    
+`
+const hoverableDeleteButtonStyle = css `    
+    .cardExtras:hover {
+        background-color: red;
+        cursor: pointer;
 
+        .deleteCardButton {
+            color: white;
+            transform: scale(1.1);
+        }
+        .deleteCardButton:active {
+            color: white;
+        }
+    }
 `
