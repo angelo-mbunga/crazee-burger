@@ -37,6 +37,7 @@ export function useBasket() {
         const basketCopy = deepClone(basket)
         const basketUpdated = basketCopy.filter(product => product.id !== idProductToDelete)
         setBasket(basketUpdated)
+        calculBasketAmount(basketUpdated)
     }
     const calculBasketAmount = (basket) => {
         const basketCopy = deepClone(basket)
