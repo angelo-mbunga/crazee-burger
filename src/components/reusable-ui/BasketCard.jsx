@@ -1,13 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components';
 import { theme } from '../../theme/index'
 import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
-import OrderContext from '../../context/OrderContext'
 import { MdDeleteForever } from "react-icons/md";
 
 
-export default function BasketCard({title, imageSource, price, count, isHoverable}) {
+export default function BasketCard({title, imageSource, price, count, isHoverable, onClick}) {
 
     return (
         <BasketCardStyled isHoverable={isHoverable}>
@@ -20,7 +19,7 @@ export default function BasketCard({title, imageSource, price, count, isHoverabl
             </div>
             <div className="cardExtras">
                 { isHoverable 
-                    ? <MdDeleteForever className='deleteCardButton'/>
+                    ? <MdDeleteForever className='deleteCardButton' onClick={onClick}/>
                     : <span className='quantity'>x{count}</span>  
                 }
             </div>

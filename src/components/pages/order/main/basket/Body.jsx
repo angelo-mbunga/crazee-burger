@@ -6,7 +6,11 @@ import BasketCard from '../../../../reusable-ui/BasketCard';
 
 export default function Body({}) {
 
-  const {basket, isAdminMode} = useContext(OrderContext);
+  const {basket, isAdminMode, deleteProductFromBasket} = useContext(OrderContext);
+
+  const handleCardDelete = (idProductToDelete) => { 
+    deleteProductFromBasket(idProductToDelete)
+  }
 
   return (
     <BodyStyled>
@@ -20,6 +24,7 @@ export default function Body({}) {
                     price={price}
                     count={count}
                     isHoverable={!isAdminMode}
+                    onClick={() => handleCardDelete(id)}
                   />
                 )
               }) 
