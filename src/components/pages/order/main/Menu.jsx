@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Card from '../../../reusable-ui/Card';
 import { theme } from '../../../../theme';
 import { formatPrice, ajustPrice } from '../../../../utils/maths';
+import { findInArray } from '../../../../utils/array';
 import MenuEmpty from './MenuEmpty';
 import OrderContext from '../../../../context/OrderContext';
 
@@ -45,7 +46,7 @@ export default function Menu() {
   
   const handleAddToBasket = (event, IdProductToAdd) => { 
     event.stopPropagation();
-    const productToAdd = menu.find((product) => product.id === IdProductToAdd);
+    const productToAdd = findInArray(IdProductToAdd, menu)
     addProductToBasket(productToAdd);
   }
 
