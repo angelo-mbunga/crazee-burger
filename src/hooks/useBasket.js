@@ -7,27 +7,26 @@ export function useBasket() {
     const [basketTotalAmount, setBasketTotalAmount] = useState(0);
     const [menu] = useState(fakeBasket.LARGE);
 
-    const addProductToBasket = (idProductToAdd) => {
+    const addProductToBasket = (ProductToAdd) => {
         const basketCopy = deepClone(basket)
-        const productClicked = menu.find((product) => product.id === idProductToAdd) 
         const isProductInBasket = basketCopy.find((product) => {
-            if (product.title === productClicked.title) {
+            if (product.title === ProductToAdd.title) {
                 return true 
             }
         })
 
         if (basketCopy.length === 0) {
-            basketCopy.unshift({id:productClicked.id, imageSource:productClicked.imageSource, title:productClicked.title, price:productClicked.price, count:1})
+            basketCopy.unshift({id:ProductToAdd.id, imageSource:ProductToAdd.imageSource, title:ProductToAdd.title, price:ProductToAdd.price, count:1})
             setBasket(basketCopy)
         } 
         else {
             if (isProductInBasket) {
-                const productAlreadyInBasket = basketCopy.find((product) => product.title === productClicked.title);
+                const productAlreadyInBasket = basketCopy.find((product) => product.title === ProductToAdd.title);
                 productAlreadyInBasket.count++;
                 setBasket(basketCopy);
             } 
             else {
-                basketCopy.unshift({id:productClicked.id, imageSource:productClicked.imageSource, title:productClicked.title, price:productClicked.price, count:1})
+                basketCopy.unshift({id:ProductToAdd.id, imageSource:ProductToAdd.imageSource, title:ProductToAdd.title, price:ProductToAdd.price, count:1})
                 setBasket(basketCopy)
             }
         }
