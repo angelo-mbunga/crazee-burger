@@ -23,4 +23,6 @@ const BasketStyled = styled.div`
   font-family: "Amatic SC", cursive;
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
+  overflow-x: hidden;
 `;

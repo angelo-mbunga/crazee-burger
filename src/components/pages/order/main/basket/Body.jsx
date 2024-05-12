@@ -33,18 +33,20 @@ export default function Body({}) {
     </BodyStyled>
   )
 }
-const BodyStyled = styled.span`
+const BodyStyled = styled.div`
   background-color: ${theme.colors.background_white};
   flex: 1;
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
   padding: 12px;    
+  overflow: auto;
+  overflow-x: hidden;
 
   .emptyMessage {
-      font-size: ${theme.fonts.size.P3};
-      color: ${theme.colors.greyDark};
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
+    font-size: ${theme.fonts.size.P3};
+    color: ${theme.colors.greyDark};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
 `;
