@@ -35,7 +35,8 @@ const BasketCardStyled = styled.div`
     width: 100%;
     box-sizing: border-box;
     height: 86px;
-    margin-top: 8px;
+    margin-bottom: 8px;
+    box-shadow: -4px 4px 15px 0px rgb(0 0 0 / 20%);
 
     div {
         display: flex;
