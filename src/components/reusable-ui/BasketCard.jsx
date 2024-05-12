@@ -4,6 +4,7 @@ import { theme } from '../../theme/index'
 import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
 import { MdDeleteForever } from "react-icons/md";
+import { defaultImage } from '../../enums/product';
 
 
 export default function BasketCard({title, imageSource, price, count, isHoverable, onClick}) {
@@ -11,7 +12,7 @@ export default function BasketCard({title, imageSource, price, count, isHoverabl
     return (
         <BasketCardStyled isHoverable={isHoverable}>
             <div className="cardImage">
-                <img src={imageSource} alt={title} />
+                <img src={imageSource ? imageSource : defaultImage} alt={title} />
             </div>
             <div className="cardInfos">
                 <span className="title">{truncate(title, 12)}</span> 
