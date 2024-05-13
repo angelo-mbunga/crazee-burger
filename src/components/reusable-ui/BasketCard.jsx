@@ -15,8 +15,9 @@ export default function BasketCard({title, imageSource, price, count, isHoverabl
                 <img src={imageSource ? imageSource : defaultImage} alt={title} />
             </div>
             <div className="cardInfos">
-                <span className="title">{truncate(title, 12)}</span> 
-                <span className="price">{formatPrice(ajustPrice(price))}</span> 
+                <span className="title">{truncate(title, 12)}</span>
+                {/* @TODO : Fix ajustPrice bug */}
+                <span className="price">{formatPrice(price)}</span> 
             </div>
             <div className="cardExtras">
                 { isHoverable 

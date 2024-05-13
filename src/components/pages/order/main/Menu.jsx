@@ -71,7 +71,8 @@ export default function Menu() {
                 key={id}
                 title={title}
                 imageSource={imageSource}
-                leftDescription={formatPrice(ajustPrice(price))}
+                /* @TODO : Fix ajustPrice bug */
+                leftDescription={formatPrice(price)}
                 onCloseBtnClick={(event) => handleCardDelete(event, id)}
                 onCardClick={() => handleClick(id)}
                 onAddBtnClick={(event) => handleAddToBasket(event, id)}
