@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { theme } from '../../theme/index'
 import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
@@ -7,10 +7,10 @@ import { MdDeleteForever } from "react-icons/md";
 import { defaultImage } from '../../enums/product';
 
 
-export default function BasketCard({title, imageSource, price, count, isHoverable, onClick}) {
+export default function BasketCard({title, imageSource, price, count, onClick}) {
 
     return (
-        <BasketCardStyled isHoverable={isHoverable}>
+        <BasketCardStyled>
             <div className="cardImage">
                 <img src={imageSource ? imageSource : defaultImage} alt={title} />
             </div>
@@ -20,17 +20,14 @@ export default function BasketCard({title, imageSource, price, count, isHoverabl
                 <span className="price">{formatPrice(price)}</span> 
             </div>
             <div className="cardExtras">
-                { isHoverable 
-                    ? <MdDeleteForever className='deleteCardButton' onClick={onClick}/>
-                    : <span className='quantity'>x{count}</span>  
-                }
+                <span className='quantity'>x{count}</span>
+                <MdDeleteForever className='deleteCardButton' onClick={onClick}/>
             </div>
         </BasketCardStyled>
+        
     )
 }
 const BasketCardStyled = styled.div`
-
-    ${(props) => props.isHoverable && hoverableDeleteButtonStyle};
 
     display: flex;
     flex-direction: row;
@@ -79,9 +76,10 @@ const BasketCardStyled = styled.div`
             font-size: 33px;
             color: orange;
         }
+        .deleteCardButton {
+            display: none;
+        }
     }
-`
-const hoverableDeleteButtonStyle = css `    
     .cardExtras:hover {
         background-color: red;
         cursor: pointer;
@@ -93,5 +91,12 @@ const hoverableDeleteButtonStyle = css `
         .deleteCardButton:active {
             color: white;
         }
+        .quantity {
+            display: none;
+        }
+        .deleteCardButton {
+            display: block;
+        }
+
     }
 `
