@@ -1,35 +1,29 @@
 import { useState } from "react";
-import { fakeBasket } from "../fakeData/fakeBasket";
 import { deepClone } from "../utils/array";
 
 export function useBasket() {
     const [basket, setBasket] = useState([]);
     const [basketTotalAmount, setBasketTotalAmount] = useState(0);
-    const [menu] = useState(fakeBasket.LARGE);
 
-    const addProductToBasket = (ProductToAdd) => {
+    const addProductToBasket = (productToAdd) => {
         const basketCopy = deepClone(basket)
-        const isProductInBasket = basketCopy.find((product) => {
-            if (product.title === ProductToAdd.title) {
+        const isProductAlreadyInBasket = basketCopy.find((product) => {
+            if (product.title === productToAdd.title) {
                 return true 
             }
         })
 
-        if (basketCopy.length === 0) {
-            basketCopy.unshift({id:ProductToAdd.id, imageSource:ProductToAdd.imageSource, title:ProductToAdd.title, price:ProductToAdd.price, count:1})
-            setBasket(basketCopy)
+        if (isProductAlreadyInBasket) {
+            // Increment Product in basket
+            const productAlreadyInBasket = basketCopy.find((product) => product.title === productToAdd.title);
+            productAlreadyInBasket.count++;
+            setBasket(basketCopy);
         } 
         else {
-            if (isProductInBasket) {
-                const productAlreadyInBasket = basketCopy.find((product) => product.title === ProductToAdd.title);
-                productAlreadyInBasket.count++;
-                setBasket(basketCopy);
-            } 
-            else {
-                basketCopy.unshift({id:ProductToAdd.id, imageSource:ProductToAdd.imageSource, title:ProductToAdd.title, price:ProductToAdd.price, count:1})
-                setBasket(basketCopy)
-            }
+            basketCopy.unshift({id:productToAdd.id, imageSource:productToAdd.imageSource, title:productToAdd.title, price:productToAdd.price, count:1})
+            setBasket(basketCopy)
         }
+        
         calculBasketAmount(basketCopy)
     }
     const deleteProductFromBasket = (idProductToDelete) => {
@@ -46,5 +40,5 @@ export function useBasket() {
         setBasketTotalAmount(amount)     
     }
     
-    return({basket, menu, basketTotalAmount, addProductToBasket, deleteProductFromBasket})
+    return({basket, basketTotalAmount, addProductToBasket, deleteProductFromBasket})
 }
