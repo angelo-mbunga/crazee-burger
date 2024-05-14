@@ -20,7 +20,8 @@ export default function Menu() {
     setIsCollasped, 
     setCurrentTabSelected, 
     titleEditRef, 
-    addProductToBasket
+    addProductToBasket,
+    deleteProductFromBasket
   } = useContext(OrderContext);
 
   const checkIfProductSelected = (productFromMenuId,productselectedId) => {
@@ -37,6 +38,7 @@ export default function Menu() {
   const handleCardDelete = (event, IdProductToDelete) => { 
     event.stopPropagation();
     deleteProductFromMenu(IdProductToDelete)
+    deleteProductFromBasket(IdProductToDelete)
     if (IdProductToDelete === currentProductSelected.id) {
       setIsCardClicked(false) 
     }
