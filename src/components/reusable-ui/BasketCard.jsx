@@ -15,12 +15,12 @@ export default function BasketCard({title, imageSource, price, count, onClick}) 
                 <img src={imageSource ? imageSource : defaultImage} alt={title} />
             </div>
             <div className="cardInfos">
-                <span className="title">{truncate(title, 12)}</span>
+                <span className="title">{truncate(title,12)}</span>
                 {/* @TODO : Fix ajustPrice bug */}
-                <span className="price">{formatPrice(price)}</span> 
+                <span className="price">{formatPrice(ajustPrice(price))}</span> 
             </div>
             <div className="cardExtras">
-                <span className='quantity'>x{count}</span>
+                <span className='quantity'>x {count}</span>
                 <MdDeleteForever className='deleteCardButton' onClick={onClick}/>
             </div>
         </BasketCardStyled>
@@ -28,7 +28,7 @@ export default function BasketCard({title, imageSource, price, count, onClick}) 
     )
 }
 const BasketCardStyled = styled.div`
-
+    background: ${theme.colors.background_white};
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -36,6 +36,8 @@ const BasketCardStyled = styled.div`
     height: 86px;
     margin-bottom: 8px;
     box-shadow: -4px 4px 15px 0px rgb(0 0 0 / 20%);
+    cursor: pointer;
+    border-radius: ${theme.borderRadius.round};
 
     div {
         display: flex;
@@ -44,8 +46,7 @@ const BasketCardStyled = styled.div`
     }
     
     .cardImage {
-        background-color: rebeccapurple;
-        padding: 8px;
+        padding: 4px 8px;
         width: 40%;
         
         img {
@@ -55,41 +56,50 @@ const BasketCardStyled = styled.div`
         }
     }
     .cardInfos {
-        background-color: orange;
         width: 40%;
         display: flex;
         flex-direction: column;
         align-items: center;
-
+        user-select: none;
+        
         span {
             margin: 4px 0;
         }
+        .title {
+            font-size: ${theme.fonts.size.P3};
+        }
+        .price {
+            font-family: "Open Sans", sans-serif;
+            font-size: ${theme.fonts.size.P0};
+            color: ${theme.colors.primary};
+        }
     }
     .cardExtras {
-        background-color: green;
         width: 20%;
 
         .quantity {
-            font-size: 33px;
-        }
-        .deleteCardButton{
-            font-size: 33px;
-            color: orange;
+            color: ${theme.colors.primary};
+            font-family: "Open Sans", sans-serif;
+            font-size: ${theme.fonts.size.P1};
         }
         .deleteCardButton {
             display: none;
         }
     }
     .cardExtras:hover {
-        background-color: red;
         cursor: pointer;
-
+        background-color: ${theme.colors.redTertiary};
+        border-radius: 0 ${theme.borderRadius.round} ${theme.borderRadius.round} 0;
+        
         .deleteCardButton {
-            color: white;
+            color: ${theme.colors.white};
+            font-size: ${theme.fonts.size.P3};
+        }
+        .deleteCardButton:hover {
             transform: scale(1.1);
         }
         .deleteCardButton:active {
-            color: white;
+            color: ${theme.colors.dark};
         }
         .quantity {
             display: none;
