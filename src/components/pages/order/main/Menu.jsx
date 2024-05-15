@@ -79,6 +79,7 @@ export default function Menu() {
                 onCardClick={() => handleClick(id)}
                 onAddBtnClick={(event) => handleAddToBasket(event, id)}
                 isSelected={checkIfProductSelected(id,currentProductSelected.id)}
+                isHoverable={!isAdminMode}
               />
             )
           })
