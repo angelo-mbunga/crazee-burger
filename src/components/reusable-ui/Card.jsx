@@ -69,6 +69,7 @@ const CardStyled = styled.div`
         margin-block-start: 0;
         margin-block-end: 0;
         max-height: 46px;
+        min-height: 46px;
         text-overflow: ellipsis;
     }
     .card-extra {

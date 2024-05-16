@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../theme/index'
 import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
@@ -7,10 +7,10 @@ import { MdDeleteForever } from "react-icons/md";
 import { defaultImage } from '../../enums/product';
 
 
-export default function BasketCard({title, imageSource, price, count, onDeleteBtnClick, onCardClick}) {
+export default function BasketCard({title, imageSource, price, count, onDeleteBtnClick, onCardClick, isAdminMode, isSelected}) {
 
     return (
-        <BasketCardStyled onClick={onCardClick}>
+        <BasketCardStyled onClick={onCardClick} isAdminMode={isAdminMode} isSelected={isSelected}>
             <div className="cardImage">
                 <img src={imageSource ? imageSource : defaultImage} alt={title} />
             </div>
@@ -27,6 +27,9 @@ export default function BasketCard({title, imageSource, price, count, onDeleteBt
     )
 }
 const BasketCardStyled = styled.div`
+
+    ${(props) => props.isSelected && clickedStyle};
+
     background: ${theme.colors.background_white};
     display: flex;
     flex-direction: row;
@@ -107,5 +110,22 @@ const BasketCardStyled = styled.div`
             display: block;
         }
 
+    }
+`
+const clickedStyle = css `   
+    .cardExtras {
+        border-radius: 0 ${theme.borderRadius.round} ${theme.borderRadius.round} 0; 
+    }
+    .cardImage {
+        border-radius: ${theme.borderRadius.round} 0 0 ${theme.borderRadius.round} ; 
+    }
+    .cardImage, .cardInfos, .cardExtras {
+        background: ${theme.colors.primary}; 
+    }
+    .price, .quantity {
+        color: ${theme.colors.white}!important;
+    }
+    .title {
+        color: ${theme.colors.dark};
     }
 `

@@ -3,36 +3,61 @@ import styled from 'styled-components';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import BasketCard from '../../../../reusable-ui/BasketCard';
+import { findInArray } from '../../../../../utils/array';
 
 export default function Body({}) {
 
-  const {basket, isAdminMode, deleteProductFromBasket} = useContext(OrderContext);
+  const {
+    basket, 
+    isAdminMode, 
+    deleteProductFromBasket, 
+    setCurrentTabSelected,
+    setIsCollasped, 
+    setCurrentProductSelected, 
+    currentProductSelected, 
+    titleEditRef, 
+    setIsCardClicked
+  } = useContext(OrderContext);
 
+  const handleCardClick = (idProductClicked) => {
+    setIsCollasped(true)
+    setIsCardClicked(true) 
+    setCurrentTabSelected("edit")
+    displayProductInfos(idProductClicked)
+  }
   const handleCardDelete = (idProductToDelete) => { 
     deleteProductFromBasket(idProductToDelete)
+    setIsCardClicked(false)
   }
-  const handleCardClick = (idProductClicked) => { 
-    alert(idProductClicked)
+  const displayProductInfos = async (IdProductToDisplay) => {
+    const produitClicked = findInArray(IdProductToDisplay, basket)
+    if (isAdminMode) return
+      await setCurrentProductSelected(produitClicked)
+      titleEditRef.current.focus()
+  }
+  const checkIfProductSelected = (productFromMenuId,productselectedId) => {
+    return productFromMenuId === productselectedId
   }
 
   return (
     <BodyStyled>
         { basket.length > 0
-             ? basket.map(({title, imageSource, id, price, count}) => {
-                return (
-                  <BasketCard
-                    key={id}
-                    title={title}
-                    imageSource={imageSource}
-                    price={price}
-                    count={count}
-                    isHoverable={!isAdminMode}
-                    onCardClick={() => handleCardClick(id)}
-                    onDeleteBtnClick={() => handleCardDelete(id)}
-                  />
-                )
-              }) 
-            : <span className='emptyMessage'>Votre panier est vide</span>
+          ? basket.map(({title, imageSource, id, price, count}) => {
+            return (
+              <BasketCard
+                key={id}
+                title={title}
+                imageSource={imageSource}
+                price={price}
+                count={count}
+                onCardClick={() => handleCardClick(id)}
+                onDeleteBtnClick={() => handleCardDelete(id)}
+                isAdminMode={!isAdminMode}
+                isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
+              />
+            )
+          }) 
+          : <span className='emptyMessage'>Votre panier est vide</span>
         } 
     </BodyStyled>
   )
