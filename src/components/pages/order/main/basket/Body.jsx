@@ -11,6 +11,9 @@ export default function Body({}) {
   const handleCardDelete = (idProductToDelete) => { 
     deleteProductFromBasket(idProductToDelete)
   }
+  const handleCardClick = (idProductClicked) => { 
+    alert(idProductClicked)
+  }
 
   return (
     <BodyStyled>
@@ -24,7 +27,8 @@ export default function Body({}) {
                     price={price}
                     count={count}
                     isHoverable={!isAdminMode}
-                    onClick={() => handleCardDelete(id)}
+                    onCardClick={() => handleCardClick(id)}
+                    onDeleteBtnClick={() => handleCardDelete(id)}
                   />
                 )
               }) 

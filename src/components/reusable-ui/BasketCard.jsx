@@ -7,10 +7,10 @@ import { MdDeleteForever } from "react-icons/md";
 import { defaultImage } from '../../enums/product';
 
 
-export default function BasketCard({title, imageSource, price, count, onClick}) {
+export default function BasketCard({title, imageSource, price, count, onDeleteBtnClick, onCardClick}) {
 
     return (
-        <BasketCardStyled>
+        <BasketCardStyled onClick={onCardClick}>
             <div className="cardImage">
                 <img src={imageSource ? imageSource : defaultImage} alt={title} />
             </div>
@@ -21,10 +21,9 @@ export default function BasketCard({title, imageSource, price, count, onClick}) 
             </div>
             <div className="cardExtras">
                 <span className='quantity'>x {count}</span>
-                <MdDeleteForever className='deleteCardButton' onClick={onClick}/>
+                <MdDeleteForever className='deleteCardButton' onClick={onDeleteBtnClick}/>
             </div>
-        </BasketCardStyled>
-        
+        </BasketCardStyled>  
     )
 }
 const BasketCardStyled = styled.div`
