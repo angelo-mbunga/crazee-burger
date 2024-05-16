@@ -19,7 +19,7 @@ export default function Card({title, imageSource, leftDescription, onCloseBtnCli
                 }
                 <img src={imageSource} alt={title} className='card-img'/>  
                 <div className='card-details'>
-                    <p className='card-title'>{truncate(title, 18)}</p>
+                    <p className='card-title'>{truncate(title, 13)}</p>
                     <div className='card-extra'>
                         <div className='card-left-extra'>
                             <p className=''>{formatPrice(leftDescription)}</p>
@@ -43,11 +43,13 @@ const CardStyled = styled.div`
         background: ${theme.colors.background_white};
         min-width: auto;
         max-width: 240px;
-        height: max-content;
+        height: min-content;
         box-sizing: border-box;
         padding: 20px;
         box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
         border-radius: ${theme.borderRadius.round};
+        user-select: none;
+       
     }
     .card-img {
         width: auto;
@@ -66,7 +68,8 @@ const CardStyled = styled.div`
         font-weight: ${theme.fonts.weights.bold};
         margin-block-start: 0;
         margin-block-end: 0;
-        min-height: 46px;
+        max-height: 46px;
+        text-overflow: ellipsis;
     }
     .card-extra {
         display: flex;

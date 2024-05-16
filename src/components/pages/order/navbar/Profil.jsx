@@ -10,7 +10,7 @@ export default function Profil() {
         <ProfilStyled>
             <div>
                 <p>Hey, <span>{username}</span></p>
-                <Link to="/"><a>Se déconnecter</a></Link>
+                <Link to="/">Se déconnecter</Link>
             </div>
             <BsPersonCircle className="ProfilIcon"/>    
         </ProfilStyled>

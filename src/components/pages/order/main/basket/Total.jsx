@@ -7,7 +7,7 @@ export default function Total({amoutToPay}) {
     <Header>
       <TotalStyled>
         <span className="title">total</span>
-        <span className="amount">{amoutToPay}€</span>
+        <span className="amount">{amoutToPay}</span>
       </TotalStyled>
     </Header>
   )

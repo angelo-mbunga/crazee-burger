@@ -3,12 +3,26 @@ import styled from 'styled-components';
 import Card from '../../../reusable-ui/Card';
 import { theme } from '../../../../theme';
 import { formatPrice, ajustPrice } from '../../../../utils/maths';
+import { findInArray } from '../../../../utils/array';
 import MenuEmpty from './MenuEmpty';
 import OrderContext from '../../../../context/OrderContext';
 
 export default function Menu() {
 
-  const {isAdminMode, menu, currentProductSelected, deleteProductFromMenu, resetMenuData, displayProductInfos, setIsCardClicked, setIsCollasped, setCurrentTabSelected, titleEditRef} = useContext(OrderContext);
+  const {
+    isAdminMode, 
+    menu, 
+    currentProductSelected, 
+    deleteProductFromMenu, 
+    resetMenuData, 
+    displayProductInfos, 
+    setIsCardClicked, 
+    setIsCollasped, 
+    setCurrentTabSelected, 
+    titleEditRef, 
+    addProductToBasket,
+    deleteProductFromBasket
+  } = useContext(OrderContext);
 
   const checkIfProductSelected = (productFromMenuId,productselectedId) => {
     return productFromMenuId === productselectedId
@@ -20,18 +34,22 @@ export default function Menu() {
     await setCurrentTabSelected('edit')
     displayProductInfos(idProductToDisplay)
   }
+
   const handleCardDelete = (event, IdProductToDelete) => { 
     event.stopPropagation();
     deleteProductFromMenu(IdProductToDelete)
+    deleteProductFromBasket(IdProductToDelete)
     if (IdProductToDelete === currentProductSelected.id) {
       setIsCardClicked(false) 
     }
     titleEditRef.current.focus();
 
   }
+  
   const handleAddToBasket = (event, IdProductToAdd) => { 
     event.stopPropagation();
-    //IdProductToAdd(IdProductToDelete)
+    const productToAdd = findInArray(IdProductToAdd, menu)
+    addProductToBasket(productToAdd);
   }
 
   return (
@@ -55,12 +73,13 @@ export default function Menu() {
                 key={id}
                 title={title}
                 imageSource={imageSource}
+                /* @TODO : Fix ajustPrice bug */
                 leftDescription={formatPrice(price)}
                 onCloseBtnClick={(event) => handleCardDelete(event, id)}
                 onCardClick={() => handleClick(id)}
-                onAddBtnClick={(event) => handleAddToBasket(event)}
-                isHoverable={!isAdminMode}
+                onAddBtnClick={(event) => handleAddToBasket(event, id)}
                 isSelected={checkIfProductSelected(id,currentProductSelected.id)}
+                isHoverable={!isAdminMode}
               />
             )
           })

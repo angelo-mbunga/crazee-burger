@@ -5,12 +5,12 @@ import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import styled from 'styled-components';
 import { theme } from '../../../../../../theme';
 import ProductPreview from './ProductPreview';
+import { defaultImage } from '../../../../../../enums/product';
 
 const ProductForm = React.forwardRef(({onSubmit, onChange, product, formFooterContent, formFooterClass}, ref) => {
 
     const textInputs = getTextInputs(product)
-    const defaultImage = "/src/assets/img/coming-soon.png";
-
+    
     return (
         <ProductFormStyled>
             <ProductPreview product={product} />

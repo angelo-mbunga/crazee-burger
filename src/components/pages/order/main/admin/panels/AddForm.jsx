@@ -15,7 +15,7 @@ export default function AddForm() {
       id : crypto.randomUUID(),
       imageSource : newProduct.imageSource ? newProduct.imageSource : imageByDefault,
       title : newProduct.title,
-      price : newProduct.price ? newProduct.price : "",
+      price : newProduct.price ? newProduct.price : 0.00,
       quantity: 0,
       isAvailable: true,
       isAdvertised: false

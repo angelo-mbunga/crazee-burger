@@ -26,4 +26,8 @@ export default createContext({
 
   IsCardClicked : false,
   setIsCardClicked : () => {},
+
+  basket : [],
+  addProductToBasket : () => {},
+  deleteProductFromBasket : () => {},
 });

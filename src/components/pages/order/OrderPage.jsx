@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Navbar from '../order/navbar/Navbar';
 import Main from './main/Main';
 import {theme} from '../../../theme/index';
 import OrderContext from '../../../context/OrderContext';
-import { fakeMenu } from '../../../fakeData/fakeMenu';
 import { EMPTY_PRODUCT } from '../../../enums/product';
-import { deepClone } from '../../../utils/array';
+import { useMenu } from '../../../hooks/useMenu';
+import { useBasket } from '../../../hooks/useBasket';
 
 export default function OrderPage() {
 
@@ -17,34 +17,17 @@ export default function OrderPage() {
   const [IsCardClicked, setIsCardClicked] = useState(false);
   const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
+  const {menu, addProductToMenu, deleteProductFromMenu, editProductFromMenu, resetMenuData} = useMenu();
+  const {basket, addProductToBasket, deleteProductFromBasket, productToAddToBasket, basketTotalAmount} = useBasket();
 
-  const [menu, setMenu] = useState(fakeMenu.MEDIUM);
-
-  const addProductToMenu = (newProduct) => {
-    const menuCopy = deepClone(menu)
-    menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
-    setMenu(menuCopy)
-  }
-  const deleteProductFromMenu = (idOfProductToDelete) => {
-    const menuCopy = deepClone(menu)
-    const menuUpdated = menuCopy.filter(product => product.id !== idOfProductToDelete)
-    setMenu(menuUpdated)
-  }
-  const editProductFromMenu = (EditedProduct) => {
-    const menuCopy = deepClone(menu)
-    const indexOfProductToEdit = menuCopy.findIndex((menuProduct) => menuProduct.id === EditedProduct.id)
-    menuCopy[indexOfProductToEdit] = EditedProduct;
-    setMenu(menuCopy)
-  }
+  // TODO : find proper file to put this in
   const displayProductInfos = (idOfProductToDisplay) => {
     if (isAdminMode) return
     const productClicked = menu.find((product) => product.id === idOfProductToDisplay)
     setCurrentProductSelected(productClicked)
     titleEditRef.current.focus();
   }
-  const resetMenuData = () => {
-    setMenu(fakeMenu.SMALL)
-  }
+
   const orderContextValue = {
     //@TODO : check why isModeAdmin is reverse
     isAdminMode ,
@@ -64,9 +47,16 @@ export default function OrderPage() {
     setCurrentProductSelected,
     displayProductInfos,
     IsCardClicked,
-    setIsCardClicked,
+    setIsCardClicked, 
     titleEditRef,
+    basket,
+    addProductToBasket,
+    deleteProductFromBasket,
+    productToAddToBasket,
+    basketTotalAmount
   };
+
+
 
   return (
     <OrderContext.Provider value={orderContextValue}>
