@@ -38,6 +38,13 @@ export function useBasket() {
         setBasket(basketUpdated)
         calculBasketAmount(basketUpdated)
     }
+    const editProductFromBasket = (EditedProduct) => {
+        const basketCopy = deepClone(basket)
+        const indexOfProductToEdit = basketCopy.findIndex((menuProduct) => menuProduct.id === EditedProduct.id)
+        basketCopy[indexOfProductToEdit] = EditedProduct;
+        calculBasketAmount(basketCopy)
+        setBasket(basketCopy)
+      }
     const calculBasketAmount = (basket) => {
         const basketCopy = deepClone(basket)
         let amount = basketCopy.reduce((previousValue, currentValue) => {
@@ -50,5 +57,5 @@ export function useBasket() {
         setBasketTotalAmount(amount)     
     }
     
-    return({basket, basketTotalAmount, addProductToBasket, deleteProductFromBasket})
+    return({basket, basketTotalAmount, addProductToBasket, deleteProductFromBasket, editProductFromBasket})
 }

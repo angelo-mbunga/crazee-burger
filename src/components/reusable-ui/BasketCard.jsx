@@ -17,7 +17,7 @@ export default function BasketCard({title, imageSource, price, count, onDeleteBt
             <div className="cardInfos">
                 <span className="title">{truncate(title,12)}</span>
                 {/* @TODO : Fix ajustPrice bug */}
-                <span className="price">{formatPrice(ajustPrice(price))}</span> 
+                <span className="price">{formatPrice(price)}</span> 
             </div>
             <div className="cardExtras">
                 <span className='quantity'>x {count}</span>
