@@ -28,7 +28,7 @@ export default function BasketCard({title, imageSource, price, count, onDeleteBt
 }
 const BasketCardStyled = styled.div`
 
-    ${(props) => props.isSelected && clickedStyle};
+    ${(props) => props.isSelected && props.isAdminMode && clickedStyle};
 
     background: ${theme.colors.background_white};
     display: flex;
