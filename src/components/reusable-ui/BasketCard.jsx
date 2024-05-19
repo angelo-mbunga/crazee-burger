@@ -38,7 +38,7 @@ const BasketCardStyled = styled.div`
     height: 86px;
     margin-bottom: 8px;
     box-shadow: -4px 4px 15px 0px rgb(0 0 0 / 20%);
-    cursor: pointer;
+    cursor: ${(props) => props.isAdminMode ? "pointer" : "auto"};
     border-radius: ${theme.borderRadius.round};
 
     div {
