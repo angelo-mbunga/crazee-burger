@@ -22,12 +22,6 @@ export function useBasket() {
         const basketUpdated = basketCopy.filter(product => product.id !== idProductToDelete)
         setBasket(basketUpdated)
     }
-    const editProductFromBasket = (EditedProduct) => {
-        const basketCopy = deepClone(basket)
-        const indexOfProductToEdit = basketCopy.findIndex((menuProduct) => menuProduct.id === EditedProduct.id)
-        basketCopy[indexOfProductToEdit] = EditedProduct;
-        setBasket(basketCopy)
-    }
     const createNewBasketProduct = (idProductToAdd, basketCopy, setBasket) => {
         // only adding extra infos of the new product instead of creating a whole new product frop scratch
         const newBasketProduct = { id: idProductToAdd, quantity: 1 };
@@ -40,5 +34,5 @@ export function useBasket() {
         setBasket(basketCopy);
     }
     
-    return({basket, addProductToBasket, deleteProductFromBasket, editProductFromBasket})
+    return({basket, addProductToBasket, deleteProductFromBasket})
 }

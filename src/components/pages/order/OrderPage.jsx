@@ -52,7 +52,6 @@ export default function OrderPage() {
     basket,
     addProductToBasket,
     deleteProductFromBasket,
-    editProductFromBasket,
     productToAddToBasket
   };
 

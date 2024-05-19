@@ -26,12 +26,13 @@ export default function Body() {
     setCurrentTabSelected("edit")
     displayProductInfos(idProductClicked)
   }
-  const handleCardDelete = (idProductToDelete) => { 
+  const handleCardDelete = (event, idProductToDelete) => { 
+    event.stopPropagation()
     deleteProductFromBasket(idProductToDelete)
     setIsCardClicked(false)
   }
   const displayProductInfos = async (IdProductToDisplay) => {
-    const produitClicked = findInArray(IdProductToDisplay, basket)
+    const produitClicked = findInArray(IdProductToDisplay, menu)
     if (isAdminMode) return
       await setCurrentProductSelected(produitClicked)
       titleEditRef.current.focus()
@@ -53,7 +54,7 @@ export default function Body() {
                     price={menuProduct.price}
                     quantity={quantity}
                     onCardClick={() => handleCardClick(id)}
-                    onDeleteBtnClick={() => handleCardDelete(id)}
+                    onDeleteBtnClick={(event) => handleCardDelete(event, id)}
                     isAdminMode={!isAdminMode}
                     isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
                   />
