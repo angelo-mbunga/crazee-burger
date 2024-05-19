@@ -7,29 +7,17 @@ export function useBasket() {
 
     const addProductToBasket = (productToAdd) => {
         const basketCopy = deepClone(basket)
+
         const isProductAlreadyInBasket = basketCopy.find((product) => {
-            if (product.id === productToAdd.id) {
-                return true 
-            }
+            if (product.id === productToAdd.id) { return true }
         })
 
         if (isProductAlreadyInBasket) {
-            // Increment Product in basket
-            const productAlreadyInBasket = basketCopy.find((product) => product.id === productToAdd.id);
-            productAlreadyInBasket.quantity++;
-            setBasket(basketCopy);
-        } 
-        else {
-            basketCopy.unshift({
-                id: productToAdd.id,
-                imageSource: productToAdd.imageSource, 
-                title: productToAdd.title, 
-                price: isNaN(productToAdd.price) ? productToAdd.price = "0.00 €" : productToAdd.price,
-                quantity: productToAdd.quantity
-            })
-            setBasket(basketCopy)
+            incrementProductAlreadyInBasketQuantity(productToAdd.id, basketCopy, setBasket);
+            return
         }
-        
+
+        createNewBasketProduct(productToAdd.id, basketCopy, setBasket);
         calculBasketAmount(basketCopy)
     }
     const deleteProductFromBasket = (idProductToDelete) => {
@@ -44,7 +32,8 @@ export function useBasket() {
         basketCopy[indexOfProductToEdit] = EditedProduct;
         calculBasketAmount(basketCopy)
         setBasket(basketCopy)
-      }
+    }
+    
     const calculBasketAmount = (basket) => {
         const basketCopy = deepClone(basket)
         let amount = basketCopy.reduce((previousValue, currentValue) => {
@@ -55,6 +44,16 @@ export function useBasket() {
             return previousValue + currentValue.count * currentValue.price;
         }, 0);
         setBasketTotalAmount(amount)     
+    }
+    const createNewBasketProduct = (idProductToAdd, basketCopy, setBasket) => {
+        const newBasketProduct = { id: idProductToAdd, quantity: 1 };
+        const newBasket = [newBasketProduct, ...basketCopy];
+        setBasket(newBasket);
+    }
+    const incrementProductAlreadyInBasketQuantity = (idProductToAdd, basketCopy, setBasket) => {
+        const productAlreadyInBasket = basketCopy.find((product) => product.id === idProductToAdd);
+        productAlreadyInBasket.quantity++;
+        setBasket(basketCopy);
     }
     
     return({basket, basketTotalAmount, addProductToBasket, deleteProductFromBasket, editProductFromBasket})
