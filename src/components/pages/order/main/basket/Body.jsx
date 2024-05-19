@@ -42,14 +42,14 @@ export default function Body({}) {
   return (
     <BodyStyled>
         { basket.length > 0
-          ? basket.map(({title, imageSource, id, price, count}) => {
+          ? basket.map(({title, imageSource, id, price, quantity}) => {
             return (
               <BasketCard
                 key={id}
                 title={title}
                 imageSource={imageSource}
                 price={price}
-                count={count}
+                quantity={quantity}
                 onCardClick={() => handleCardClick(id)}
                 onDeleteBtnClick={() => handleCardDelete(id)}
                 isAdminMode={!isAdminMode}

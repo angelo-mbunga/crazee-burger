@@ -16,7 +16,7 @@ export function useBasket() {
         if (isProductAlreadyInBasket) {
             // Increment Product in basket
             const productAlreadyInBasket = basketCopy.find((product) => product.id === productToAdd.id);
-            productAlreadyInBasket.count++;
+            productAlreadyInBasket.quantity++;
             setBasket(basketCopy);
         } 
         else {
@@ -25,7 +25,7 @@ export function useBasket() {
                 imageSource: productToAdd.imageSource, 
                 title: productToAdd.title, 
                 price: isNaN(productToAdd.price) ? productToAdd.price = "0.00 €" : productToAdd.price,
-                count:1
+                quantity: productToAdd.quantity
             })
             setBasket(basketCopy)
         }
