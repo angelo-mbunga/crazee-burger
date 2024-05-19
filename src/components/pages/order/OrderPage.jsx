@@ -18,7 +18,7 @@ export default function OrderPage() {
   const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
   const {menu, addProductToMenu, deleteProductFromMenu, editProductFromMenu, resetMenuData} = useMenu();
-  const {basket, addProductToBasket, deleteProductFromBasket, productToAddToBasket, basketTotalAmount, editProductFromBasket} = useBasket();
+  const {basket, addProductToBasket, deleteProductFromBasket, productToAddToBasket, editProductFromBasket} = useBasket();
 
   // TODO : find proper file to put this in
   const displayProductInfos = (idOfProductToDisplay) => {
@@ -53,8 +53,7 @@ export default function OrderPage() {
     addProductToBasket,
     deleteProductFromBasket,
     editProductFromBasket,
-    productToAddToBasket,
-    basketTotalAmount
+    productToAddToBasket
   };
 
 

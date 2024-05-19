@@ -25,4 +25,18 @@ export function truncate(string, length){
   else
       return string;
 };
+export const calculateAmoutToPay = (basket, menu) => {
+  return basket.reduce((total, basketProduct) => {
+
+    const menuProduct = menu.find((product) => product.id === basketProduct.id);
+
+    // Dont add products when price is not a number
+    if (isNaN(menuProduct.price)) { return total; }
+
+    total += menuProduct.price * basketProduct.quantity;
+    return total;
+
+  }, 0);
+}
+
 

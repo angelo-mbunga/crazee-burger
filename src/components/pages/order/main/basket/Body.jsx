@@ -5,10 +5,11 @@ import OrderContext from '../../../../../context/OrderContext';
 import BasketCard from '../../../../reusable-ui/BasketCard';
 import { findInArray } from '../../../../../utils/array';
 
-export default function Body({}) {
+export default function Body() {
 
   const {
     basket, 
+    menu, 
     isAdminMode, 
     deleteProductFromBasket, 
     setCurrentTabSelected,
@@ -42,19 +43,20 @@ export default function Body({}) {
   return (
     <BodyStyled>
         { basket.length > 0
-          ? basket.map(({title, imageSource, id, price, quantity}) => {
-            return (
-              <BasketCard
-                key={id}
-                title={title}
-                imageSource={imageSource}
-                price={price}
-                quantity={quantity}
-                onCardClick={() => handleCardClick(id)}
-                onDeleteBtnClick={() => handleCardDelete(id)}
-                isAdminMode={!isAdminMode}
-                isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
-              />
+          ? basket.map(({id, quantity}) => {
+              const menuProduct = menu.find((product) => product.id === id);
+                return (
+                  <BasketCard
+                    key={id}
+                    title={menuProduct.title}
+                    imageSource={menuProduct.imageSource}
+                    price={menuProduct.price}
+                    quantity={quantity}
+                    onCardClick={() => handleCardClick(id)}
+                    onDeleteBtnClick={() => handleCardDelete(id)}
+                    isAdminMode={!isAdminMode}
+                    isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
+                  />
             )
           }) 
           : <span className='emptyMessage'>Votre panier est vide</span>
