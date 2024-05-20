@@ -5,6 +5,7 @@ import { theme } from '../../../theme';
 import { TextInput } from '../../reusable-ui/TextInput';
 import { BsPersonCircle } from "react-icons/bs";
 import PrimaryButton from '../../reusable-ui/PrimaryButton';
+import { createUser } from '../../../api/user';
 
 export default function  () {
 
@@ -16,8 +17,9 @@ export default function  () {
   }
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    navigate(`order/${inputValue}`);
+    createUser(inputValue);
     setInputValue('');
+    navigate(`order/${inputValue}`);
   }
 
   return (

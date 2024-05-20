@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import 'react-tabs/style/react-tabs.css';
 import {theme} from '../../theme/index'
 
 export default function Tab({icon, value, onClick, className}) {

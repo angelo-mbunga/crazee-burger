@@ -7,6 +7,7 @@ import OrderContext from '../../../context/OrderContext';
 import { EMPTY_PRODUCT } from '../../../enums/product';
 import { useMenu } from '../../../hooks/useMenu';
 import { useBasket } from '../../../hooks/useBasket';
+import { getUser } from '../../../api/user';
 
 export default function OrderPage() {
 
@@ -54,8 +55,6 @@ export default function OrderPage() {
     deleteProductFromBasket,
     productToAddToBasket
   };
-
-
 
   return (
     <OrderContext.Provider value={orderContextValue}>
