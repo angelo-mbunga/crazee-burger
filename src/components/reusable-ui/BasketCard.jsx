@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../theme/index'
 import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
@@ -7,27 +7,28 @@ import { MdDeleteForever } from "react-icons/md";
 import { defaultImage } from '../../enums/product';
 
 
-export default function BasketCard({title, imageSource, price, count, onClick}) {
-
+export default function BasketCard({title, imageSource, price, quantity, onDeleteBtnClick, onCardClick, isAdminMode, isSelected}) {
     return (
-        <BasketCardStyled>
+        <BasketCardStyled onClick={onCardClick} isAdminMode={isAdminMode} isSelected={isSelected}>
             <div className="cardImage">
                 <img src={imageSource ? imageSource : defaultImage} alt={title} />
             </div>
             <div className="cardInfos">
                 <span className="title">{truncate(title,12)}</span>
                 {/* @TODO : Fix ajustPrice bug */}
-                <span className="price">{formatPrice(ajustPrice(price))}</span> 
+                <span className="price">{formatPrice(price)}</span> 
             </div>
             <div className="cardExtras">
-                <span className='quantity'>x {count}</span>
-                <MdDeleteForever className='deleteCardButton' onClick={onClick}/>
+                <span className='quantity'>x {quantity}</span>
+                <MdDeleteForever className='deleteCardButton' onClick={onDeleteBtnClick}/>
             </div>
-        </BasketCardStyled>
-        
+        </BasketCardStyled>  
     )
 }
 const BasketCardStyled = styled.div`
+
+    ${(props) => props.isSelected && props.isAdminMode && clickedStyle};
+
     background: ${theme.colors.background_white};
     display: flex;
     flex-direction: row;
@@ -36,7 +37,7 @@ const BasketCardStyled = styled.div`
     height: 86px;
     margin-bottom: 8px;
     box-shadow: -4px 4px 15px 0px rgb(0 0 0 / 20%);
-    cursor: pointer;
+    cursor: ${(props) => props.isAdminMode ? "pointer" : "auto"};
     border-radius: ${theme.borderRadius.round};
 
     div {
@@ -108,5 +109,22 @@ const BasketCardStyled = styled.div`
             display: block;
         }
 
+    }
+`
+const clickedStyle = css `   
+    .cardExtras {
+        border-radius: 0 ${theme.borderRadius.round} ${theme.borderRadius.round} 0; 
+    }
+    .cardImage {
+        border-radius: ${theme.borderRadius.round} 0 0 ${theme.borderRadius.round} ; 
+    }
+    .cardImage, .cardInfos, .cardExtras {
+        background: ${theme.colors.primary}; 
+    }
+    .price, .quantity {
+        color: ${theme.colors.white}!important;
+    }
+    .title {
+        color: ${theme.colors.dark};
     }
 `

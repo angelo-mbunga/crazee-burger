@@ -3,32 +3,64 @@ import styled from 'styled-components';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import BasketCard from '../../../../reusable-ui/BasketCard';
+import { findInArray } from '../../../../../utils/array';
 
-export default function Body({}) {
+export default function Body() {
 
-  const {basket, isAdminMode, deleteProductFromBasket} = useContext(OrderContext);
+  const {
+    basket, 
+    menu, 
+    isAdminMode, 
+    deleteProductFromBasket, 
+    setCurrentTabSelected,
+    setIsCollasped, 
+    setCurrentProductSelected, 
+    currentProductSelected, 
+    titleEditRef, 
+    setIsCardClicked
+  } = useContext(OrderContext);
 
-  const handleCardDelete = (idProductToDelete) => { 
+  const handleCardClick = (idProductClicked) => {
+    setIsCollasped(true)
+    setIsCardClicked(true) 
+    setCurrentTabSelected("edit")
+    displayProductInfos(idProductClicked)
+  }
+  const handleCardDelete = (event, idProductToDelete) => { 
+    event.stopPropagation()
     deleteProductFromBasket(idProductToDelete)
+    setIsCardClicked(false)
+  }
+  const displayProductInfos = async (IdProductToDisplay) => {
+    const produitClicked = findInArray(IdProductToDisplay, menu)
+    if (isAdminMode) return
+      await setCurrentProductSelected(produitClicked)
+      titleEditRef.current.focus()
+  }
+  const checkIfProductSelected = (productFromMenuId,productselectedId) => {
+    return productFromMenuId === productselectedId
   }
 
   return (
     <BodyStyled>
         { basket.length > 0
-             ? basket.map(({title, imageSource, id, price, count}) => {
+          ? basket.map(({id, quantity}) => {
+              const menuProduct = menu.find((product) => product.id === id);
                 return (
                   <BasketCard
                     key={id}
-                    title={title}
-                    imageSource={imageSource}
-                    price={price}
-                    count={count}
-                    isHoverable={!isAdminMode}
-                    onClick={() => handleCardDelete(id)}
+                    title={menuProduct.title}
+                    imageSource={menuProduct.imageSource}
+                    price={menuProduct.price}
+                    quantity={quantity}
+                    onCardClick={() => handleCardClick(id)}
+                    onDeleteBtnClick={(event) => handleCardDelete(event, id)}
+                    isAdminMode={!isAdminMode}
+                    isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
                   />
-                )
-              }) 
-            : <span className='emptyMessage'>Votre panier est vide</span>
+            )
+          }) 
+          : <span className='emptyMessage'>Votre panier est vide</span>
         } 
     </BodyStyled>
   )

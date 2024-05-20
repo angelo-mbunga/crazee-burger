@@ -6,6 +6,7 @@ import { Zoom, toast } from 'react-toastify';
 import { EMPTY_PRODUCT } from '../../../../../../enums/product';
 import ProductForm from './ProductForm';
 import styled from 'styled-components';
+import { replaceFrenchCommaWithDot } from '../../../../../../utils/maths';
 
 export default function AddForm() {
 
@@ -15,7 +16,7 @@ export default function AddForm() {
       id : crypto.randomUUID(),
       imageSource : newProduct.imageSource ? newProduct.imageSource : imageByDefault,
       title : newProduct.title,
-      price : newProduct.price ? newProduct.price : 0.00,
+      price : newProduct.price ? replaceFrenchCommaWithDot(newProduct.price) : 0.00,
       quantity: 0,
       isAvailable: true,
       isAdvertised: false
