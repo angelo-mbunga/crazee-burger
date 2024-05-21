@@ -2,6 +2,14 @@ import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "./firebase-config"
 import { fakeMenu } from "../fakeData/fakeMenu"
 
+
+export const login = async (idUser) => {
+    const user = await getUser(idUser)
+    if (user === undefined) {
+        createUser(idUser)
+    }
+}
+
 export const getUser = async (idUser) => {
     // Connect to a specific field in the database
     const docRef = doc(db, "users", idUser)

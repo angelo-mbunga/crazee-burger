@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

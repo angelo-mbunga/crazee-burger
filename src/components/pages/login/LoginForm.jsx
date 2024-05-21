@@ -5,21 +5,21 @@ import { theme } from '../../../theme';
 import { TextInput } from '../../reusable-ui/TextInput';
 import { BsPersonCircle } from "react-icons/bs";
 import PrimaryButton from '../../reusable-ui/PrimaryButton';
-import { createUser } from '../../../api/user';
+import { login } from '../../../api/user';
 
 export default function  () {
 
-  const [ inputValue, setInputValue] = useState("");
+  const [ username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (evt) => {
-    setInputValue(evt.target.value);
+    setUsername(evt.target.value);
   }
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    createUser(inputValue);
-    setInputValue('');
-    navigate(`order/${inputValue}`);
+    login(username);
+    setUsername('');
+    navigate(`order/${username}`);
   }
 
   return (
@@ -29,7 +29,7 @@ export default function  () {
           <h2>Bienvenue chez vous !</h2>
           <hr />
           <h2>Connectez-vous</h2>
-          <TextInput value={inputValue} onChange={handleChange} placeholder={"Entrez votre prénom"} Icon={<BsPersonCircle className="inputIcon"/>} required/>
+          <TextInput value={username} onChange={handleChange} placeholder={"Entrez votre prénom"} Icon={<BsPersonCircle className="inputIcon"/>} required/>
           <PrimaryButton label={"Acceder à mon espace"} className={"login-page-cta"}/>
         </div>
       </LoginFormStyled>
