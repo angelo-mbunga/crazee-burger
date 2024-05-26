@@ -19,11 +19,12 @@ export function useMenu() {
     setMenu(menuUpdated)
     syncBothMenus(username, menuUpdated)
   }
-  const editProductFromMenu = (EditedProduct) => {
+  const editProductFromMenu = (EditedProduct, username) => {
     const menuCopy = deepClone(menu)
     const indexOfProductToEdit = menuCopy.findIndex((menuProduct) => menuProduct.id === EditedProduct.id)
     menuCopy[indexOfProductToEdit] = EditedProduct;
     setMenu(menuCopy)
+    syncBothMenus(username, menuCopy)
   }
   const resetMenuData = () => {
     setMenu(fakeMenu.SMALL)
