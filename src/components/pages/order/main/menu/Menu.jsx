@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Card from '../../../reusable-ui/Card';
-import { theme } from '../../../../theme';
-import { formatPrice, ajustPrice } from '../../../../utils/maths';
-import { findInArray } from '../../../../utils/array';
+import Card from '../../../../reusable-ui/Card';
+import { theme } from '../../../../../theme';
+import { formatPrice, ajustPrice } from '../../../../../utils/maths';
+import { findInArray } from '../../../../../utils/array';
 import MenuEmpty from './MenuEmpty';
-import OrderContext from '../../../../context/OrderContext';
-import Loader from '../../../reusable-ui/Loader';
+import OrderContext from '../../../../../context/OrderContext';
+import Loader from './Loader';
 
 export default function Menu() {
 

@@ -1,20 +1,23 @@
 import React from 'react'
-import { theme } from '../../theme'
+import { theme } from '../../../../../theme'
 import styled from 'styled-components';
 
 
 export default function Loader() {
   return (
     <LoaderStyled>
-        Chargement...
+        <span className='loaderMessage'>chargement en cours...</span>
     </LoaderStyled>
   )
 }
-const LoaderStyled = styled.span`
+const LoaderStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .loaderMessage {
     font-family: "Amatic SC", cursive;
     font-size: ${theme.fonts.size.P3};
     color: ${theme.colors.greyDark};  
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
 `;
