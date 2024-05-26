@@ -26,8 +26,9 @@ export function useMenu() {
     setMenu(menuCopy)
     syncBothMenus(username, menuCopy)
   }
-  const resetMenuData = () => {
+  const resetMenuData = (username) => {
     setMenu(fakeMenu.SMALL)
+    syncBothMenus(username, fakeMenu.SMALL)
   }
   const getUserMenu = async (username) => {
     const user = await getUser(username)

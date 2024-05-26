@@ -64,7 +64,7 @@ export default function Menu() {
                 text2="cliquez ci-dessous pour le réinitialiser" 
                 btnLabel='Générer nouveaux produits' 
                 btnClassName='generate-prodcuts-btn'
-                onClick={resetMenuData}
+                onClick={()=> resetMenuData(username)}
               /> 
             : <MenuEmpty 
                 text1="Victime de notre success !" 
