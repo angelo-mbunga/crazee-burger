@@ -6,6 +6,7 @@ import { formatPrice, ajustPrice } from '../../../../utils/maths';
 import { findInArray } from '../../../../utils/array';
 import MenuEmpty from './MenuEmpty';
 import OrderContext from '../../../../context/OrderContext';
+import Loader from '../../../reusable-ui/Loader';
 
 export default function Menu() {
 
@@ -52,6 +53,8 @@ export default function Menu() {
     addProductToBasket(productToAdd);
   }
 
+  if (menu === undefined) return <Loader/>
+
   return (
     <MenuStyled>
       {menu.length === 0
@@ -85,6 +88,7 @@ export default function Menu() {
           })
       } 
     </MenuStyled>
+
   )
 }
 
