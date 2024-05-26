@@ -31,4 +31,6 @@ export default createContext({
   basket : [],
   addProductToBasket : () => {},
   deleteProductFromBasket : () => {},
+
+  username : ""
 });

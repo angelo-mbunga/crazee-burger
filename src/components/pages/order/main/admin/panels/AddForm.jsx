@@ -10,7 +10,7 @@ import { replaceFrenchCommaWithDot } from '../../../../../../utils/maths';
 
 export default function AddForm() {
 
-    const {addProductToMenu, newProduct, setNewProduct} = useContext(OrderContext)
+    const {addProductToMenu, newProduct, setNewProduct, username} = useContext(OrderContext)
 
     let newProductToAdd = {
       id : crypto.randomUUID(),
@@ -28,7 +28,7 @@ export default function AddForm() {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        addProductToMenu(newProductToAdd)
+        addProductToMenu(newProductToAdd, username)
         toast.info("Ajouté avec succes !", {
             icon: <FiCheck size={30} />,
             theme: 'dark',

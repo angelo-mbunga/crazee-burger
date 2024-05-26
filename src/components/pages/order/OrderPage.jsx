@@ -63,7 +63,8 @@ export default function OrderPage() {
     basket,
     addProductToBasket,
     deleteProductFromBasket,
-    productToAddToBasket
+    productToAddToBasket,
+    username
   };
 
   return (
