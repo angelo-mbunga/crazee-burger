@@ -7,13 +7,13 @@ import { theme } from '../../../../../../theme';
 
 export default function EditForm() {
 
-  const {currentProductSelected, setCurrentProductSelected, IsCardClicked, editProductFromMenu, titleEditRef} = useContext(OrderContext);
+  const {currentProductSelected, setCurrentProductSelected, IsCardClicked, editProductFromMenu, titleEditRef, username} = useContext(OrderContext);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
     const editedProduct = {...currentProductSelected, [name] : value}
     setCurrentProductSelected(editedProduct)
-    editProductFromMenu(editedProduct)
+    editProductFromMenu(editedProduct, username)
   }
   const handleSubmit = (e) => {
     e.preventDefault()

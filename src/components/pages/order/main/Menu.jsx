@@ -21,7 +21,8 @@ export default function Menu() {
     setCurrentTabSelected, 
     titleEditRef, 
     addProductToBasket,
-    deleteProductFromBasket
+    deleteProductFromBasket,
+    username
   } = useContext(OrderContext);
 
   const checkIfProductSelected = (productFromMenuId,productselectedId) => {
@@ -37,13 +38,12 @@ export default function Menu() {
 
   const handleCardDelete = (event, IdProductToDelete) => { 
     event.stopPropagation();
-    deleteProductFromMenu(IdProductToDelete)
+    deleteProductFromMenu(IdProductToDelete, username)
     deleteProductFromBasket(IdProductToDelete)
     if (IdProductToDelete === currentProductSelected.id) {
       setIsCardClicked(false) 
     }
     titleEditRef.current.focus();
-
   }
   
   const handleAddToBasket = (event, IdProductToAdd) => { 
