@@ -1,13 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import {HiCursorClick} from 'react-icons/hi';
 import OrderContext from '../../../../../../context/OrderContext';
 import ProductForm from './ProductForm';
 import { theme } from '../../../../../../theme';
+import { toast, Zoom } from "react-toastify";
+import { BsCloudCheck } from "react-icons/bs";
 
 export default function EditForm() {
 
   const {currentProductSelected, setCurrentProductSelected, IsCardClicked, editProductFromMenu, titleEditRef, username} = useContext(OrderContext);
+  const [valueOnFocus, setValueOnFocus] = useState();
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -18,6 +21,27 @@ export default function EditForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
+  const handleOnFocus = (e) => {
+    const inputValueOnfocus = e.target.value;
+    setValueOnFocus(inputValueOnfocus)
+  }
+  const handleOnBlur = (e) => {
+    const valueOnBlur = e.target.value;
+    if (valueOnBlur !== valueOnFocus) {
+      toast.info("Modification enregistrée !", {
+        icon: <BsCloudCheck size={30} />,
+        theme: 'dark',
+        transition: Zoom,
+        position: "bottom-right",
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      })  
+    }
+  }
 
   return (
     <EditFormStyled>
@@ -26,9 +50,11 @@ export default function EditForm() {
           <ProductForm 
             onSubmit={handleSubmit} 
             onChange={handleChange} 
+            onFocus={handleOnFocus} 
+            onBlur={handleOnBlur} 
             product={currentProductSelected}
-            formFooterContent="Modifier le produit en temps réel" 
-            formFooterClass="formFooterCommentary"
+            formFooterContent={"Modifier le produit en temps réel"}
+            formFooterClass={"formFooterCommentary"}
             ref={titleEditRef}
           />
         : 
