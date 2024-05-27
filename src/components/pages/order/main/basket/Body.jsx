@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import BasketCard from '../../../../reusable-ui/BasketCard';
 import { findInArray } from '../../../../../utils/array';
+import Loader from '../menu/Loader';
 
 export default function Body() {
 
@@ -41,27 +42,29 @@ export default function Body() {
     return productFromMenuId === productselectedId
   }
 
+  if (basket === undefined) return <Loader/>
+
   return (
     <BodyStyled>
-        { basket.length > 0
-          ? basket.map(({id, quantity}) => {
-              const menuProduct = menu.find((product) => product.id === id);
-                return (
-                  <BasketCard
-                    key={id}
-                    title={menuProduct.title}
-                    imageSource={menuProduct.imageSource}
-                    price={menuProduct.price}
-                    quantity={quantity}
-                    onCardClick={() => handleCardClick(id)}
-                    onDeleteBtnClick={(event) => handleCardDelete(event, id)}
-                    isAdminMode={!isAdminMode}
-                    isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
-                  />
-            )
-          }) 
-          : <span className='emptyMessage'>Votre panier est vide</span>
-        } 
+      { basket.length > 0
+        ? basket.map(({id, quantity}) => {
+            const menuProduct = menu.find((product) => product.id === id);
+              return (
+                <BasketCard
+                  key={id}
+                  title={menuProduct.title}
+                  imageSource={menuProduct.imageSource}
+                  price={menuProduct.price}
+                  quantity={quantity}
+                  onCardClick={() => handleCardClick(id)}
+                  onDeleteBtnClick={(event) => handleCardDelete(event, id)}
+                  isAdminMode={!isAdminMode}
+                  isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
+                />
+          )
+        }) 
+        : <span className='emptyMessage'>Votre panier est vide</span>
+      } 
     </BodyStyled>
   )
 }
