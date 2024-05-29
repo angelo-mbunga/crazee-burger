@@ -3,6 +3,7 @@ import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone } from "../utils/array";
 import { getUser } from "../api/user";
 import { syncBothMenus } from "../api/product";
+import { saveInLocalStrorage } from "../utils/localstorage";
 
 export function useMenu() {
   const [menu, setMenu] = useState([]);
@@ -22,9 +23,10 @@ export function useMenu() {
   const editProductFromMenu = (EditedProduct, username) => {
     const menuCopy = deepClone(menu)
     const indexOfProductToEdit = menuCopy.findIndex((menuProduct) => menuProduct.id === EditedProduct.id)
-    menuCopy[indexOfProductToEdit] = EditedProduct;
+    menuCopy[indexOfProductToEdit] = EditedProduct
     setMenu(menuCopy)
     syncBothMenus(username, menuCopy)
+    saveInLocalStrorage(username, menuCopy)
   }
   const resetMenuData = (username) => {
     setMenu(fakeMenu.SMALL)
@@ -37,6 +39,7 @@ export function useMenu() {
     const personalizeMenu = [userMenuData, ...menuCopy]
     return(personalizeMenu[0])
   }
+
   
   return({menu, setMenu, addProductToMenu, deleteProductFromMenu, editProductFromMenu, resetMenuData, getUserMenu})
 }

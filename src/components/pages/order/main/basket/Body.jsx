@@ -18,7 +18,8 @@ export default function Body() {
     setCurrentProductSelected, 
     currentProductSelected, 
     titleEditRef, 
-    setIsCardClicked
+    setIsCardClicked,
+    username
   } = useContext(OrderContext);
 
   const handleCardClick = (idProductClicked) => {
@@ -29,7 +30,7 @@ export default function Body() {
   }
   const handleCardDelete = (event, idProductToDelete) => { 
     event.stopPropagation()
-    deleteProductFromBasket(idProductToDelete)
+    deleteProductFromBasket(idProductToDelete, username)
     setIsCardClicked(false)
   }
   const displayProductInfos = async (IdProductToDisplay) => {
@@ -38,7 +39,7 @@ export default function Body() {
       await setCurrentProductSelected(produitClicked)
       titleEditRef.current.focus()
   }
-  const checkIfProductSelected = (productFromMenuId,productselectedId) => {
+  const checkIfProductSelected = (productFromMenuId, productselectedId) => {
     return productFromMenuId === productselectedId
   }
 

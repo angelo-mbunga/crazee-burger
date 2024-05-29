@@ -40,17 +40,17 @@ export default function Menu() {
   const handleCardDelete = (event, IdProductToDelete) => { 
     event.stopPropagation();
     deleteProductFromMenu(IdProductToDelete, username)
-    deleteProductFromBasket(IdProductToDelete)
+    deleteProductFromBasket(IdProductToDelete, username)
     if (IdProductToDelete === currentProductSelected.id) {
       setIsCardClicked(false) 
     }
-    titleEditRef.current.focus();
+    titleEditRef.current.focus()
   }
   
   const handleAddToBasket = (event, IdProductToAdd) => { 
     event.stopPropagation();
     const productToAdd = findInArray(IdProductToAdd, menu)
-    addProductToBasket(productToAdd);
+    addProductToBasket(productToAdd, username);
   }
 
   if (menu === undefined) return <Loader/>
