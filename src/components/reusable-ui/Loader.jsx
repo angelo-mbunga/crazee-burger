@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export default function Loader() {
   return (
     <LoaderStyled>
-        <span className='loaderMessage'>chargement en cours...</span>
+        <span className='loaderMessage'>chargement ...</span>
     </LoaderStyled>
   )
 }

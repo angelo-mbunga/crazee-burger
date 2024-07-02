@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import BasketCard from '../../../../reusable-ui/BasketCard';
-import { findInArray } from '../../../../../utils/array';
+import { findInArray, isArrayEmpty } from '../../../../../utils/array';
 import Loader from '../../../../reusable-ui/Loader';
+import EmptyBasket from './EmptyBasket';
 
 export default function Body() {
 
@@ -64,7 +65,7 @@ export default function Body() {
                 />
           )
         }) 
-        : <span className='emptyMessage'>Votre panier est vide</span>
+        : <EmptyBasket/>
       } 
     </BodyStyled>
   )
@@ -76,13 +77,4 @@ const BodyStyled = styled.div`
   padding: 12px;    
   overflow: auto;
   overflow-x: hidden;
-
-  .emptyMessage {
-    font-size: ${theme.fonts.size.P3};
-    color: ${theme.colors.greyDark};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
 `;
