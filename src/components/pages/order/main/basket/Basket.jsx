@@ -5,7 +5,7 @@ import Title from './Title';
 import Body from './Body';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
-import Loader from '../menu/Loader';
+import Loader from '../../../../reusable-ui/Loader';
 import { isArrayEmpty } from '../../../../../utils/array';
 
 export default function Basket() {

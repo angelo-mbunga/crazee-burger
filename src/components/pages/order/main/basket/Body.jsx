@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import BasketCard from '../../../../reusable-ui/BasketCard';
 import { findInArray } from '../../../../../utils/array';
-import Loader from '../menu/Loader';
+import Loader from '../../../../reusable-ui/Loader';
 
 export default function Body() {
 

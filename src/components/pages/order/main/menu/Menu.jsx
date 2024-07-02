@@ -6,7 +6,7 @@ import { formatPrice, ajustPrice } from '../../../../../utils/maths';
 import { findInArray } from '../../../../../utils/array';
 import MenuEmpty from './MenuEmpty';
 import OrderContext from '../../../../../context/OrderContext';
-import Loader from './Loader';
+import Loader from '../../../../reusable-ui/Loader';
 
 export default function Menu() {
 
@@ -53,7 +53,7 @@ export default function Menu() {
     addProductToBasket(productToAdd, username);
   }
 
-  if (menu === undefined) return <Loader/>
+  if (!menu) return <Loader/>
 
   return (
     <MenuStyled>
