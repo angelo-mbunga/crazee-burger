@@ -66,6 +66,7 @@ export default function Menu() {
                 btnClassName='generate-prodcuts-btn'
                 onClick={()=> resetMenuData(username)}
               /> 
+              // /* @TODO : Fix loader page != empty page bug */
             : <MenuEmpty 
                 text1="Victime de notre success !" 
                 text2="De nouvelles recettes arrivent bientot"

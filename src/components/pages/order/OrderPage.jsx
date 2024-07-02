@@ -9,6 +9,7 @@ import { EMPTY_PRODUCT } from '../../../enums/product';
 import { useMenu } from '../../../hooks/useMenu';
 import { useBasket } from '../../../hooks/useBasket';
 import { useEffect } from 'react';
+import { getLocalStrorage } from '../../../utils/localstorage';
 
 export default function OrderPage() {
 
@@ -20,7 +21,7 @@ export default function OrderPage() {
   const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
   const {menu, setMenu, addProductToMenu, deleteProductFromMenu, editProductFromMenu, resetMenuData, getUserMenu} = useMenu();
-  const {basket, addProductToBasket, deleteProductFromBasket, productToAddToBasket} = useBasket();
+  const {basket, setBasket, addProductToBasket, deleteProductFromBasket, productToAddToBasket} = useBasket();
   const {username} = useParams();
   // TODO : find proper file to put this in
   const displayProductInfos = (idOfProductToDisplay) => {
@@ -34,8 +35,16 @@ export default function OrderPage() {
     const userOwnMenu = await getUserMenu(username);
     setMenu(userOwnMenu)
   }
+  const initializeBasket = () => { 
+    const userOwnBasket = getLocalStrorage(username);
+    if (userOwnBasket) {
+      setBasket(userOwnBasket)
+    }
+  }
+  
   useEffect( () =>  {
-    initializeMenu()
+    initializeMenu(),
+    initializeBasket()
   }, []);
 
   const orderContextValue = {

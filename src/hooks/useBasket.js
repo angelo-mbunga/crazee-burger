@@ -37,5 +37,5 @@ export function useBasket() {
         productAlreadyInBasket.quantity++;
         setBasket(basketCopy);
     }
-    return({basket, addProductToBasket, deleteProductFromBasket})
+    return({basket, setBasket, addProductToBasket, deleteProductFromBasket})
 }
