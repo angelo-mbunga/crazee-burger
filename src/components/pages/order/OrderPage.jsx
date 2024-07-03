@@ -41,10 +41,13 @@ export default function OrderPage() {
       setBasket(userOwnBasket)
     }
   }
+  const initializeUserSession = async () => { 
+    await initializeMenu(),
+    initializeBasket()
+  }
   
   useEffect( () =>  {
-    initializeMenu(),
-    initializeBasket()
+    initializeUserSession()
   }, []);
 
   const orderContextValue = {

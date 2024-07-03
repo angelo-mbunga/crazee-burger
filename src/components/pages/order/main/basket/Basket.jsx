@@ -8,8 +8,6 @@ import OrderContext from '../../../../../context/OrderContext';
 import { isArrayEmpty } from '../../../../../utils/array';
 
 export default function Basket() {
-  const {menu} = useContext(OrderContext)
-  if (isArrayEmpty(menu)) return <Loader/>
   
   return (
     <BasketStyled>

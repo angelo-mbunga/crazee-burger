@@ -65,7 +65,8 @@ export default function Body() {
                 />
           )
         }) 
-        : <EmptyBasket/>
+        : <EmptyBasket isLoading={isArrayEmpty(menu)}/>
+        
       } 
     </BodyStyled>
   )
