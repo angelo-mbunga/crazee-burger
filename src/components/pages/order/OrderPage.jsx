@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components';
 import Navbar from '../order/navbar/Navbar';
@@ -8,8 +8,8 @@ import OrderContext from '../../../context/OrderContext';
 import { EMPTY_PRODUCT } from '../../../enums/product';
 import { useMenu } from '../../../hooks/useMenu';
 import { useBasket } from '../../../hooks/useBasket';
-import { useEffect } from 'react';
-import { getLocalStrorage } from '../../../utils/localstorage';
+import { initializeUserSession } from '../order/helpers/initializeUserSession'
+
 
 export default function OrderPage() {
 
@@ -31,23 +31,8 @@ export default function OrderPage() {
     titleEditRef.current.focus();
   }
 
-  const initializeMenu = async () => { 
-    const userOwnMenu = await getUserMenu(username);
-    setMenu(userOwnMenu)
-  }
-  const initializeBasket = () => { 
-    const userOwnBasket = getLocalStrorage(username);
-    if (userOwnBasket) {
-      setBasket(userOwnBasket)
-    }
-  }
-  const initializeUserSession = async () => { 
-    await initializeMenu(),
-    initializeBasket()
-  }
-  
   useEffect( () =>  {
-    initializeUserSession()
+    initializeUserSession(username, setMenu, setBasket)
   }, []);
 
   const orderContextValue = {

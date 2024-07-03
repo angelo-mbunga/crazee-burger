@@ -1,11 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import Total from './Total';
 import Title from './Title';
 import Body from './Body';
-import Loader from '../../../../reusable-ui/Loader';
-import OrderContext from '../../../../../context/OrderContext';
-import { isArrayEmpty } from '../../../../../utils/array';
 
 export default function Basket() {
   
