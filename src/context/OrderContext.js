@@ -15,6 +15,7 @@ export default createContext({
   deleteProductFromMenu : () => {},
   editProductFromMenu : () => {},
   resetMenuData : () => {},
+  getUserMenu : () => {},
   titleEditRef : {},
 
   newProduct : {},
@@ -30,4 +31,6 @@ export default createContext({
   basket : [],
   addProductToBasket : () => {},
   deleteProductFromBasket : () => {},
+
+  username : ""
 });

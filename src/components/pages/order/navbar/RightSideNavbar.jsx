@@ -21,10 +21,10 @@ export default function RightSideNavbar() {
         transition: Zoom,
         position: "bottom-right",
         autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
         progress: undefined,
       }) 
     }

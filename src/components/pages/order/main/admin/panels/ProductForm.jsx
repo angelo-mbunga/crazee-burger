@@ -7,7 +7,7 @@ import { theme } from '../../../../../../theme';
 import ProductPreview from './ProductPreview';
 import { defaultImage } from '../../../../../../enums/product';
 
-const ProductForm = React.forwardRef(({onSubmit, onChange, product, formFooterContent, formFooterClass}, ref) => {
+const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, product, formFooterContent, formFooterClass}, ref) => {
 
     const textInputs = getTextInputs(product)
     
@@ -21,6 +21,8 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, product, formFooterCo
                         name={input.name}
                         value={input.value === defaultImage ? input.value = '' : input.value }
                         onChange={onChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
                         placeholder={input.placeholder}
                         Icon={input.Icon}
                         ref={ref && input.name === 'title' ? ref : null}

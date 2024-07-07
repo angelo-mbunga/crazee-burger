@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import BasketCard from '../../../../reusable-ui/BasketCard';
-import { findInArray } from '../../../../../utils/array';
+import { findInArray, isArrayEmpty } from '../../../../../utils/array';
+import Loader from '../../../../reusable-ui/Loader';
+import EmptyBasket from './EmptyBasket';
 
 export default function Body() {
 
@@ -17,7 +19,8 @@ export default function Body() {
     setCurrentProductSelected, 
     currentProductSelected, 
     titleEditRef, 
-    setIsCardClicked
+    setIsCardClicked,
+    username
   } = useContext(OrderContext);
 
   const handleCardClick = (idProductClicked) => {
@@ -28,7 +31,7 @@ export default function Body() {
   }
   const handleCardDelete = (event, idProductToDelete) => { 
     event.stopPropagation()
-    deleteProductFromBasket(idProductToDelete)
+    deleteProductFromBasket(idProductToDelete, username)
     setIsCardClicked(false)
   }
   const displayProductInfos = async (IdProductToDisplay) => {
@@ -37,31 +40,34 @@ export default function Body() {
       await setCurrentProductSelected(produitClicked)
       titleEditRef.current.focus()
   }
-  const checkIfProductSelected = (productFromMenuId,productselectedId) => {
+  const checkIfProductSelected = (productFromMenuId, productselectedId) => {
     return productFromMenuId === productselectedId
   }
 
+  if (basket === undefined) return <Loader/>
+
   return (
     <BodyStyled>
-        { basket.length > 0
-          ? basket.map(({id, quantity}) => {
-              const menuProduct = menu.find((product) => product.id === id);
-                return (
-                  <BasketCard
-                    key={id}
-                    title={menuProduct.title}
-                    imageSource={menuProduct.imageSource}
-                    price={menuProduct.price}
-                    quantity={quantity}
-                    onCardClick={() => handleCardClick(id)}
-                    onDeleteBtnClick={(event) => handleCardDelete(event, id)}
-                    isAdminMode={!isAdminMode}
-                    isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
-                  />
-            )
-          }) 
-          : <span className='emptyMessage'>Votre panier est vide</span>
-        } 
+      { basket.length > 0
+        ? basket.map(({id, quantity}) => {
+            const menuProduct = menu.find((product) => product.id === id);
+              return (
+                <BasketCard
+                  key={id}
+                  title={menuProduct.title}
+                  imageSource={menuProduct.imageSource}
+                  price={menuProduct.price}
+                  quantity={quantity}
+                  onCardClick={() => handleCardClick(id)}
+                  onDeleteBtnClick={(event) => handleCardDelete(event, id)}
+                  isAdminMode={!isAdminMode}
+                  isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
+                />
+          )
+        }) 
+        : <EmptyBasket isLoading={isArrayEmpty(menu)}/>
+        
+      } 
     </BodyStyled>
   )
 }
@@ -72,13 +78,4 @@ const BodyStyled = styled.div`
   padding: 12px;    
   overflow: auto;
   overflow-x: hidden;
-
-  .emptyMessage {
-    font-size: ${theme.fonts.size.P3};
-    color: ${theme.colors.greyDark};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
 `;

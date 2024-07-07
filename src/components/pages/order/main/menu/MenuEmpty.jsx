@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-import PrimaryButton from '../../../reusable-ui/PrimaryButton';
-import { theme } from '../../../../theme';
+import PrimaryButton from '../../../../reusable-ui/PrimaryButton';
+import { theme } from '../../../../../theme';
 
 export default function MenuEmpty({text1, text2, btnLabel, btnClassName, onClick}) {
 

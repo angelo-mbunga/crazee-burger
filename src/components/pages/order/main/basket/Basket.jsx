@@ -5,6 +5,7 @@ import Title from './Title';
 import Body from './Body';
 
 export default function Basket() {
+  
   return (
     <BasketStyled>
       <Title title={"votre commande"}/>

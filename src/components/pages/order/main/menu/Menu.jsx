@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Card from '../../../reusable-ui/Card';
-import { theme } from '../../../../theme';
-import { formatPrice, ajustPrice } from '../../../../utils/maths';
-import { findInArray } from '../../../../utils/array';
+import Card from '../../../../reusable-ui/Card';
+import { theme } from '../../../../../theme';
+import { formatPrice, ajustPrice } from '../../../../../utils/maths';
+import { findInArray } from '../../../../../utils/array';
 import MenuEmpty from './MenuEmpty';
-import OrderContext from '../../../../context/OrderContext';
+import OrderContext from '../../../../../context/OrderContext';
+import Loader from '../../../../reusable-ui/Loader';
 
 export default function Menu() {
 
@@ -21,7 +22,8 @@ export default function Menu() {
     setCurrentTabSelected, 
     titleEditRef, 
     addProductToBasket,
-    deleteProductFromBasket
+    deleteProductFromBasket,
+    username
   } = useContext(OrderContext);
 
   const checkIfProductSelected = (productFromMenuId,productselectedId) => {
@@ -37,20 +39,21 @@ export default function Menu() {
 
   const handleCardDelete = (event, IdProductToDelete) => { 
     event.stopPropagation();
-    deleteProductFromMenu(IdProductToDelete)
-    deleteProductFromBasket(IdProductToDelete)
+    deleteProductFromMenu(IdProductToDelete, username)
+    deleteProductFromBasket(IdProductToDelete, username)
     if (IdProductToDelete === currentProductSelected.id) {
       setIsCardClicked(false) 
     }
-    titleEditRef.current.focus();
-
+    titleEditRef.current.focus()
   }
   
   const handleAddToBasket = (event, IdProductToAdd) => { 
     event.stopPropagation();
     const productToAdd = findInArray(IdProductToAdd, menu)
-    addProductToBasket(productToAdd);
+    addProductToBasket(productToAdd, username);
   }
+
+  if (!menu) return <Loader/>
 
   return (
     <MenuStyled>
@@ -61,8 +64,9 @@ export default function Menu() {
                 text2="cliquez ci-dessous pour le réinitialiser" 
                 btnLabel='Générer nouveaux produits' 
                 btnClassName='generate-prodcuts-btn'
-                onClick={resetMenuData}
+                onClick={()=> resetMenuData(username)}
               /> 
+              // /* @TODO : Fix loader page != empty page bug */
             : <MenuEmpty 
                 text1="Victime de notre success !" 
                 text2="De nouvelles recettes arrivent bientot"
@@ -85,6 +89,7 @@ export default function Menu() {
           })
       } 
     </MenuStyled>
+
   )
 }
 

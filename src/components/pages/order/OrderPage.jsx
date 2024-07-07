@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components';
 import Navbar from '../order/navbar/Navbar';
 import Main from './main/Main';
@@ -7,6 +8,8 @@ import OrderContext from '../../../context/OrderContext';
 import { EMPTY_PRODUCT } from '../../../enums/product';
 import { useMenu } from '../../../hooks/useMenu';
 import { useBasket } from '../../../hooks/useBasket';
+import { initializeUserSession } from '../order/helpers/initializeUserSession'
+
 
 export default function OrderPage() {
 
@@ -17,9 +20,9 @@ export default function OrderPage() {
   const [IsCardClicked, setIsCardClicked] = useState(false);
   const [currentProductSelected, setCurrentProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
-  const {menu, addProductToMenu, deleteProductFromMenu, editProductFromMenu, resetMenuData} = useMenu();
-  const {basket, addProductToBasket, deleteProductFromBasket, productToAddToBasket, editProductFromBasket} = useBasket();
-
+  const {menu, setMenu, addProductToMenu, deleteProductFromMenu, editProductFromMenu, resetMenuData, getUserMenu} = useMenu();
+  const {basket, setBasket, addProductToBasket, deleteProductFromBasket, productToAddToBasket} = useBasket();
+  const {username} = useParams();
   // TODO : find proper file to put this in
   const displayProductInfos = (idOfProductToDisplay) => {
     if (isAdminMode) return
@@ -27,6 +30,10 @@ export default function OrderPage() {
     setCurrentProductSelected(productClicked)
     titleEditRef.current.focus();
   }
+
+  useEffect( () =>  {
+    initializeUserSession(username, setMenu, setBasket)
+  }, []);
 
   const orderContextValue = {
     //@TODO : check why isModeAdmin is reverse
@@ -41,6 +48,7 @@ export default function OrderPage() {
     deleteProductFromMenu,
     editProductFromMenu,
     resetMenuData,
+    getUserMenu,
     newProduct,
     setNewProduct,
     currentProductSelected,
@@ -52,10 +60,9 @@ export default function OrderPage() {
     basket,
     addProductToBasket,
     deleteProductFromBasket,
-    productToAddToBasket
+    productToAddToBasket,
+    username
   };
-
-
 
   return (
     <OrderContext.Provider value={orderContextValue}>
