@@ -6,6 +6,7 @@ import BasketCard from '../../../../reusable-ui/BasketCard';
 import { findInArray, isArrayEmpty } from '../../../../../utils/array';
 import Loader from '../../../../reusable-ui/Loader';
 import EmptyBasket from './EmptyBasket';
+import { CSSTransition,TransitionGroup } from "react-transition-group";
 
 export default function Body() {
 
@@ -49,23 +50,30 @@ export default function Body() {
   return (
     <BodyStyled>
       { basket.length > 0
-        ? basket.map(({id, quantity}) => {
-            const menuProduct = menu.find((product) => product.id === id);
-              return (
-                <BasketCard
-                  key={id}
-                  title={menuProduct.title}
-                  imageSource={menuProduct.imageSource}
-                  price={menuProduct.price}
-                  quantity={quantity}
-                  onCardClick={() => handleCardClick(id)}
-                  onDeleteBtnClick={(event) => handleCardDelete(event, id)}
-                  isAdminMode={!isAdminMode}
-                  isSelected={checkIfProductSelected(id,currentProductSelected.id)} 
-                />
-          )
-        }) 
-        : <EmptyBasket isLoading={isArrayEmpty(menu)}/>
+        ? 
+        // @TODO : WHY FIRST ADDED PRODUCT ANIMANATION IS NOK 
+          <TransitionGroup>
+            {basket.map(({id, quantity}) => {
+              const menuProduct = menu.find((product) => product.id === id);
+                return (
+                  <CSSTransition classNames={'fadeInOut'} key={id} timeout={500}>
+                      <BasketCard
+                        className={'basketCard'}
+                        title={menuProduct.title}
+                        imageSource={menuProduct.imageSource}
+                        price={menuProduct.price}
+                        quantity={quantity}
+                        onCardClick={() => handleCardClick(id)}
+                        onDeleteBtnClick={(event) => handleCardDelete(event, id)}
+                        isAdminMode={!isAdminMode}
+                        isSelected={checkIfProductSelected(id,currentProductSelected.id)}
+                      />
+                  </CSSTransition>
+              )
+            })}
+          </TransitionGroup> 
+        : 
+          <EmptyBasket isLoading={isArrayEmpty(menu)}/>
         
       } 
     </BodyStyled>
@@ -78,4 +86,31 @@ const BodyStyled = styled.div`
   padding: 12px;    
   overflow: auto;
   overflow-x: hidden;
+
+  .fadeInOut-enter{
+    transform: translateX(100px);
+    opacity: 0%; 
+  }
+  .fadeInOut-enter-active{
+    transform: translateX(0px);
+    opacity: 100%; 
+    transition: 0.3s;
+    ::before  {
+      background: ${theme.colors.background_white};
+    }
+  }
+
+  .fadeInOut-exit{
+    transform: translateX(0px);
+    opacity: 100%; 
+  }
+  .fadeInOut-exit-active{
+    transform: translateX(-100px);
+    opacity: 0%; 
+    transition: 0.3s;
+    ::before  {
+      background: ${theme.colors.background_white};
+    }
+  } 
+
 `;

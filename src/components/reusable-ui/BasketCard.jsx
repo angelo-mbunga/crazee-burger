@@ -18,9 +18,9 @@ export default function BasketCard({title, imageSource, price, quantity, onDelet
                 {/* @TODO : Fix ajustPrice bug */}
                 <span className="price">{formatPrice(price)}</span> 
             </div>
-            <div className="cardExtras">
+            <div className="cardExtras" onClick={onDeleteBtnClick}>
                 <span className='quantity'>x {quantity}</span>
-                <MdDeleteForever className='deleteCardButton' onClick={onDeleteBtnClick}/>
+                <MdDeleteForever className='deleteCardButton' />
             </div>
         </BasketCardStyled>  
     )
