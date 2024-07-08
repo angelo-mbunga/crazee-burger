@@ -51,12 +51,11 @@ export default function Body() {
     <BodyStyled>
       { basket.length > 0
         ? 
-        // @TODO : WHY FIRST ADDED PRODUCT ANIMANATION IS NOK 
           <TransitionGroup>
             {basket.map(({id, quantity}) => {
               const menuProduct = menu.find((product) => product.id === id);
                 return (
-                  <CSSTransition classNames={'fadeInOut'} key={id} timeout={500}>
+                  <CSSTransition appear={true} classNames={'fadeInOut'} key={id} timeout={500}>
                       <BasketCard
                         className={'basketCard'}
                         title={menuProduct.title}
@@ -94,7 +93,20 @@ const BodyStyled = styled.div`
   .fadeInOut-enter-active{
     transform: translateX(0px);
     opacity: 100%; 
-    transition: 0.3s;
+    transition: 0.4s;
+    ::before  {
+      background: ${theme.colors.background_white};
+    }
+  }
+  
+  .fadeInOut-appear{
+    transform: translateX(100px);
+    opacity: 0%; 
+  }
+  .fadeInOut-appear-active{
+    transform: translateX(0px);
+    opacity: 100%; 
+    transition: 0.4s;
     ::before  {
       background: ${theme.colors.background_white};
     }
@@ -107,7 +119,7 @@ const BodyStyled = styled.div`
   .fadeInOut-exit-active{
     transform: translateX(-100px);
     opacity: 0%; 
-    transition: 0.3s;
+    transition: 0.4s;
     ::before  {
       background: ${theme.colors.background_white};
     }
