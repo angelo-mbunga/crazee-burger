@@ -5,6 +5,8 @@ import Menu from './menu/Menu';
 import Basket from './basket/Basket';
 import Admin from './admin/Admin';
 import OrderContext from '../../../../context/OrderContext';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { fadeUpAmimation } from '../../../../theme/animations';
 
 export default function Main() {
   const {isAdminMode} = useContext(OrderContext)
@@ -15,13 +17,20 @@ export default function Main() {
       <div className='menu-and-amdin'>
         <Menu/>
           {isAdminMode
-            ? null
-            : <Admin/>
+            ? 
+              null
+            : 
+              <TransitionGroup className='rerere'>
+                <CSSTransition appear classNames='fadeUpEffect' timeout={500}>
+                  <Admin/>
+                </CSSTransition>
+              </TransitionGroup> 
           }
       </div>
     </MainStyled>
   )
 }
+
 const MainStyled = styled.div`
   background: ${theme.colors.background_white};
   border-radius: 0 0 ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
@@ -36,4 +45,7 @@ const MainStyled = styled.div`
     overflow-y: hidden;
     display: grid;
   }
+
+  ${fadeUpAmimation}
+
 `;

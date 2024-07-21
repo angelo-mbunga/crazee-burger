@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
 import AdminTabs from './AdminTabs';
 import AdminPanel from './AdminPanel';
@@ -6,7 +6,7 @@ import OrderContext from '../../../../../context/OrderContext';
 
 export default function Admin() {
 
-  const {isCollasped, setIsCollasped} = useContext(OrderContext);
+  const {isCollasped} = useContext(OrderContext);
 
   return (
     <AdminStyled>
