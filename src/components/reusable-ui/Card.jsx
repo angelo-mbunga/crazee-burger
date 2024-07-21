@@ -5,6 +5,7 @@ import PrimaryButton from './PrimaryButton';
 import { truncate, formatPrice } from '../../utils/maths';
 import { TiDelete } from "react-icons/ti";
 import OrderContext from '../../context/OrderContext';
+import { fadeRightAnimation } from '../../theme/animations';
 
 export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, isHoverable, isSelected, onAddBtnClick}) {
 
@@ -14,8 +15,11 @@ export default function Card({title, imageSource, leftDescription, onCloseBtnCli
         <CardStyled>
             <div className="card" onClick={onCardClick} isHoverable={isHoverable} isSelected={isSelected}>
                 {isAdminMode
-                ? null
-                : <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>
+                ? 
+                    null
+                : 
+                    //@TODO : MAKE BTN CONTAINER VISILE ON THE CARD INSTEAD OF ONLY IN ADMIN MODE
+                    <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>
                 }
                 <img src={imageSource} alt={title} className='card-img'/>  
                 <div className='card-details'>
@@ -110,11 +114,13 @@ const CardStyled = styled.div`
     }
     .card-delete-btn{
         text-align: right;
+        animation: ${fadeRightAnimation} 500ms ease-out;
     }
     .delete-icon{
         color: ${theme.colors.primary};
         transform: scale(1.5);
         padding: 2px 0;
+
     }
     .delete-icon:hover{
         cursor: pointer;

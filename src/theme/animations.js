@@ -1,4 +1,4 @@
-import {css} from 'styled-components';
+import {css, keyframes} from 'styled-components';
 import { theme } from '.';
 
 export const fadeUpAmimation = css`
@@ -81,4 +81,16 @@ export const fadeLeftRightAmimation = css`
         background: ${theme.colors.background_white};
         }
     } 
+`
+export const fadeRightAnimation = keyframes`
+    0% {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 `
