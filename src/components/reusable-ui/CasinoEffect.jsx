@@ -24,7 +24,7 @@ const CasinoEffectStyled = styled.div`
         display: inline-block ;
     }
     ::before {
-        background: ${theme.colors.background_dark};
+        background: ${theme.colors.background_dark} !important;
     }
 
     // New value
