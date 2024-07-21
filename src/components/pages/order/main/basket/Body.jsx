@@ -7,6 +7,7 @@ import { findInArray, isArrayEmpty } from '../../../../../utils/array';
 import Loader from '../../../../reusable-ui/Loader';
 import EmptyBasket from './EmptyBasket';
 import { CSSTransition,TransitionGroup } from "react-transition-group";
+import { fadeLeftRightAmimation } from '../../../../../theme/animations';
 
 export default function Body() {
 
@@ -55,7 +56,7 @@ export default function Body() {
             {basket.map(({id, quantity}) => {
               const menuProduct = menu.find((product) => product.id === id);
                 return (
-                  <CSSTransition appear={true} classNames={'fadeInOut'} key={id} timeout={500}>
+                  <CSSTransition appear={true} classNames={'fadeLeftRightAnimation'} key={id} timeout={500}>
                       <BasketCard
                         className={'basketCard'}
                         title={menuProduct.title}
@@ -86,43 +87,6 @@ const BodyStyled = styled.div`
   overflow: auto;
   overflow-x: hidden;
 
-  .fadeInOut-enter{
-    transform: translateX(100px);
-    opacity: 0%; 
-  }
-  .fadeInOut-enter-active{
-    transform: translateX(0px);
-    opacity: 100%; 
-    transition: 0.4s;
-    ::before  {
-      background: ${theme.colors.background_white};
-    }
-  }
-  
-  .fadeInOut-appear{
-    transform: translateX(100px);
-    opacity: 0%; 
-  }
-  .fadeInOut-appear-active{
-    transform: translateX(0px);
-    opacity: 100%; 
-    transition: 0.4s;
-    ::before  {
-      background: ${theme.colors.background_white};
-    }
-  }
-
-  .fadeInOut-exit{
-    transform: translateX(0px);
-    opacity: 100%; 
-  }
-  .fadeInOut-exit-active{
-    transform: translateX(-100px);
-    opacity: 0%; 
-    transition: 0.4s;
-    ::before  {
-      background: ${theme.colors.background_white};
-    }
-  } 
+  ${fadeLeftRightAmimation}
 
 `;
