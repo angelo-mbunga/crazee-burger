@@ -20,7 +20,7 @@ export default function Main() {
             ? 
               null
             : 
-              <TransitionGroup className='rerere'>
+              <TransitionGroup>
                 <CSSTransition appear classNames='fadeUpEffect' timeout={500}>
                   <Admin/>
                 </CSSTransition>

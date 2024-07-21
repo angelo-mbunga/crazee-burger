@@ -15,32 +15,24 @@ export const fadeUpAmimation = css`
         transition: all 500ms;
     } 
 `
-export const casinoAnimation = css`
-    span{
-        display: inline-block ;
+export const fadeLeftAmimation = css`
+    .fadeLeftAmimation-enter {
+        opacity: 0.01;
+        transform: translateX(120px);
     }
-    ::before {
-        background: ${theme.colors.background_dark} !important;
+    .fadeLeftAmimation-enter-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: all 300ms ease-out;
+    } 
+    .fadeLeftAmimation-exit {
+        opacity: 1;
+        transform: translateX(0);
     }
-    // New value
-    .casinoAnimation-enter{
-        transform: translateY(100%);
-    }
-    .casinoAnimation-enter-active{
-        transform: translateY(0%);
-        transition: 0.1s;
-    }
-    // Old value
-    .casinoAnimation-exit{
-        transform: translateY(0%);
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
-    .casinoAnimation-exit-active{   
-        transform: translateY(-100%);
-        transition: 0.1s;
-    }
+    .fadeLeftAmimation-exit-active {
+        opacity: 0.01;
+        transition: all 300ms ease-out;
+    } 
 `
 export const fadeLeftRightAmimation = css`
     .fadeLeftRightAnimation-enter{
@@ -81,6 +73,33 @@ export const fadeLeftRightAmimation = css`
         background: ${theme.colors.background_white};
         }
     } 
+`
+export const casinoAnimation = css`
+    span{
+        display: inline-block ;
+    }
+    ::before {
+        background: ${theme.colors.background_dark} !important;
+    }
+    // New value
+    .casinoAnimation-enter{
+        transform: translateY(100%);
+    }
+    .casinoAnimation-enter-active{
+        transform: translateY(0%);
+        transition: 0.1s;
+    }
+    // Old value
+    .casinoAnimation-exit{
+        transform: translateY(0%);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .casinoAnimation-exit-active{   
+        transform: translateY(-100%);
+        transition: 0.1s;
+    }
 `
 export const fadeRightAnimation = keyframes`
     0% {

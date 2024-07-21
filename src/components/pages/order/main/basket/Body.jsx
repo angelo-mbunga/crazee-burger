@@ -56,7 +56,7 @@ export default function Body() {
             {basket.map(({id, quantity}) => {
               const menuProduct = menu.find((product) => product.id === id);
                 return (
-                  <CSSTransition appear={true} classNames={'fadeLeftRightAnimation'} key={id} timeout={500}>
+                  <CSSTransition classNames={'fadeLeftRightAnimation'} key={id} timeout={300}>
                       <BasketCard
                         className={'basketCard'}
                         title={menuProduct.title}
