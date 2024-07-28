@@ -28,5 +28,13 @@ export default function Total() {
   letter-spacing: 2px;
   color: ${theme.colors.primary};
   font-size: ${theme.fonts.size.P3};
+
+  .title {
+    width: 100%;
+    padding-left: 24px;
+  }
+  .amount {
+    width: 100%;
+  }
 `;
 

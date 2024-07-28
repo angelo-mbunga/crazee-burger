@@ -5,6 +5,7 @@ import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
 import { MdDeleteForever } from "react-icons/md";
 import { defaultImage } from '../../enums/product';
+import CasinoEffect from './CasinoEffect';
 
 
 export default function BasketCard({title, imageSource, price, quantity, onDeleteBtnClick, onCardClick, isAdminMode, isSelected}) {
@@ -19,7 +20,8 @@ export default function BasketCard({title, imageSource, price, quantity, onDelet
                 <span className="price">{formatPrice(price)}</span> 
             </div>
             <div className="cardExtras" onClick={onDeleteBtnClick}>
-                <span className='quantity'>x {quantity}</span>
+                {/* <span className='quantity'>x {quantity}</span> */}
+                <CasinoEffect className="quantity" count={quantity} operator="x"/>
                 <MdDeleteForever className='deleteCardButton' />
             </div>
         </BasketCardStyled>  
@@ -108,7 +110,6 @@ const BasketCardStyled = styled.div`
         .deleteCardButton {
             display: block;
         }
-
     }
 `
 const clickedStyle = css `   
