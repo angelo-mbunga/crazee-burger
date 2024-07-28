@@ -15,11 +15,11 @@ export default function  () {
   const handleChange = (evt) => {
     setUsername(evt.target.value);
   }
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    login(username);
+    const userReceived = await login(username);
     setUsername('');
-    navigate(`order/${username}`);
+    navigate(`order/${userReceived.username}`);
   }
 
   return (

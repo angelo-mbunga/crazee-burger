@@ -6,10 +6,10 @@ import { fakeMenu } from "../fakeData/fakeMenu"
 export const login = async (idUser) => {
     const user = await getUser(idUser)
     if (user === undefined) {
-        createUser(idUser)
+        return await createUser(idUser)
     }
+    return user
 }
-
 export const getUser = async (idUser) => {
     // Connect to a specific field in the database
     const docRef = doc(db, "users", idUser)
@@ -21,9 +21,10 @@ export const getUser = async (idUser) => {
 }
 export const createUser = async (idUser) => {
     const path = doc(db, "users", idUser)
-    const data = {
+    const userToCreate = {
         username : idUser,
-        menu : fakeMenu.LARGE
+        menu : fakeMenu.MEDIUM
     }
-    setDoc(path, data)
+    await setDoc(path, userToCreate)
+    return userToCreate
 }
