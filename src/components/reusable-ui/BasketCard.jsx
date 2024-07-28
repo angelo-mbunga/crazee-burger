@@ -22,7 +22,7 @@ export default function BasketCard({title, imageSource, price, quantity, onDelet
             <div className="cardExtras" onClick={onDeleteBtnClick}>
                 {/* <span className='quantity'>x {quantity}</span> */}
                 <CasinoEffect className="quantity" count={quantity} operator="x"/>
-                <MdDeleteForever className='deleteCardButton' />
+                <MdDeleteForever className='deleteCardButton'/>
             </div>
         </BasketCardStyled>  
     )
@@ -47,7 +47,6 @@ const BasketCardStyled = styled.div`
         justify-content: center;
         align-items: center;
     }
-    
     .cardImage {
         padding: 4px 8px;
         width: 40%;
@@ -79,6 +78,10 @@ const BasketCardStyled = styled.div`
     }
     .cardExtras {
         width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         .quantity {
             color: ${theme.colors.primary};
@@ -93,22 +96,17 @@ const BasketCardStyled = styled.div`
         cursor: pointer;
         background-color: ${theme.colors.redTertiary};
         border-radius: 0 ${theme.borderRadius.round} ${theme.borderRadius.round} 0;
-        
+
         .deleteCardButton {
+            display: block;
             color: ${theme.colors.white};
             font-size: ${theme.fonts.size.P3};
-        }
-        .deleteCardButton:hover {
-            transform: scale(1.1);
         }
         .deleteCardButton:active {
             color: ${theme.colors.dark};
         }
         .quantity {
             display: none;
-        }
-        .deleteCardButton {
-            display: block;
         }
     }
 `
