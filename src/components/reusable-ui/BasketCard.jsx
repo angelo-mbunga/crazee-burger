@@ -20,8 +20,7 @@ export default function BasketCard({title, imageSource, price, quantity, onDelet
                 <span className="price">{formatPrice(price)}</span> 
             </div>
             <div className="cardExtras" onClick={onDeleteBtnClick}>
-                {/* <span className='quantity'>x {quantity}</span> */}
-                <CasinoEffect className="quantity" count={quantity} operator="x"/>
+                <CasinoEffect className="quantity" count={`x ${quantity}`} />
                 <MdDeleteForever className='deleteCardButton'/>
             </div>
         </BasketCardStyled>  

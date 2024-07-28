@@ -4,12 +4,12 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { casinoAnimation } from '../../theme/animations';
 import { theme } from '../../theme';
 
-export default function CasinoEffect({count, className, operator}) {
+export default function CasinoEffect({count, className}) {
   return (
     <CasinoEffectStyled>
         <TransitionGroup>
-            <CSSTransition classNames={'casinoAnimation'} key={count} timeout={300} operator={operator ? operator : null}>
-                <span className={className}>{operator} {count}</span>
+            <CSSTransition classNames={'casinoAnimation'} key={count} timeout={300}>
+                <span className={className}>{count}</span>
             </CSSTransition>
         </TransitionGroup>
     </CasinoEffectStyled>
