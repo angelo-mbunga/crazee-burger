@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import Total from './Total';
 import Title from './Title';
-import Body from './Body';
+import Body from './basketBody/Body';
 
 export default function Basket() {
   

@@ -1,13 +1,13 @@
-import {theme} from '../../../../../theme/index';
+import {theme} from '../../../../../../theme/index';
 import styled from 'styled-components';
 import { useContext } from 'react';
-import OrderContext from '../../../../../context/OrderContext';
-import BasketCard from '../../../../reusable-ui/BasketCard';
-import { findInArray, isArrayEmpty } from '../../../../../utils/array';
-import Loader from '../../../../reusable-ui/Loader';
+import OrderContext from '../../../../../../context/OrderContext';
+import BasketCard from '../../../../../reusable-ui/BasketCard';
+import { findInArray, isArrayEmpty } from '../../../../../../utils/array';
+import Loader from '../../../../../reusable-ui/Loader';
 import EmptyBasket from './EmptyBasket';
 import { CSSTransition,TransitionGroup } from "react-transition-group";
-import { fadeLeftRightAmimation } from '../../../../../theme/animations';
+import { fadeLeftRightAmimation } from '../../../../../../theme/animations';
 
 export default function Body() {
 
