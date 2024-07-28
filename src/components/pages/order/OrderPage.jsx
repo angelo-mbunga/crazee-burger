@@ -14,7 +14,7 @@ import { initializeUserSession } from '../order/helpers/initializeUserSession'
 export default function OrderPage() {
 
   const [isAdminMode, setIsAdminMode] = useState(true);
-  const [isCollasped, setIsCollasped] = useState(false);
+  const [isCollasped, setIsCollasped] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [IsCardClicked, setIsCardClicked] = useState(false);

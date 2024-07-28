@@ -4,6 +4,7 @@ import Header from '../../../../reusable-ui/Header';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import { ajustPrice, calculateAmoutToPay, formatPrice } from '../../../../../utils/maths';
+import CasinoEffect from '../../../../reusable-ui/CasinoEffect';
 
 export default function Total() {
 
@@ -14,7 +15,7 @@ export default function Total() {
     <Header>
       <TotalStyled>
         <span className="title">total</span>
-        <span className="amount">{formatPrice(ajustPrice(amountToPay))}</span>
+        <CasinoEffect className="amount" count={formatPrice(ajustPrice(amountToPay))}/>
       </TotalStyled>
     </Header>
   )
@@ -27,5 +28,13 @@ export default function Total() {
   letter-spacing: 2px;
   color: ${theme.colors.primary};
   font-size: ${theme.fonts.size.P3};
+
+  .title {
+    width: 100%;
+    padding-left: 24px;
+  }
+  .amount {
+    width: 100%;
+  }
 `;
 

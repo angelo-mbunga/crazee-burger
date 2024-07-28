@@ -1,7 +1,7 @@
 import React from 'react'
-import {theme} from '../../../../../theme/index';
+import {theme} from '../../../../../../theme/index';
 import styled from 'styled-components';
-import { BASKET_MESSAGE } from '../../../../../enums/product';
+import { BASKET_MESSAGE } from '../../../../../../enums/product';
 
 export default function EmptyBasket({isLoading}) {
   return (

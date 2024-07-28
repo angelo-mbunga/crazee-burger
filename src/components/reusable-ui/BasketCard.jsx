@@ -5,6 +5,7 @@ import { formatPrice, ajustPrice } from '../../utils/maths';
 import { truncate } from '../../utils/maths';
 import { MdDeleteForever } from "react-icons/md";
 import { defaultImage } from '../../enums/product';
+import CasinoEffect from './CasinoEffect';
 
 
 export default function BasketCard({title, imageSource, price, quantity, onDeleteBtnClick, onCardClick, isAdminMode, isSelected}) {
@@ -18,9 +19,9 @@ export default function BasketCard({title, imageSource, price, quantity, onDelet
                 {/* @TODO : Fix ajustPrice bug */}
                 <span className="price">{formatPrice(price)}</span> 
             </div>
-            <div className="cardExtras">
-                <span className='quantity'>x {quantity}</span>
-                <MdDeleteForever className='deleteCardButton' onClick={onDeleteBtnClick}/>
+            <div className="cardExtras" onClick={onDeleteBtnClick}>
+                <CasinoEffect className="quantity" count={`x ${quantity}`} />
+                <MdDeleteForever className='deleteCardButton'/>
             </div>
         </BasketCardStyled>  
     )
@@ -45,7 +46,6 @@ const BasketCardStyled = styled.div`
         justify-content: center;
         align-items: center;
     }
-    
     .cardImage {
         padding: 4px 8px;
         width: 40%;
@@ -77,6 +77,10 @@ const BasketCardStyled = styled.div`
     }
     .cardExtras {
         width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         .quantity {
             color: ${theme.colors.primary};
@@ -91,13 +95,11 @@ const BasketCardStyled = styled.div`
         cursor: pointer;
         background-color: ${theme.colors.redTertiary};
         border-radius: 0 ${theme.borderRadius.round} ${theme.borderRadius.round} 0;
-        
+
         .deleteCardButton {
+            display: block;
             color: ${theme.colors.white};
             font-size: ${theme.fonts.size.P3};
-        }
-        .deleteCardButton:hover {
-            transform: scale(1.1);
         }
         .deleteCardButton:active {
             color: ${theme.colors.dark};
@@ -105,10 +107,6 @@ const BasketCardStyled = styled.div`
         .quantity {
             display: none;
         }
-        .deleteCardButton {
-            display: block;
-        }
-
     }
 `
 const clickedStyle = css `   

@@ -7,6 +7,8 @@ import { findInArray } from '../../../../../utils/array';
 import MenuEmpty from './MenuEmpty';
 import OrderContext from '../../../../../context/OrderContext';
 import Loader from '../../../../reusable-ui/Loader';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { fadeLeftAmimation } from '../../../../../theme/animations';
 
 export default function Menu() {
 
@@ -71,22 +73,27 @@ export default function Menu() {
                 text1="Victime de notre success !" 
                 text2="De nouvelles recettes arrivent bientot"
               />
-        : menu.map(({title, imageSource, id, price}) => {
-            return (
-              <Card
-                key={id}
-                title={title}
-                imageSource={imageSource}
-                /* @TODO : Fix ajustPrice bug */
-                leftDescription={formatPrice(price)}
-                onCloseBtnClick={(event) => handleCardDelete(event, id)}
-                onCardClick={() => handleClick(id)}
-                onAddBtnClick={(event) => handleAddToBasket(event, id)}
-                isSelected={checkIfProductSelected(id,currentProductSelected.id)}
-                isHoverable={!isAdminMode}
-              />
-            )
-          })
+        : 
+          <TransitionGroup className={'productMenuList'}>
+            {menu.map(({title, imageSource, id, price}) => {
+              return (
+                <CSSTransition appear={true} classNames='fadeLeftAmimation' key={id} timeout={500}>
+                  <Card
+                    title={title}
+                    imageSource={imageSource}
+                    /* @TODO : Fix ajustPrice bug */
+                    leftDescription={formatPrice(price)}
+                    onCloseBtnClick={(event) => handleCardDelete(event, id)}
+                    onCardClick={() => handleClick(id)}
+                    onAddBtnClick={(event) => handleAddToBasket(event, id)}
+                    isSelected={checkIfProductSelected(id,currentProductSelected.id)}
+                    isHoverable={!isAdminMode}
+                  />
+                </CSSTransition>
+              )
+            })}
+          </TransitionGroup>
+
       } 
     </MenuStyled>
 
@@ -124,4 +131,11 @@ const MenuStyled = styled.div`
     outline: 2px solid ${theme.colors.primary};
     outline-offset: -2px;
   }
+  .productMenuList{
+    display: contents;
+  }
+
+  ${fadeLeftAmimation}
+
 `;
+
