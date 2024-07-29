@@ -16,7 +16,7 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, prod
 
     const isAvailableOptions = [
         {value : true, label : "En stock"},
-        {value : false, label : "En ruptire"}
+        {value : false, label : "En rupture"}
     ]
     const isAdvertisedOptions = [
         {value : true, label : "Avec pub"},
@@ -109,8 +109,16 @@ const ProductFormStyled = styled.div`
         div:last-child{
             grid-area: 5/1/4/5;
         }
-
+        select {
+            background-color: ${theme.colors.background_white};
+            height: 36px;
+            width: 100%;
+            border-radius: ${theme.borderRadius.round};
+            border: none;
+            font-size: ${theme.fonts.size.P0};
+        }
     }
+
     input {
         padding: 10px 12px;
         padding-left: 64px;
@@ -118,15 +126,7 @@ const ProductFormStyled = styled.div`
         height: 16px;
         width: 66%;
     }
-    select {
-        padding: 10px;
-        background-color: ${theme.colors.background_white};
-        height: 16px;
-        width: 100%;
-        border-radius: ${theme.borderRadius.round};
-        border: none;
-        font-size: ${theme.fonts.size.P0};
-    }
+
     .inputIcon {
         height: 16px;
         width: 16px;
@@ -134,8 +134,8 @@ const ProductFormStyled = styled.div`
     }
 
     .formFooterBtn {
-        width: 100%; 
-        padding: 10px;
+        width: 66%; 
+        padding: 8px;
         background-color: ${theme.colors.success};
         color: ${theme.colors.white};
         border: none;
