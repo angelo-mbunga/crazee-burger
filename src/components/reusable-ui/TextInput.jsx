@@ -16,7 +16,6 @@ const InputStyled = styled.div `
     width: 66%;
 
     input {
-        width: 100%;
         border-radius: ${theme.borderRadius.round};
         border: none;
         padding: 16px;
