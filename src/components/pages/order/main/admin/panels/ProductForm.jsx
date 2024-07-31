@@ -1,28 +1,18 @@
 import React from 'react'
-import { getTextInputs } from './getTextInputs';
+import { selectInputsConfig, textInputsConfig } from './inputsConfig';
 import { TextInput } from '../../../../../reusable-ui/TextInput';
 import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import styled from 'styled-components';
 import { theme } from '../../../../../../theme';
 import ProductPreview from './ProductPreview';
 import { defaultImage } from '../../../../../../enums/product';
-import { getSelectInputs } from './getSelectInputs';
 import SelectInput from '../../../../../reusable-ui/SelectInput';
 
 const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, product, formFooterContent, formFooterClass}, ref) => {
 
-    const textInputs = getTextInputs(product)
-    const selectInputs = getSelectInputs(product)
+    const textInputs = textInputsConfig(product)
+    const selectInputs = selectInputsConfig(product)
 
-    const isAvailableOptions = [
-        {value : true, label : "En stock"},
-        {value : false, label : "En rupture"}
-    ]
-    const isAdvertisedOptions = [
-        {value : true, label : "Avec pub"},
-        {value : false, label : "Sans pub"}
-    ]
-    
     return (
         <ProductFormStyled>
             <ProductPreview product={product} />
@@ -41,18 +31,19 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, prod
                         ref={ref && input.name === 'title' ? ref : null}
                     />
                 ))} 
-                <SelectInput
-                    options={isAvailableOptions}
-                    name={"isAvailable"}
-                    className={"is-available-select"}
-                    key={3}
-                />
-                <SelectInput
-                    options={isAdvertisedOptions}
-                    name={"isAdvertised"}
-                    className={"is-advertised-select"}
-                    key={4}
-                />
+                {selectInputs.map((input) => (
+                    <SelectInput 
+                        key={input.id}
+                        options={input.options}
+                        className={input.className}
+                        value={input.value}
+                        name={input.name}
+                        onChange={onChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        //Icon={input.Icon}
+                    />
+                ))} 
                 <PrimaryButton
                     label={formFooterContent} 
                     className={formFooterClass}
