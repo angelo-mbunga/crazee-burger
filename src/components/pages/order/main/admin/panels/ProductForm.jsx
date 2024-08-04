@@ -5,7 +5,7 @@ import PrimaryButton from '../../../../../reusable-ui/PrimaryButton';
 import styled from 'styled-components';
 import { theme } from '../../../../../../theme';
 import ProductPreview from './ProductPreview';
-import { defaultImage } from '../../../../../../enums/product';
+import { IMAGE_DEFAULT_PRODUCT } from '../../../../../../enums/product';
 import SelectInput from '../../../../../reusable-ui/SelectInput';
 
 const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, product, formFooterContent, formFooterClass}, ref) => {
@@ -22,7 +22,7 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, prod
                     <TextInput 
                         key={input.id}
                         name={input.name}
-                        value={input.value === defaultImage ? input.value = '' : input.value }
+                        value={input.value === IMAGE_DEFAULT_PRODUCT ? input.value = '' : input.value }
                         onChange={onChange}
                         // @TODO : FIX ONBLUR/ONFOCUS TO ONLY APPEAR WHEN REAL UPDATE HAPPEN
                         onFocus={onFocus}

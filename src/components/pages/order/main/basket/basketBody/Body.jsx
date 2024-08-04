@@ -4,10 +4,13 @@ import { useContext } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
 import BasketCard from '../../../../../reusable-ui/BasketCard';
 import { findInArray, isArrayEmpty } from '../../../../../../utils/array';
+import { formatPrice, ajustPrice, truncate } from '../../../../../../utils/maths';
 import Loader from '../../../../../reusable-ui/Loader';
 import EmptyBasket from './EmptyBasket';
 import { CSSTransition,TransitionGroup } from "react-transition-group";
 import { fadeLeftRightAmimation } from '../../../../../../theme/animations';
+import { convertStringToBoolean } from '../../../../../../utils/string';
+import { BASKET_MESSAGE, IMAGE_DEFAULT_PRODUCT } from '../../../../../../enums/product';
 
 export default function Body() {
 
@@ -59,9 +62,11 @@ export default function Body() {
                   <CSSTransition classNames={'fadeLeftRightAnimation'} key={id} timeout={300}>
                       <BasketCard
                         className={'basketCard'}
-                        title={menuProduct.title}
-                        imageSource={menuProduct.imageSource}
-                        price={menuProduct.price}
+                        title={truncate(menuProduct.title,12)}
+                        imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_DEFAULT_PRODUCT }
+                        /* @TODO : Fix ajustPrice bug */
+                        price={convertStringToBoolean(menuProduct.isAvailable) ? formatPrice(menuProduct.price) : BASKET_MESSAGE.NOT_AVAILABLE }
+                        isAvailable={menuProduct.isAvailable}
                         quantity={quantity}
                         onCardClick={() => handleCardClick(id)}
                         onDeleteBtnClick={(event) => handleCardDelete(event, id)}
