@@ -23,6 +23,7 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, prod
                         name={input.name}
                         value={input.value === defaultImage ? input.value = '' : input.value }
                         onChange={onChange}
+                        // @TODO : FIX ONBLUR/ONFOCUS TO ONLY APPEAR WHEN REAL UPDATE HAPPEN
                         onFocus={onFocus}
                         onBlur={onBlur}
                         placeholder={input.placeholder}
@@ -38,6 +39,7 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, prod
                         className={input.className}
                         value={input.value}
                         name={input.name}
+                        // @TODO : FIX ONBLUR/ONFOCUS TO ONLY APPEAR WHEN REAL UPDATE HAPPEN
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
