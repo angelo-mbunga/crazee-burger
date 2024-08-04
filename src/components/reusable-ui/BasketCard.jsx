@@ -1,10 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components';
 import { theme } from '../../theme/index'
-import { formatPrice, ajustPrice } from '../../utils/maths';
-import { truncate } from '../../utils/maths';
 import { MdDeleteForever } from "react-icons/md";
-import { defaultImage } from '../../enums/product';
+import { IMAGE_DEFAULT_PRODUCT } from '../../enums/product';
 import CasinoEffect from './CasinoEffect';
 
 
@@ -12,12 +10,11 @@ export default function BasketCard({title, imageSource, price, quantity, onDelet
     return (
         <BasketCardStyled onClick={onCardClick} isAdminMode={isAdminMode} isSelected={isSelected}>
             <div className="cardImage">
-                <img src={imageSource ? imageSource : defaultImage} alt={title} />
+                <img src={imageSource} alt={title} />
             </div>
             <div className="cardInfos">
-                <span className="title">{truncate(title,12)}</span>
-                {/* @TODO : Fix ajustPrice bug */}
-                <span className="price">{formatPrice(price)}</span> 
+                <span className="title">{title}</span>
+                <span className="price">{price}</span> 
             </div>
             <div className="cardExtras" onClick={onDeleteBtnClick}>
                 <CasinoEffect className="quantity" count={`x ${quantity}`} />
@@ -47,8 +44,8 @@ const BasketCardStyled = styled.div`
         align-items: center;
     }
     .cardImage {
-        padding: 4px 8px;
-        width: 40%;
+        padding: 8px;
+        width: 38%;
         
         img {
             width: 100%;
@@ -57,14 +54,14 @@ const BasketCardStyled = styled.div`
         }
     }
     .cardInfos {
-        width: 40%;
+        width: 42%;
         display: flex;
         flex-direction: column;
         align-items: center;
         user-select: none;
         
         span {
-            margin: 4px 0;
+            margin: 2px 0;
         }
         .title {
             font-size: ${theme.fonts.size.P3};

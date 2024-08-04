@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
-import {theme} from '../../theme/index'
+import {theme} from '../../theme/index';
 import PrimaryButton from './PrimaryButton';
 import { truncate, formatPrice } from '../../utils/maths';
 import { TiDelete } from "react-icons/ti";
 import OrderContext from '../../context/OrderContext';
-import { fadeRightAnimation } from '../../theme/animations';
+import { fadeInFromTop, fadeRightAnimation } from '../../theme/animations';
+import { IMAGE_NO_STOCK } from '../../enums/product';
 
-export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, isHoverable, isSelected, onAddBtnClick}) {
+export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, isHoverable, isSelected, onAddBtnClick, isOverlapImageVisible}) {
 
     const {isAdminMode} = useContext(OrderContext);
 
@@ -21,7 +22,16 @@ export default function Card({title, imageSource, leftDescription, onCloseBtnCli
                     //@TODO : MAKE BTN CONTAINER VISILE ON THE CARD INSTEAD OF ONLY IN ADMIN MODE
                     <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>
                 }
-                <img src={imageSource} alt={title} className='card-img'/>  
+
+                <>
+                    {isOverlapImageVisible && (
+                        <div className='overlap'>
+                            <div className='transparent-layer'></div>
+                            <img className='overlap-image' src={IMAGE_NO_STOCK} alt="épuisé" />
+                        </div>
+                    )}
+                    <img src={imageSource} alt={title} className='card-img'/>  
+                </>
                 <div className='card-details'>
                     <p className='card-title'>{truncate(title, 13)}</p>
                     <div className='card-extra'>
@@ -39,7 +49,7 @@ export default function Card({title, imageSource, leftDescription, onCloseBtnCli
 }
 
 const CardStyled = styled.div`
-
+    
     ${(props) => props.children.props.isHoverable && hoverableStyle};
     ${(props) => props.children.props.isSelected && props.children.props.isHoverable && clickedStyle};
 
@@ -53,7 +63,7 @@ const CardStyled = styled.div`
         box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
         border-radius: ${theme.borderRadius.round};
         user-select: none;
-       
+        position: relative;
     }
     .card-img {
         width: auto;
@@ -120,12 +130,35 @@ const CardStyled = styled.div`
         color: ${theme.colors.primary};
         transform: scale(1.5);
         padding: 2px 0;
-
     }
     .delete-icon:hover{
         cursor: pointer;
         color: ${theme.colors.red};
     }    
+
+    .overlap {
+        .transparent-layer {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 70%;
+            border-radius: ${theme.borderRadius.round};
+            background-color: snow;
+            animation: ${fadeInFromTop} 300ms;
+        }
+        .overlap-image {
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            width: 80%;
+            margin: auto;
+            padding: 8px;
+            z-index: 1;
+        }
+    }
 `;
 const hoverableStyle = css `    
     .card:hover {

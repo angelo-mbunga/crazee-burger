@@ -18,8 +18,8 @@ export default function AddForm() {
       title : newProduct.title,
       price : newProduct.price ? replaceFrenchCommaWithDot(newProduct.price) : 0.00,
       quantity: 0,
-      isAvailable: true,
-      isAdvertised: false
+      isAvailable: newProduct.isAvailable,
+      isAdvertised: newProduct.isAdvertised,
     }
     const handleChange = (e) => {
         const newValue = e.target.value;

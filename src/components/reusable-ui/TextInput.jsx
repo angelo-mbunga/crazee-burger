@@ -4,20 +4,18 @@ import React from 'react';
 
 export const TextInput = React.forwardRef(({value, onChange, Icon, ...extraProps}, ref) => {
     return (
-        <InputStyled>
+        <InputStyled className={"input-fields"}>
             {Icon && Icon}
             <input ref={ref} value={value} onChange={onChange} type="text" {...extraProps}/>
         </InputStyled>
   )
 });
 const InputStyled = styled.div `
-    display: flex;
+    display: grid;
     position: relative;
-    margin: 12px auto;
     width: 66%;
 
     input {
-        width: 100%;
         border-radius: ${theme.borderRadius.round};
         border: none;
         padding: 16px;

@@ -13,6 +13,7 @@ export function useMenu() {
     menuCopy.unshift({id:newProduct.id, imageSource:newProduct.imageSource, title:newProduct.title, price:newProduct.price, quantity:newProduct.quantity, isAvailable:newProduct.isAvailable, isAdvertised:newProduct.isAdvertised})
     setMenu(menuCopy)
     syncBothMenus(username, menuCopy)
+    console.log(newProduct)
   }
   const deleteProductFromMenu = (idOfProductToDelete, username) => {
     const menuCopy = deepClone(menu)
@@ -29,8 +30,8 @@ export function useMenu() {
     saveInLocalStrorage(username, menuCopy)
   }
   const resetMenuData = (username) => {
-    setMenu(fakeMenu.SMALL)
-    syncBothMenus(username, fakeMenu.SMALL)
+    setMenu(fakeMenu.LARGE)
+    syncBothMenus(username, fakeMenu.LARGE)
   }
   const getUserMenu = async (username) => {
     const user = await getUser(username)

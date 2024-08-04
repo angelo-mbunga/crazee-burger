@@ -9,6 +9,10 @@ import OrderContext from '../../../../../context/OrderContext';
 import Loader from '../../../../reusable-ui/Loader';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { fadeLeftAmimation } from '../../../../../theme/animations';
+import {IMAGE_NO_STOCK} from '../../../../../enums/product';
+import { convertStringToBoolean } from '../../../../../utils/string';
+import Ribbon from '../../../../reusable-ui/Ribbon';
+import { fadeInFromTop } from '../../../../../theme/animations';
 
 export default function Menu() {
 
@@ -75,20 +79,25 @@ export default function Menu() {
               />
         : 
           <TransitionGroup className={'productMenuList'}>
-            {menu.map(({title, imageSource, id, price}) => {
+            {menu.map(({title, imageSource, id, price, isAvailable, isAdvertised}) => {
               return (
                 <CSSTransition appear={true} classNames='fadeLeftAmimation' key={id} timeout={500}>
-                  <Card
-                    title={title}
-                    imageSource={imageSource}
-                    /* @TODO : Fix ajustPrice bug */
-                    leftDescription={formatPrice(price)}
-                    onCloseBtnClick={(event) => handleCardDelete(event, id)}
-                    onCardClick={() => handleClick(id)}
-                    onAddBtnClick={(event) => handleAddToBasket(event, id)}
-                    isSelected={checkIfProductSelected(id,currentProductSelected.id)}
-                    isHoverable={!isAdminMode}
-                  />
+                  <div className={!isAdminMode ? 'menu-card-container is-hoverable' : 'menu-card-container'}> 
+                    { convertStringToBoolean(isAvailable) && convertStringToBoolean(isAdvertised) ? <Ribbon label='nouveau'/> : null}
+                    <Card
+                      title={title}
+                      imageSource={imageSource}
+                      /* @TODO : Fix ajustPrice bug */
+                      leftDescription={formatPrice(price)}
+                      onCloseBtnClick={(event) => handleCardDelete(event, id)}
+                      onCardClick={() => handleClick(id)}
+                      onAddBtnClick={(event) => handleAddToBasket(event, id)}
+                      isSelected={checkIfProductSelected(id,currentProductSelected.id)}
+                      isHoverable={!isAdminMode}
+                      isOverlapImageVisible={convertStringToBoolean(isAvailable) === false}
+                      overlapImageSource={IMAGE_NO_STOCK}
+                    />
+                  </div>
                 </CSSTransition>
               )
             })}
@@ -135,6 +144,13 @@ const MenuStyled = styled.div`
     display: contents;
   }
 
+  .menu-card-container {
+    position: relative;
+    .ribbon {
+      z-index: 2;
+      animation: ${fadeInFromTop} 300ms;
+    }
+  }
   ${fadeLeftAmimation}
 
 `;
