@@ -9,6 +9,8 @@ import OrderContext from '../../../../../context/OrderContext';
 import Loader from '../../../../reusable-ui/Loader';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { fadeLeftAmimation } from '../../../../../theme/animations';
+import {IMAGE_NO_STOCK} from '../../../../../enums/product';
+import { convertStringToBoolean } from '../../../../../utils/string';
 
 export default function Menu() {
 
@@ -75,7 +77,8 @@ export default function Menu() {
               />
         : 
           <TransitionGroup className={'productMenuList'}>
-            {menu.map(({title, imageSource, id, price}) => {
+            {menu.map(({title, imageSource, id, price, isAvailable}) => {
+              console.log(isAvailable)
               return (
                 <CSSTransition appear={true} classNames='fadeLeftAmimation' key={id} timeout={500}>
                   <Card
@@ -88,6 +91,8 @@ export default function Menu() {
                     onAddBtnClick={(event) => handleAddToBasket(event, id)}
                     isSelected={checkIfProductSelected(id,currentProductSelected.id)}
                     isHoverable={!isAdminMode}
+                    isOverlapImageVisible={convertStringToBoolean(isAvailable) === false}
+                    overlapImageSource={IMAGE_NO_STOCK}
                   />
                 </CSSTransition>
               )

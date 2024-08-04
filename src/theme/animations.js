@@ -113,3 +113,15 @@ export const fadeRightAnimation = keyframes`
         transform: translateX(0);
     }
 `
+export const fadeInFromTop = keyframes`
+    0% {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+`
