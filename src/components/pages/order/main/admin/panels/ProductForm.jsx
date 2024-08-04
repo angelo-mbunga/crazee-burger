@@ -16,6 +16,7 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, prod
     return (
         <ProductFormStyled>
             <ProductPreview product={product} />
+            {/* @TODO : CREATE A FIELDS COMPONENT WITH BOTH INPUTS */}
             <form onSubmit={onSubmit} onChange={onChange}>
                 {textInputs.map((input) => (
                     <TextInput 
@@ -43,7 +44,7 @@ const ProductForm = React.forwardRef(({onSubmit, onChange, onFocus, onBlur, prod
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
-                        //Icon={input.Icon}
+                        Icon={input.Icon}
                     />
                 ))} 
                 <PrimaryButton
@@ -67,7 +68,7 @@ const ProductFormStyled = styled.div`
     form {
         display: grid;
         grid-template-rows: repeat(4, 50px);
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         
         div {
             float: left;
@@ -75,40 +76,42 @@ const ProductFormStyled = styled.div`
             width: 100%;
         }
         div:first-child {
-            grid-area: 1/1/2/5;
+            grid-area: 1/1/2/7;
            
         }
         div:nth-child(2){
-            grid-area: 2/1/3/5;
+            grid-area: 2/1/3/7;
         }
         div:nth-child(3){
-            grid-area: 3/1/3/2;
-            width: 66%!important;
+            grid-area: 3/1/3/3;  
         }
         .input-price {
-            width: 66%;
+            width: 50%;
         }
         .is-available-select{
-            grid-area: 3/2/3/3;
-            width: 95%;
-            z-index: 23;
-        }
-        .is-advertised-select{
             grid-area: 4/3/3/5;
-            width: 95%;
-            float: right;
+            width: 96%;
+            height: 36px;
             background-color: ${theme.colors.background_white};
         }
+        .is-advertised-select{
+            grid-area: 5/5/3/7;
+            width: 96%;
+            background-color: ${theme.colors.background_white};
+            height: 36px;
+        }
         div:last-child{
-            grid-area: 5/1/4/5;
+            grid-area: 5/-6/4/-2;
+            width: 100%;
+            margin: 0!important;
         }
         select {
             background-color: ${theme.colors.background_white};
-            height: 36px;
             width: 100%;
             border-radius: ${theme.borderRadius.round};
             border: none;
             font-size: ${theme.fonts.size.P0};
+            outline: 0;
         }
     }
 
@@ -127,7 +130,7 @@ const ProductFormStyled = styled.div`
     }
 
     .formFooterBtn {
-        width: 66%; 
+        width: 100%; 
         height: 100%;
         padding: 8px;
         background-color: ${theme.colors.success};

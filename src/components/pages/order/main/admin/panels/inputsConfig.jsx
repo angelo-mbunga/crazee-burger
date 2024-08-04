@@ -37,15 +37,15 @@ export const selectInputsConfig = (newProduct) => [
         name : "isAvailable",
         options : isAvailableOptions,
         value : newProduct.isAvailable,
-        className : "is-available-select"
-        //Icon : <FiPackage className="inputIcon"/>,
+        className : "is-available-select",
+        Icon : <FiPackage/>,
     },
     {
         id : 4,
         name : "isAdvertised",
         options : isAdvertisedOptions,
         value : newProduct.isAdvertised,
-        className : "is-advertised-select"
-        //Icon : <GoMegaphone className="inputIcon"/>,
+        className : "is-advertised-select",
+        Icon : <GoMegaphone/>,
     }
 ]
