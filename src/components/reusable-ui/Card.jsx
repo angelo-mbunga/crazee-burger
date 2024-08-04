@@ -8,7 +8,7 @@ import OrderContext from '../../context/OrderContext';
 import { fadeInFromTop, fadeRightAnimation } from '../../theme/animations';
 import { IMAGE_NO_STOCK } from '../../enums/product';
 
-export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, isHoverable, isSelected, onAddBtnClick, isOverlapImageVisible, overlapImageSource}) {
+export default function Card({title, imageSource, leftDescription, onCloseBtnClick, onCardClick, isHoverable, isSelected, onAddBtnClick, isOverlapImageVisible}) {
 
     const {isAdminMode} = useContext(OrderContext);
 

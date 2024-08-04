@@ -30,8 +30,8 @@ export function useMenu() {
     saveInLocalStrorage(username, menuCopy)
   }
   const resetMenuData = (username) => {
-    setMenu(fakeMenu.SMALL)
-    syncBothMenus(username, fakeMenu.SMALL)
+    setMenu(fakeMenu.LARGE)
+    syncBothMenus(username, fakeMenu.LARGE)
   }
   const getUserMenu = async (username) => {
     const user = await getUser(username)
