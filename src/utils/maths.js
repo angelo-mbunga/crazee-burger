@@ -1,3 +1,5 @@
+import { convertStringToBoolean } from "./string"
+
 export function formatPrice(priceToFormat) {
   let price = priceToFormat
 
@@ -31,7 +33,10 @@ export const calculateAmoutToPay = (basket, menu) => {
     const menuProduct = menu.find((product) => product.id === basketProduct.id);
 
     // Dont add products when price is not a number
-    if (isNaN(menuProduct.price)) { return total; }
+    if (isNaN(menuProduct.price)) return total
+
+    // Dont add product price if prodcut is unavailable
+    if (convertStringToBoolean(menuProduct.isAvailable) === false) return total
 
     total += menuProduct.price * basketProduct.quantity;
     return total;
