@@ -25,7 +25,7 @@ export default function  () {
   return (
     <>
       <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-        <div>
+        <div className='login-container'>
           <h2>Bienvenue chez vous !</h2>
           <hr />
           <h2>Connectez-vous</h2>
@@ -42,6 +42,16 @@ const LoginFormStyled = styled.form `
   max-width: 500px;
   min-width: 400px;
   padding: 0 ${theme.spacing.lg};
+
+  .login-container {
+    input {
+      width: -webkit-fill-available;
+    }
+    .input-fields {
+      display: block;
+      margin: auto; 
+    }
+  }
 
   h2 {
     color: ${theme.colors.white};
