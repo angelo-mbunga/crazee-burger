@@ -7,6 +7,7 @@ import { EMPTY_PRODUCT } from '../../../../../../enums/product';
 import ProductForm from './ProductForm';
 import styled from 'styled-components';
 import { replaceFrenchCommaWithDot } from '../../../../../../utils/maths';
+import { theme } from '../../../../../../theme';
 
 export default function AddForm() {
 
@@ -55,4 +56,20 @@ export default function AddForm() {
         </AddFormStyled>
     )
 }
-const AddFormStyled = styled.div``;
+const AddFormStyled = styled.div`
+    height:100%;
+
+    .formFooterBtn {
+        width: 100%; 
+        height: 100%;
+        padding: 8px;
+        background-color: ${theme.colors.success};
+        color: ${theme.colors.white};
+        border-radius: ${theme.borderRadius.round};
+        border: none;
+        cursor: pointer;
+    }
+    .formFooterBtn:hover {
+        background-color: ${theme.colors.green};
+    } 
+`
