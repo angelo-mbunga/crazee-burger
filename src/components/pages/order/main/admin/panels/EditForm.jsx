@@ -65,16 +65,16 @@ export default function EditForm() {
 }
 
 const EditFormStyled = styled.div`
-  display: flex;
   height: 100%;
   .emptyPanelMsg {
-    height: 66%;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: ${theme.fonts.size.P3};
     font-family: "Amatic SC", cursive;
+    margin: 0!important;
   }
   .emptyPanelIcon {
     margin-left: 8px;

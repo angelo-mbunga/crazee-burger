@@ -18,21 +18,21 @@ const PrimaryButtonStyled = styled.div `
     width: 66%;
     
     .login-page-cta {
-        width: 100%;
-        border-radius: ${theme.borderRadius.round};
-        border: none;
-        padding: 16px;
-        font-size: ${theme.fonts.size.P0};
-        text-overflow: ellipsis;
-        background-color: ${theme.colors.primary};
-        color: ${theme.colors.white};
+      width: 100%;
+      border-radius: ${theme.borderRadius.round};
+      border: none;
+      padding: 16px;
+      font-size: ${theme.fonts.size.P0};
+      text-overflow: ellipsis;
+      background-color: ${theme.colors.primary};
+      color: ${theme.colors.white};
     }
     .login-page-cta:hover {
-        cursor: pointer;
-        background-color: ${theme.colors.white};
-        color: ${theme.colors.primary};
-        outline: 2px solid ${theme.colors.primary};
-        outline-offset: -2px;
+      cursor: pointer;
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.primary};
+      outline: 2px solid ${theme.colors.primary};
+      outline-offset: -2px;
     }
 `
 const commentaryStyle = css `
@@ -43,5 +43,9 @@ const commentaryStyle = css `
     color: ${theme.colors.primary};
     border: none;
     text-transform: uppercase;
+    height : fit-content;
+    padding: 8px 0;
+    font-style: italic;
+    font-size: ${theme.fonts.size.XS};
   }
 `
