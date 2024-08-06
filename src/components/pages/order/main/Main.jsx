@@ -44,6 +44,7 @@ const MainStyled = styled.div`
     position: relative;
     overflow-y: hidden;
     display: grid;
+    border-radius:0 0 ${theme.borderRadius.extraRound} 0;
   }
 
   ${fadeUpAmimation}
