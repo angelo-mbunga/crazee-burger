@@ -16,15 +16,12 @@ export default function Main() {
       <Basket/>
       <div className='menu-and-amdin'>
         <Menu/>
-          {isAdminMode
-            ? 
-              null
-            : 
-              <TransitionGroup>
-                <CSSTransition appear classNames='fadeUpEffect' timeout={500}>
-                  <Admin/>
-                </CSSTransition>
-              </TransitionGroup> 
+          {!isAdminMode &&
+            <TransitionGroup>
+              <CSSTransition appear classNames='fadeUpEffect' timeout={500}>
+                <Admin/>
+              </CSSTransition>
+            </TransitionGroup> 
           }
       </div>
     </MainStyled>
