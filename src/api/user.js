@@ -23,7 +23,7 @@ export const createUser = async (idUser) => {
     const path = doc(db, "users", idUser)
     const userToCreate = {
         username : idUser,
-        menu : fakeMenu.MEDIUM
+        menu : fakeMenu.LARGE
     }
     await setDoc(path, userToCreate)
     return userToCreate
