@@ -18,12 +18,12 @@ export const getTabsConfig = [
       icon: <MdOutlineEdit/>,
       content: <EditForm/>
     },
-    {
+/*     {
       index: "settings",
       value: "Paramatres",
       icon: <IoSettingsOutline/>,
       content: <SettingsPanel/>
-    },
+    }, */
   ]; 
 export const getTabSelected = (tabs, currentTabSelected) => tabs.find((tab) => tab.index === currentTabSelected)
 
