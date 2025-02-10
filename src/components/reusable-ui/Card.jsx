@@ -15,14 +15,7 @@ export default function Card({title, imageSource, leftDescription, onCloseBtnCli
     return (
         <CardStyled>
             <div className="card" onClick={onCardClick} isHoverable={isHoverable} isSelected={isSelected}>
-                {isAdminMode
-                ? 
-                    null
-                : 
-                    //@TODO : MAKE BTN CONTAINER VISILE ON THE CARD INSTEAD OF ONLY IN ADMIN MODE
-                    <div className='card-delete-btn'><TiDelete className='delete-icon' onClick={onCloseBtnClick}/></div>
-                }
-
+                <div className='card-delete-btn'>{!isAdminMode && <TiDelete className='delete-icon' onClick={onCloseBtnClick}/>}</div>
                 <>
                     {isOverlapImageVisible && (
                         <div className='overlap'>
@@ -125,6 +118,7 @@ const CardStyled = styled.div`
     .card-delete-btn{
         text-align: right;
         animation: ${fadeRightAnimation} 500ms ease-out;
+        height: 16px;
     }
     .delete-icon{
         color: ${theme.colors.primary};

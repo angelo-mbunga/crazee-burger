@@ -96,7 +96,6 @@ const OrderPageStyled = styled.div`
       background-size: cover;
       position: absolute;
       width: 100%;
-      max-width: 1400px;
       top: 0;
       left: 0;
       bottom: 0;
